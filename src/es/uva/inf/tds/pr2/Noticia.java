@@ -1,7 +1,6 @@
 package es.uva.inf.tds.pr2;
 
 import java.time.LocalDate;
-import java.util.function.BooleanSupplier;
 
 public class Noticia {
 

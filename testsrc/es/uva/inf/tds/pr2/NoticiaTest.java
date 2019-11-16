@@ -9,11 +9,6 @@ import org.junit.jupiter.api.Test;
 public class NoticiaTest {
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testCrearNoticia() {
 		String titular = "Hola";
 		LocalDate fechaPublicacion = LocalDate.of(2019, 11, 14);
