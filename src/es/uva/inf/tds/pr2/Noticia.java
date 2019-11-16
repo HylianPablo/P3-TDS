@@ -1,6 +1,7 @@
 package es.uva.inf.tds.pr2;
 
 import java.time.LocalDate;
+import java.util.function.BooleanSupplier;
 
 public class Noticia {
 
@@ -31,6 +32,16 @@ public class Noticia {
 	public EnumCategoria getCategoria() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String comparaFechaNoticia(Noticia n) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean isSimilar(Noticia n2) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
