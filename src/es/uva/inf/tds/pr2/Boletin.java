@@ -38,4 +38,19 @@ public class Boletin {
 		return null;
 	}
 
+	public ArrayList<Noticia> getChronologicalOrder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<Noticia> getNewsByCategory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<Noticia> getSimilarNews(Noticia n) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
