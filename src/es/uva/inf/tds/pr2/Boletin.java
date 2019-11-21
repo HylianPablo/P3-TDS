@@ -20,7 +20,7 @@ public class Boletin {
 
 	public void addNoticia(Noticia n) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public int getNumberOfNoticias() {
@@ -49,6 +49,32 @@ public class Boletin {
 	}
 
 	public ArrayList<Noticia> getSimilarNews(Noticia n) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boletin getSubconjuntoFecha(LocalDate fechaBuscada) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boletin getSubconjuntoIntervalo(LocalDate inicioIntervalo, LocalDate finalIntervalo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boletin getSubconjuntoCategoria(EnumCategoria categoriaBuscada) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boletin getSubconjuntoCategoriaFecha(EnumCategoria categoriaBuscada, LocalDate fechaConcreta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boletin getSubconjuntoCategoriaIntervalo(EnumCategoria categoriaBuscada, LocalDate inicioIntervalo,
+			LocalDate finalIntervalo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
