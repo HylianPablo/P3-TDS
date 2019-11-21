@@ -4,7 +4,7 @@ public enum EnumCategoria {
 	nacional,
 	internacional,
 	sociedad,
-	economa,
+	economia,
 	deporte,
 	cultura
 }
