@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 /**
  * Clase que representa una noticia. COMPLETAR
- * @author pamarti migusan
+ * @author pamarti
+ * @author migusan
  *
  */
 public class Noticia {
