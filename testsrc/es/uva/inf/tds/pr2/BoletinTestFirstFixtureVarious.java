@@ -169,6 +169,13 @@ public class BoletinTestFirstFixtureVarious {
 
 			assertEquals(al, b.getSimilarNews(n2));
 		}
+		
+		@Test
+		public void noticiasSimilaresANula() {
+			Boletin b= new Boletin();
+			n2=null;
+			assertThrows(IllegalArgumentException.class, () -> {b.getSimilarNews(n2);;});
+		}
 
 		@Test
 		public void subconjuntoFecha() {
@@ -202,8 +209,14 @@ public class BoletinTestFirstFixtureVarious {
 
 			assertEquals(validas, todas.getSubconjuntoFecha(fechaBuscada));
 		}
+		
+		@Test
+		public void subconjuntoFechaNula() {
+			Boletin b= new Boletin();
+			fechaPublicacion=null;
+			assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoFecha(fechaPublicacion);});
+		}
 
-		//Other
 		@Test
 		public void subconjuntoIntervalo() {
 			Boletin todas = new Boletin();
@@ -246,6 +259,15 @@ public class BoletinTestFirstFixtureVarious {
 
 			assertEquals(validas, todas.getSubconjuntoIntervalo(inicioIntervalo, finalIntervalo));
 		}
+		
+		@Test
+		public void subconjuntoIntervalosNull() {
+			LocalDate inicioIntervalo = null;
+			LocalDate finalIntervalo = null;
+			Boletin b = new Boletin();
+			
+			assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoIntervalo(inicioIntervalo, finalIntervalo);});
+		}
 
 		@Test
 		public void subconjuntoCategoria() {
@@ -266,6 +288,13 @@ public class BoletinTestFirstFixtureVarious {
 			validas.addNoticia(n4);
 
 			assertEquals(validas, todas.getSubconjuntoCategoria(categoriaBuscada));
+		}
+		
+		@Test
+		public void subconjuntoCategoriaNull() {
+			categoria4=null;
+			Boletin b= new Boletin();
+			assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoCategoria(categoria4);});
 		}
 
 		@Test
@@ -296,6 +325,15 @@ public class BoletinTestFirstFixtureVarious {
 
 			assertEquals(validas, todas.getSubconjuntoCategoriaFecha(categoriaBuscada, fechaConcreta));
 		}
+		
+		@Test
+		public void subconjuntoCategoriaFechaNulls() {
+			fechaPublicacion=null;
+			categoria=null;
+			Boletin b= new Boletin();
+			assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoCategoriaFecha(categoria, fechaPublicacion);});
+			
+		}
 
 		@Test
 		public void subconjuntoCategoriaIntervalo() {
@@ -325,6 +363,16 @@ public class BoletinTestFirstFixtureVarious {
 
 			assertEquals(validas,
 					todas.getSubconjuntoCategoriaIntervalo(categoriaBuscada, inicioIntervalo, finalIntervalo));
+		}
+		
+		@Test
+		public void subconjuntoCategoriaIntervaloNulls() {
+			LocalDate inicioIntervalo = null;
+			LocalDate finalIntervalo = null;
+			categoria=null;
+			Boletin b = new Boletin();
+			
+			assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoCategoriaIntervalo(categoria, inicioIntervalo, finalIntervalo);});
 		}
 		
 		@AfterEach

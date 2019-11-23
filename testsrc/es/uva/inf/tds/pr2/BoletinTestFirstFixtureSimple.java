@@ -24,6 +24,7 @@ public class BoletinTestFirstFixtureSimple {
 	private EnumCategoria categoria2;
 	private String url2;
 	private Noticia n2;
+	private Boletin b;
 
 	@Test
 	public void createEmptyBoletin() {
@@ -48,6 +49,8 @@ public class BoletinTestFirstFixtureSimple {
 		categoria2 = EnumCategoria.nacional;
 		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
+		
+		b=new Boletin();
 	}
 
 	@Test
@@ -55,14 +58,13 @@ public class BoletinTestFirstFixtureSimple {
 		ArrayList<Noticia> al = new ArrayList<>();
 		al.add(n);
 
-		Boletin b = new Boletin(al);
+		b = new Boletin(al);
 		assertNotNull(b);
 		assertEquals(al, b.getNoticias());
 	}
 
 	@Test
 	public void addNoticia() {
-		Boletin b = new Boletin();
 		b.addNoticia(n);
 		ArrayList<Noticia> al = new ArrayList<>();
 		al.add(n);
@@ -70,24 +72,19 @@ public class BoletinTestFirstFixtureSimple {
 	}
 
 	@Test
-	public void addNoticiaRepetida() {
-		Boletin b = new Boletin();
-		b.addNoticia(n);
-		assertThrows(IllegalArgumentException.class, () -> {
-			b.addNoticia(n);
-		});
+	public void addNoticiaNula() {
+		Noticia n2=null;
+		assertThrows(IllegalArgumentException.class, () -> {b.addNoticia(n2);;});
 	}
 
 	@Test
 	public void numeroNoticias() {
-		Boletin b = new Boletin();
 		b.addNoticia(n);
 		assertSame(1, b.getNumberOfNoticias());
 	}
 
 	@Test
 	public void getFechaMasReciente() {
-		Boletin b = new Boletin();
 		b.addNoticia(n);
 		b.addNoticia(n2);
 
@@ -96,7 +93,6 @@ public class BoletinTestFirstFixtureSimple {
 
 	@Test
 	public void getFechaMasAntigua() {
-		Boletin b = new Boletin();
 		b.addNoticia(n);
 		b.addNoticia(n2);
 
@@ -105,23 +101,8 @@ public class BoletinTestFirstFixtureSimple {
 
 	@Test
 	public void listaCronologica() {
-		Boletin b = new Boletin();
 		b.addNoticia(n);
 		b.addNoticia(n2);
-
-		ArrayList<Noticia> al = new ArrayList<>();
-		al.add(n2);
-		al.add(n);
-
-		assertEquals(al, b.getChronologicalOrder());
-	}
-
-	//BlackBox
-	@Test
-	public void listaCronologicaMismaFecha() {
-		Boletin b = new Boletin();
-		b.addNoticia(n2);
-		b.addNoticia(n);
 
 		ArrayList<Noticia> al = new ArrayList<>();
 		al.add(n2);
@@ -134,6 +115,7 @@ public class BoletinTestFirstFixtureSimple {
 	public void tearDown() {
 		n = null;
 		n2 = null;
+		b=null;
 	}
 
 }
