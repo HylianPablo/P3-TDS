@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,7 @@ public class BoletinTestFirstFixtureSimple {
 	private Noticia n2;
 	private Boletin b;
 
+	@Category(TDD.class)
 	@Test
 	public void createEmptyBoletin() {
 		Boletin b = new Boletin();
@@ -49,10 +51,11 @@ public class BoletinTestFirstFixtureSimple {
 		categoria2 = EnumCategoria.nacional;
 		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-		
-		b=new Boletin();
+
+		b = new Boletin();
 	}
 
+	@Category(TDD.class)
 	@Test
 	public void createNotEmptyBoletin() {
 		ArrayList<Noticia> al = new ArrayList<>();
@@ -63,6 +66,7 @@ public class BoletinTestFirstFixtureSimple {
 		assertEquals(al, b.getNoticias());
 	}
 
+	@Category(TDD.class)
 	@Test
 	public void addNoticia() {
 		b.addNoticia(n);
@@ -71,18 +75,24 @@ public class BoletinTestFirstFixtureSimple {
 		assertEquals(al, b.getNoticias());
 	}
 
+	@Category(TDD.class)
 	@Test
 	public void addNoticiaNula() {
-		Noticia n2=null;
-		assertThrows(IllegalArgumentException.class, () -> {b.addNoticia(n2);;});
+		Noticia n2 = null;
+		assertThrows(IllegalArgumentException.class, () -> {
+			b.addNoticia(n2);
+			;
+		});
 	}
 
+	@Category(TDD.class)
 	@Test
 	public void numeroNoticias() {
 		b.addNoticia(n);
 		assertSame(1, b.getNumberOfNoticias());
 	}
 
+	@Category(TDD.class)
 	@Test
 	public void getFechaMasReciente() {
 		b.addNoticia(n);
@@ -91,6 +101,7 @@ public class BoletinTestFirstFixtureSimple {
 		assertEquals(fechaPublicacion, b.getMostRecentDate());
 	}
 
+	@Category(TDD.class)
 	@Test
 	public void getFechaMasAntigua() {
 		b.addNoticia(n);
@@ -99,6 +110,7 @@ public class BoletinTestFirstFixtureSimple {
 		assertEquals(fechaPublicacion2, b.getOldestDate());
 	}
 
+	@Category(TDD.class)
 	@Test
 	public void listaCronologica() {
 		b.addNoticia(n);
@@ -115,7 +127,7 @@ public class BoletinTestFirstFixtureSimple {
 	public void tearDown() {
 		n = null;
 		n2 = null;
-		b=null;
+		b = null;
 	}
 
 }
