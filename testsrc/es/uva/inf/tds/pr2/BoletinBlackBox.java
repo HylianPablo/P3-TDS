@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class BoletinBlackBox {
@@ -47,6 +48,8 @@ public class BoletinBlackBox {
 		b=new Boletin();
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Negative")
 	@Test
 	public void addNoticiaRepetida() {
 		b.addNoticia(n);
@@ -55,12 +58,16 @@ public class BoletinBlackBox {
 		});
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Positive")
 	@Test
 	public void numeroNoticiasBoletinVacio() {
 		assertEquals(0,b.getNumberOfNoticias());
 		fail("UNTIL GREEN PHASE");
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Positive")
 	@Test
 	public void listaCronologicaMismaFecha() {
 		b.addNoticia(n2);
@@ -73,6 +80,8 @@ public class BoletinBlackBox {
 		assertEquals(al, b.getChronologicalOrder());
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Negative")
 	@Test
 	public void subconjuntoIntervaloInicialNull() {
 		LocalDate inicioIntervalo = null;
@@ -81,6 +90,8 @@ public class BoletinBlackBox {
 		assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoIntervalo(inicioIntervalo, finalIntervalo);});
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Positive")
 	@Test
 	public void subconjuntoIntervaloIguales() {
 		LocalDate int1 = LocalDate.of(2019, 11, 14);
@@ -96,6 +107,8 @@ public class BoletinBlackBox {
 		assertEquals(b2,b.getSubconjuntoIntervalo(int1, int2));
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Positive")
 	@Test
 	public void subconjuntoCategoriaSinFecha() {
 		b.addNoticia(n);
@@ -107,6 +120,8 @@ public class BoletinBlackBox {
 		assertEquals(b2,b.getSubconjuntoCategoriaFecha(c, fechaPublicacion));
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Positive")
 	@Test
 	public void subconjuntoCategoriaIntervaloMismaFecha() {
 		LocalDate int1 = LocalDate.of(2019, 11, 14);
@@ -122,6 +137,8 @@ public class BoletinBlackBox {
 		assertEquals(b2,b.getSubconjuntoCategoriaIntervalo(c, int1, int2));
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Positive")
 	@Test
 	public void subconjuntoCategoriaSinIntervalo() {
 		LocalDate int1 = LocalDate.of(2010, 11, 14);
@@ -136,6 +153,8 @@ public class BoletinBlackBox {
 		assertEquals(b2,b.getSubconjuntoCategoriaIntervalo(c, int1, int2));
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Negative")
 	@Test
 	public void subconjuntoIntervaloFinalNull() {
 		LocalDate inicioIntervalo = LocalDate.of(2000, 1, 1);
@@ -144,6 +163,8 @@ public class BoletinBlackBox {
 		assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoIntervalo(inicioIntervalo, finalIntervalo);});
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Negative")
 	@Test
 	public void subconjuntoCategoriaNullFecha() {
 		fechaPublicacion=null;
@@ -151,6 +172,8 @@ public class BoletinBlackBox {
 		assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoCategoriaFecha(categoria, fechaPublicacion);});
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Negative")
 	@Test
 	public void subconjuntoCategoriaFechaNull() {
 		fechaPublicacion=LocalDate.of(2000, 1, 1);
@@ -158,6 +181,8 @@ public class BoletinBlackBox {
 		assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoCategoriaFecha(categoria, fechaPublicacion);});
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Negative")
 	@Test
 	public void subconjuntoCategoriaNullIntervalo() {
 		LocalDate inicioIntervalo = LocalDate.of(2000, 1, 1);
@@ -167,6 +192,8 @@ public class BoletinBlackBox {
 		assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoCategoriaIntervalo(categoria, inicioIntervalo, finalIntervalo);});
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Negative")
 	@Test
 	public void subconjuntoCategoriaIntervaloNull1() {
 		LocalDate inicioIntervalo = null;
@@ -176,6 +203,8 @@ public class BoletinBlackBox {
 		assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoCategoriaIntervalo(categoria, inicioIntervalo, finalIntervalo);});
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Negative")
 	@Test
 	public void subconjuntoCategoriaIntervaloNull2() {
 		LocalDate inicioIntervalo = LocalDate.of(2000, 1, 1);

@@ -17,14 +17,14 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} si la lista introducida por parámetro es {@code null}.
 	 */
 	public Boletin(ArrayList<Noticia> al) {
-		// TODO Auto-generated constructor stub
+		// TODO Crear constructor con noticias. Utilizar un atributo privado ArrayList
 	}
 
 	/**
 	 * Creación de un boletín de noticias vacío.
 	 */
 	public Boletin() {
-		// TODO Auto-generated constructor stub
+		// TODO Crear constructor vacío
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class Boletin {
 	 * @return {@code ArrayList} que representa el conjunto de noticias del boletín.
 	 */
 	public ArrayList<Noticia> getNoticias() {
-		// TODO Auto-generated method stub
+		// TODO Devolver las noticias del boletín
 		return null;
 	}
 
@@ -42,7 +42,7 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia a introducir sea {@code null}.
 	 */
 	public void addNoticia(Noticia n) {
-		// TODO Auto-generated method stub
+		// TODO Agregar noticia al ArrayList
 
 	}
 
@@ -51,7 +51,7 @@ public class Boletin {
 	 * @return Número entero que representa la cantidad de noticias del boletín.
 	 */
 	public int getNumberOfNoticias() {
-		// TODO Auto-generated method stub
+		// TODO Devolver size() del arrayList
 		return 0;
 	}
 
@@ -60,7 +60,7 @@ public class Boletin {
 	 * @return {@code LocalDate} que representa la fecha de la noticia publicada más recientemente.
 	 */
 	public LocalDate getMostRecentDate() {
-		// TODO Auto-generated method stub
+		// TODO Recorrer las noticias con un centinela, devolver el índice que indique el centinela
 		return null;
 	}
 
@@ -69,7 +69,7 @@ public class Boletin {
 	 * @return {@code LocalDate} que representa la fecha de la noticia más antigua publicada.
 	 */
 	public LocalDate getOldestDate() {
-		// TODO Auto-generated method stub
+		// TODO Recorrer las noticias con un centinela, devolver el índice que indique el centinelaAuto-generated method stub
 		return null;
 	}
 
@@ -78,7 +78,7 @@ public class Boletin {
 	 * @return {@code ArrayList} que representa la lista de noticias del boletín ordenadas cronológicamente.
 	 */
 	public ArrayList<Noticia> getChronologicalOrder() {
-		// TODO Auto-generated method stub
+		// TODO Recorre las noticias y crea un nuevo ArrayList ordenado por fecha
 		return null;
 	}
 
@@ -87,7 +87,7 @@ public class Boletin {
 	 * @return {@code ArrayList} que representa la lista de noticias del boletín ordenadas por categoría.
 	 */
 	public ArrayList<Noticia> getNewsByCategory() {
-		// TODO Auto-generated method stub
+		// TODO Recorre las noticias y crea un nuevo ArrayList ordenado por categorías. Por cada iteración elimina o descarta los ya añadidos.
 		return null;
 	}
 
@@ -98,7 +98,7 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia introducida sea {@code null}.
 	 */
 	public ArrayList<Noticia> getSimilarNews(Noticia n) {
-		// TODO Auto-generated method stub
+		// TODO Recorre las noticias y crea un nuevo ArrayList con las noticias similares. Lanzar antes de nada una excepción en caso de ser Noticia null.
 		return null;
 	}
 
@@ -109,7 +109,7 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} en caso de que la fecha introducida sea {@code null}.
 	 */
 	public Boletin getSubconjuntoFecha(LocalDate fechaBuscada) {
-		// TODO Auto-generated method stub
+		// TODO Comprobar que la fecha introducida no es nula. Crear un nuevo boletín y agregar los coincidentes.
 		return null;
 	}
 
@@ -121,7 +121,7 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} en caso de que alguna de las fechas introducidas por parámetro sea {@code null}.
 	 */
 	public Boletin getSubconjuntoIntervalo(LocalDate inicioIntervalo, LocalDate finalIntervalo) {
-		// TODO Auto-generated method stub
+		// TODO Comprobar que la fechas introducida no son nulas, por separado. Crear un nuevo boletín y agregar los coincidentes.
 		return null;
 	}
 
@@ -132,7 +132,7 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} en caso de que la enumeración introducida por parámetro sea {@code null}.
 	 */
 	public Boletin getSubconjuntoCategoria(EnumCategoria categoriaBuscada) {
-		// TODO Auto-generated method stub
+		// TODO Comprobar que la categoría introducida no es nula. Crear un nuevo boletín y agregar los coincidentes.
 		return null;
 	}
 
@@ -144,7 +144,7 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} en caso de que la enumeración o la fecha introducidas por parámetro sean {@code null}.
 	 */
 	public Boletin getSubconjuntoCategoriaFecha(EnumCategoria categoriaBuscada, LocalDate fechaConcreta) {
-		// TODO Auto-generated method stub
+		// TODO Comprobar que la fecha o la categoría introducidas no son nulas, por separado. Crear un nuevo boletín y agregar los coincidentes.
 		return null;
 	}
 
@@ -158,7 +158,7 @@ public class Boletin {
 	 */
 	public Boletin getSubconjuntoCategoriaIntervalo(EnumCategoria categoriaBuscada, LocalDate inicioIntervalo,
 			LocalDate finalIntervalo) {
-		// TODO Auto-generated method stub
+		// TODO Comprobar que las fechas o la categoría introducidas no son nulas, por separado. Crear un nuevo boletín y agregar los coincidentes.
 		return null;
 	}
 

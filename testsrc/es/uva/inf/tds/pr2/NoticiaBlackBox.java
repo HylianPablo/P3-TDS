@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class NoticiaBlackBox {
@@ -27,6 +28,8 @@ public class NoticiaBlackBox {
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 	}
 
+	@Tag("BlackBox")
+	@Tag("Negative")
 	@Test
 	public void testCeroPalabras() {
 		String titular="";
@@ -39,6 +42,8 @@ public class NoticiaBlackBox {
 		Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);});
 	}
 	
+	@Tag("BlackBox")
+	@Tag("Positive")
 	@Test
 	public void noticiaPosterior() {
 		String titular2 = "Hola";
@@ -52,6 +57,8 @@ public class NoticiaBlackBox {
 		assertEquals("posterior",n.comparaFechaNoticia(n2));
 	}
 	
+	@Tag("Positive")
+	@Tag("BlackBox")
 	@Test
 	public void noticiaAnterior() {
 		String titular2 = "Hola";
@@ -65,6 +72,8 @@ public class NoticiaBlackBox {
 		assertEquals("anterior",n.comparaFechaNoticia(n2));
 	}
 	
+	@Tag("Positive")
+	@Tag("BlackBox")
 	@Test
 	public void noticiaNoSimilarCategoria() {
 		String titular2 = "Hola";
@@ -79,6 +88,8 @@ public class NoticiaBlackBox {
 		fail("Until GREEN Phase");
 	}
 	
+	@Tag("Positive")
+	@Tag("BlackBox")
 	@Test
 	public void noticiaNoSimilarFecha() {		
 		String titular2 = "Hola";
