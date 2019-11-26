@@ -9,10 +9,10 @@ import org.junit.platform.suite.api.SelectPackages;
 
 @RunWith(JUnitPlatform.class)
 @SelectPackages("es.uva.inf.tds.tdd.money")
-@SuiteClasses({ NoticiaTestFirstFixture.class, NoticiaTestFirstOther.class, NoticiaBlackBox.class })
-@IncludeTags({"Positive | Negative | BlackBox"})
-@ExcludeTags({"Fixture"})
+@SuiteClasses({ BoletinTestFirstFixtureSimple.class, BoletinTestFirstFixtureVarious.class, BoletinBlackBox.class })
+@IncludeTags({"Positive|Negative"})
+@ExcludeTags({"BlackBox"})
 
-public class NoticiaFirstSuite {
+public class BoletinFirstSuite {
 
 }

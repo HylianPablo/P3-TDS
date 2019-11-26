@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class NoticiaTestFirstOther {
 
+	@Tag("Negative")
 	@Test
 	public void testCrearNoticiaError() {
 		String titular = null;
@@ -19,6 +21,7 @@ public class NoticiaTestFirstOther {
 		Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);});
 	}
 	
+	@Tag("Positive")
 	@Test
 	public void testCatorcePalabras() {
 		String titular="Uno dos tres cuatro cinco seis siete ocho nueve diez once doce trece catorce";

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class NoticiaTestFirstFixture {
@@ -28,6 +29,8 @@ public class NoticiaTestFirstFixture {
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 	}
 
+	@Tag("Positive")
+	@Tag("Fixture")
 	@Test
 	public void testCrearNoticia() {
 		assertNotNull(n);
@@ -39,7 +42,8 @@ public class NoticiaTestFirstFixture {
 	}
 
 	
-	
+	@Tag("Negative")
+	@Tag("Fixture")
 	@Test
 	public void comparaFechaNull() {
 		Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
@@ -48,6 +52,8 @@ public class NoticiaTestFirstFixture {
 		assertThrows(IllegalArgumentException.class, () -> {n.comparaFechaNoticia(n2);});
 	}
 	
+	@Tag("Positive")
+	@Tag("Fixture")
 	@Test
 	public void noticiaIgual() {
 		String titular2 = "Hola";
@@ -61,6 +67,8 @@ public class NoticiaTestFirstFixture {
 		assertEquals("igual",n.comparaFechaNoticia(n2));
 	}
 	
+	@Tag("Positive")
+	@Tag("Fixture")
 	@Test
 	public void noticiaSimilar() {		
 		String titular2 = "Hola";
@@ -74,8 +82,10 @@ public class NoticiaTestFirstFixture {
 		assertTrue(n.isSimilar(n2));
 	}
 	
+	@Tag("Positive")
+	@Tag("Fixture")
 	@Test
-	public void noticiaNoSimilar() { //Titular		
+	public void noticiaNoSimilar() { 		
 		String titular2 = "Adios";
 		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 16);
 		String fuente2 = "Adios";
@@ -88,6 +98,8 @@ public class NoticiaTestFirstFixture {
 		fail("Until GREEN Phase");
 	}
 	
+	@Tag("Negative")
+	@Tag("Fixture")
 	@Test
 	public void noticiaNulaSimilar() {
 		Noticia n2=null;
@@ -99,6 +111,4 @@ public class NoticiaTestFirstFixture {
 	public void tearDown() {
 		n=null;
 	}
-	
-	
 }
