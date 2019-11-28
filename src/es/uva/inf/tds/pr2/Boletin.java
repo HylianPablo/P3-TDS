@@ -74,7 +74,7 @@ public class Boletin {
 	}
 
 	/**
-	 * Obtiene todas las noticias del boletín ordenadas cronológicamente.
+	 * Obtiene todas las noticias del boletín ordenadas cronológicamente (de anterior a posterior).
 	 * @return {@code ArrayList} que representa la lista de noticias del boletín ordenadas cronológicamente.
 	 */
 	public ArrayList<Noticia> getChronologicalOrder() {
