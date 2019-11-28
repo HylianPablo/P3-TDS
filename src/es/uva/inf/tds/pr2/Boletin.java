@@ -4,7 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Clase que representa un boletín de noticias. COMPLETAR
+ * Clase que representa un boletín de noticias. <br>
+ * Puede crearse vacío o a partir de un conjunto de noticias, permitiendo operar
+ * con las noticias,<br>
+ * realizar comparaciones y consultas, y obtener subconjutnos en base a ciertos
+ * criterios.<br>
+ * 
  * @author pamarti
  * @author migusan
  *
@@ -12,9 +17,13 @@ import java.util.ArrayList;
 public class Boletin {
 
 	/**
-	 * Creación de un boletín de noticias a partir de un conjunto inicial de noticia.
-	 * @param al {@code ArrayList} compuesto por {@code Noticias} que representa el conjunto inicial de noticias.
-	 * @throws {@code IllegalArgumentException} si la lista introducida por parámetro es {@code null}.
+	 * Creación de un boletín de noticias a partir de un conjunto inicial de
+	 * noticia.
+	 * 
+	 * @param al {@code ArrayList} compuesto por {@code Noticias} que representa el
+	 *           conjunto inicial de noticias.
+	 * @throws {@code IllegalArgumentException} si la lista introducida por
+	 *                parámetro es {@code null}.
 	 */
 	public Boletin(ArrayList<Noticia> al) {
 		// TODO Crear constructor con noticias. Utilizar un atributo privado ArrayList
@@ -29,17 +38,20 @@ public class Boletin {
 
 	/**
 	 * Devuelve las noticias que componen el boletín.
+	 * 
 	 * @return {@code ArrayList} que representa el conjunto de noticias del boletín.
 	 */
 	public ArrayList<Noticia> getNoticias() {
 		// TODO Devolver las noticias del boletín
-		return null;
+		return new ArrayList<Noticia>();
 	}
 
 	/**
 	 * Agrega una noticia al boletín.
+	 * 
 	 * @param n {@code Noticia} a agregar al boletín.
-	 * @throws {@code IllegalArgumentException} en caso de que la noticia a introducir sea {@code null}.
+	 * @throws {@code IllegalArgumentException} en caso de que la noticia a
+	 *                introducir sea {@code null}.
 	 */
 	public void addNoticia(Noticia n) {
 		// TODO Agregar noticia al ArrayList
@@ -48,6 +60,7 @@ public class Boletin {
 
 	/**
 	 * Devuelve el número de noticias existentes en el boletín.
+	 * 
 	 * @return Número entero que representa la cantidad de noticias del boletín.
 	 */
 	public int getNumberOfNoticias() {
@@ -56,109 +69,175 @@ public class Boletin {
 	}
 
 	/**
-	 * Devuelve la fecha de la noticia publicada más recientemente.
-	 * @return {@code LocalDate} que representa la fecha de la noticia publicada más recientemente.
+	 * Devuelve la fecha de la noticia publicada más recientemente. La fecha puede
+	 * coincidir con varias noticias.
+	 * 
+	 * @return {@code LocalDate} que representa la fecha de la noticia publicada más
+	 *         recientemente.
 	 */
 	public LocalDate getMostRecentDate() {
-		// TODO Recorrer las noticias con un centinela, devolver el índice que indique el centinela
+		// TODO Recorrer las noticias con un centinela, devolver el índice que indique
+		// el centinela
 		return null;
 	}
 
 	/**
-	 * Devuelve la fecha de la noticia más antigua publicada.
-	 * @return {@code LocalDate} que representa la fecha de la noticia más antigua publicada.
+	 * Devuelve la fecha de la noticia más antigua publicada. La fecha puede
+	 * coincidir con varias noticias.
+	 * 
+	 * @return {@code LocalDate} que representa la fecha de la noticia más antigua
+	 *         publicada.
 	 */
 	public LocalDate getOldestDate() {
-		// TODO Recorrer las noticias con un centinela, devolver el índice que indique el centinelaAuto-generated method stub
+		// TODO Recorrer las noticias con un centinela, devolver el índice que indique
+		// el centinelaAuto-generated method stub
 		return null;
 	}
 
 	/**
-	 * Obtiene todas las noticias del boletín ordenadas cronológicamente (de anterior a posterior).
-	 * @return {@code ArrayList} que representa la lista de noticias del boletín ordenadas cronológicamente.
+	 * Obtiene todas las noticias del boletín ordenadas cronológicamente de más
+	 * antigua a más reciente. En caso de coincidir en la fecha, el orden será <br>
+	 * tomado por orden de llegada al boletín.
+	 * 
+	 * @return {@code ArrayList} que representa la lista de noticias del boletín
+	 *         ordenadas cronológicamente.
 	 */
 	public ArrayList<Noticia> getChronologicalOrder() {
 		// TODO Recorre las noticias y crea un nuevo ArrayList ordenado por fecha
-		return null;
+		return new ArrayList<Noticia>();
 	}
 
 	/**
-	 * Obtiene todas las noticias del boletín ordenadas por categoría.
-	 * @return {@code ArrayList} que representa la lista de noticias del boletín ordenadas por categoría.
+	 * Obtiene todas las noticias del boletín ordenadas por categoría. El orden
+	 * viene determinado por: nacional, internacional, sociedad, economía, deporte y
+	 * cultura. <br>
+	 * Por cada categoría, el orden viene determinado por orden cronológico de más
+	 * antigua a más reciente. En caso de coincidir en la fecha, el orden será <br>
+	 * tomado por orden de llegada al boletín.
+	 * 
+	 * @return {@code ArrayList} que representa la lista de noticias del boletín
+	 *         ordenadas por categoría.
 	 */
 	public ArrayList<Noticia> getNewsByCategory() {
-		// TODO Recorre las noticias y crea un nuevo ArrayList ordenado por categorías. Por cada iteración elimina o descarta los ya añadidos.
-		return null;
+		// TODO Recorre las noticias y crea un nuevo ArrayList ordenado por categorías.
+		// Por cada iteración elimina o descarta los ya añadidos. Comprobar todos los
+		// casos.
+		return new ArrayList<Noticia>();
 	}
 
 	/**
-	 * Obtiene una lista de noticias similares a la noticia introducida por parámetro.
-	 * @param n {@code  Noticia} con una categoría determinada a partir de la cual se obtendrán el resto de noticias de esa categoría.
-	 * @return {@code ArrayList} que representa la lista de noticias con igual categoría a la categoría de la noticia dada.
-	 * @throws {@code IllegalArgumentException} en caso de que la noticia introducida sea {@code null}.
+	 * Obtiene una lista de noticias similares a la noticia introducida por
+	 * parámetro. Dos noticias son similares si comparten titular y categoría y su
+	 * fecha no se diferencia en más de dos días.
+	 * 
+	 * @param n {@code  Noticia} con una categoría determinada a partir de la cual
+	 *          se obtendrán el resto de noticias de esa categoría.
+	 * @return {@code ArrayList} que representa la lista de noticias con igual
+	 *         categoría a la categoría de la noticia dada.
+	 * @throws {@code IllegalArgumentException} en caso de que la noticia
+	 *                introducida sea {@code null}.
 	 */
 	public ArrayList<Noticia> getSimilarNews(Noticia n) {
-		// TODO Recorre las noticias y crea un nuevo ArrayList con las noticias similares. Lanzar antes de nada una excepción en caso de ser Noticia null.
-		return null;
+		// TODO Recorre las noticias y crea un nuevo ArrayList con las noticias
+		// similares. Lanzar antes de nada una excepción en caso de ser Noticia null.
+		return new ArrayList<Noticia>();
 	}
 
 	/**
-	 * Obtiene un boletín de noticias que contiene únicamente las noticias ccon fecha igual a la introducida por parámetro.
-	 * @param fechaBuscada {@code LocalDate} que representa la fecha a buscar entre las noticias del boletín.
-	 * @return Sub-boletín compuesto únicamente por las noticias que tienen la fecha introducida.
-	 * @throws {@code IllegalArgumentException} en caso de que la fecha introducida sea {@code null}.
+	 * Obtiene un boletín de noticias que contiene únicamente las noticias con fecha
+	 * igual a la introducida por parámetro.
+	 * 
+	 * @param fechaBuscada {@code LocalDate} que representa la fecha a buscar entre
+	 *                     las noticias del boletín.
+	 * @return Sub-boletín compuesto únicamente por las noticias que tienen la fecha
+	 *         introducida.
+	 * @throws {@code IllegalArgumentException} en caso de que la fecha introducida
+	 *                sea {@code null}.
 	 */
 	public Boletin getSubconjuntoFecha(LocalDate fechaBuscada) {
-		// TODO Comprobar que la fecha introducida no es nula. Crear un nuevo boletín y agregar los coincidentes.
+		// TODO Comprobar que la fecha introducida no es nula. Crear un nuevo boletín y
+		// agregar los coincidentes.
 		return null;
 	}
 
 	/**
-	 * Obtiene un boletín de noticias que contiene únicamente las noticias con fecha entre las dos fechas introducidas por parámetros.
-	 * @param inicioIntervalo {@code LocalDate} que representa la fecha que hace de extremo inferior del intervalo admitido.
-	 * @param finalIntervalo {@code LocalDate} que representa la fecha que hace de extremo superior del intervalo admitido.
-	 * @return Sub-boletín compuesto únicamente por las noticias con fecha en el intervalo compuesto por las dos fechas introducidas por parámetros.
-	 * @throws {@code IllegalArgumentException} en caso de que alguna de las fechas introducidas por parámetro sea {@code null}.
+	 * Obtiene un boletín de noticias que contiene únicamente las noticias con fecha
+	 * entre las dos fechas introducidas por parámetros. Los extremos del intervalo
+	 * también están incluidos.
+	 * 
+	 * @param inicioIntervalo {@code LocalDate} que representa la fecha que hace de
+	 *                        extremo inferior del intervalo admitido.
+	 * @param finalIntervalo  {@code LocalDate} que representa la fecha que hace de
+	 *                        extremo superior del intervalo admitido.
+	 * @return Sub-boletín compuesto únicamente por las noticias con fecha en el
+	 *         intervalo compuesto por las dos fechas introducidas por parámetros.
+	 * @throws {@code IllegalArgumentException} en caso de que alguna de las fechas
+	 *                introducidas por parámetro sea {@code null}.
 	 */
 	public Boletin getSubconjuntoIntervalo(LocalDate inicioIntervalo, LocalDate finalIntervalo) {
-		// TODO Comprobar que la fechas introducida no son nulas, por separado. Crear un nuevo boletín y agregar los coincidentes.
+		// TODO Comprobar que la fechas introducida no son nulas, por separado. Crear un
+		// nuevo boletín y agregar los coincidentes.
 		return null;
 	}
 
 	/**
-	 * Obtiene un boletín de noticias que contiene únicamente las noticias con la misma categoría a la introducida por parámetro.
-	 * @param categoriaBuscada {@code EnumCategoria} que representa la categoría a buscar.
-	 * @return Sub-boletín compuesto únicamente por las noticas con categoría igual a la recibida por parámetro.
-	 * @throws {@code IllegalArgumentException} en caso de que la enumeración introducida por parámetro sea {@code null}.
+	 * Obtiene un boletín de noticias que contiene únicamente las noticias con la
+	 * misma categoría a la introducida por parámetro.
+	 * 
+	 * @param categoriaBuscada {@code EnumCategoria} que representa la categoría a
+	 *                         buscar.
+	 * @return Sub-boletín compuesto únicamente por las noticas con categoría igual
+	 *         a la recibida por parámetro.
+	 * @throws {@code IllegalArgumentException} en caso de que la enumeración
+	 *                introducida por parámetro sea {@code null}.
 	 */
 	public Boletin getSubconjuntoCategoria(EnumCategoria categoriaBuscada) {
-		// TODO Comprobar que la categoría introducida no es nula. Crear un nuevo boletín y agregar los coincidentes.
+		// TODO Comprobar que la categoría introducida no es nula. Crear un nuevo
+		// boletín y agregar los coincidentes.
 		return null;
 	}
 
 	/**
-	 * Obtiene un boletín de noticias que contiene únicamente las noticias con la misma categoría y misma fecha a las introducidas por parámetro.
-	 * @param categoriaBuscada {@code EnumCategoria} que representa la categoría a buscar.
-	 * @param fechaConcreta {@code LocalDate} que representa la fecha a buscar entre las noticias del boletín.
-	 * @return Sub-boletín compuesto únicamente por las noticias con fecha y categoría iguales a las introducidas por parámetro.
-	 * @throws {@code IllegalArgumentException} en caso de que la enumeración o la fecha introducidas por parámetro sean {@code null}.
+	 * Obtiene un boletín de noticias que contiene únicamente las noticias con la
+	 * misma categoría y misma fecha a las introducidas por parámetro.
+	 * 
+	 * @param categoriaBuscada {@code EnumCategoria} que representa la categoría a
+	 *                         buscar.
+	 * @param fechaConcreta    {@code LocalDate} que representa la fecha a buscar
+	 *                         entre las noticias del boletín.
+	 * @return Sub-boletín compuesto únicamente por las noticias con fecha y
+	 *         categoría iguales a las introducidas por parámetro.
+	 * @throws {@code IllegalArgumentException} en caso de que la enumeración o la
+	 *                fecha introducidas por parámetro sean {@code null}.
 	 */
 	public Boletin getSubconjuntoCategoriaFecha(EnumCategoria categoriaBuscada, LocalDate fechaConcreta) {
-		// TODO Comprobar que la fecha o la categoría introducidas no son nulas, por separado. Crear un nuevo boletín y agregar los coincidentes.
+		// TODO Comprobar que la fecha o la categoría introducidas no son nulas, por
+		// separado. Crear un nuevo boletín y agregar los coincidentes.
 		return null;
 	}
 
 	/**
-	 * Obtiene un boletín de noticias que contiene exclusivamente las noticias con la misma categoría introducida por parámetro y con fecha entre las dos fechas introducidas por parámetro.
-	 * @param categoriaBuscada {@code EnumCategoria} que representa la categoría a buscar.
-	 * @param inicioIntervalo {@code LocalDate} que representa la fecha que hace de extremo inferior del intervalo admitido.
-	 * @param finalIntervalo {@code LocalDate} que representa la fecha que hace de extremo superior del intervalo admitido.
-	 * @return Sub-boletín compuesto únicamente por las noticias con categoría igual a la introducida por parámetro y fecha contenida entre las dos fechas introducidas por parámetro.
-	 * @throws {@code IllegalArgumentException} en caso de la enumeración o alguna de las fechas introducidas por parámetro sean {@code null}.
+	 * Obtiene un boletín de noticias que contiene exclusivamente las noticias con
+	 * la misma categoría introducida por parámetro y con fecha entre las dos fechas
+	 * introducidas por parámetro. <br>
+	 * Los extremos del intervalo también están incluidos.
+	 * 
+	 * @param categoriaBuscada {@code EnumCategoria} que representa la categoría a
+	 *                         buscar.
+	 * @param inicioIntervalo  {@code LocalDate} que representa la fecha que hace de
+	 *                         extremo inferior del intervalo admitido.
+	 * @param finalIntervalo   {@code LocalDate} que representa la fecha que hace de
+	 *                         extremo superior del intervalo admitido.
+	 * @return Sub-boletín compuesto únicamente por las noticias con categoría igual
+	 *         a la introducida por parámetro y fecha contenida entre las dos fechas
+	 *         introducidas por parámetro.
+	 * @throws {@code IllegalArgumentException} en caso de la enumeración o alguna
+	 *                de las fechas introducidas por parámetro sean {@code null}.
 	 */
 	public Boletin getSubconjuntoCategoriaIntervalo(EnumCategoria categoriaBuscada, LocalDate inicioIntervalo,
 			LocalDate finalIntervalo) {
-		// TODO Comprobar que las fechas o la categoría introducidas no son nulas, por separado. Crear un nuevo boletín y agregar los coincidentes.
+		// TODO Comprobar que las fechas o la categoría introducidas no son nulas, por
+		// separado. Crear un nuevo boletín y agregar los coincidentes.
 		return null;
 	}
 

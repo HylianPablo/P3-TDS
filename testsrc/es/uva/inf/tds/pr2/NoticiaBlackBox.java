@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class NoticiaBlackBox {
-	
+
 	private String titular;
 	private LocalDate fechaPublicacion;
 	private String fuente;
 	private EnumCategoria categoria;
 	private String url;
 	private Noticia n;
-	
+
 	@BeforeEach
 	public void setUp() {
 		titular = "Hola";
@@ -28,21 +28,23 @@ public class NoticiaBlackBox {
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 	}
 
-	@Tag("BlackBox")
+	@Tag("BlackBoxTestFirst")
 	@Tag("Negative")
 	@Test
 	public void testCeroPalabras() {
-		String titular="";
+		String titular = "";
 		LocalDate fechaPublicacion = LocalDate.of(2019, 11, 14);
 		String fuente = "Adios";
 		EnumCategoria categoria = EnumCategoria.nacional;
 		String url = "https://www." + fuente + '/' + categoria + '/' + titular;
-		
-		assertThrows(IllegalArgumentException.class, () -> {@SuppressWarnings("unused")
-		Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);});
+
+		assertThrows(IllegalArgumentException.class, () -> {
+			@SuppressWarnings("unused")
+			Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
+		});
 	}
-	
-	@Tag("BlackBox")
+
+	@Tag("BlackBoxTestFirst")
 	@Tag("Positive")
 	@Test
 	public void noticiaPosterior() {
@@ -53,12 +55,12 @@ public class NoticiaBlackBox {
 		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-		
-		assertEquals("posterior",n.comparaFechaNoticia(n2));
+
+		assertEquals("posterior", n.comparaFechaNoticia(n2));
 	}
-	
+
 	@Tag("Positive")
-	@Tag("BlackBox")
+	@Tag("BlackBoxTestFirst")
 	@Test
 	public void noticiaAnterior() {
 		String titular2 = "Hola";
@@ -68,12 +70,12 @@ public class NoticiaBlackBox {
 		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-		
-		assertEquals("anterior",n.comparaFechaNoticia(n2));
+
+		assertEquals("anterior", n.comparaFechaNoticia(n2));
 	}
-	
+
 	@Tag("Positive")
-	@Tag("BlackBox")
+	@Tag("BlackBoxTestFirst")
 	@Test
 	public void noticiaNoSimilarCategoria() {
 		String titular2 = "Hola";
@@ -83,15 +85,15 @@ public class NoticiaBlackBox {
 		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-	
+
 		assertFalse(n.isSimilar(n2));
 		fail("Until GREEN Phase");
 	}
-	
+
 	@Tag("Positive")
-	@Tag("BlackBox")
+	@Tag("BlackBoxTestFirst")
 	@Test
-	public void noticiaNoSimilarFecha() {		
+	public void noticiaNoSimilarFecha() {
 		String titular2 = "Hola";
 		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 17);
 		String fuente2 = "Adios";
@@ -99,7 +101,7 @@ public class NoticiaBlackBox {
 		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-	
+
 		assertFalse(n.isSimilar(n2));
 		fail("Until GREEN Phase");
 	}

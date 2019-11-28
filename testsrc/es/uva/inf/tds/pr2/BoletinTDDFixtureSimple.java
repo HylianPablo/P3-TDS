@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-public class BoletinTestFirstFixtureSimple {
+public class BoletinTDDFixtureSimple {
 
 	private String titular;
 	private LocalDate fechaPublicacion;
@@ -28,6 +28,7 @@ public class BoletinTestFirstFixtureSimple {
 	private Boletin b;
 
 	@Tag("Positive")
+	@Tag("TDD")
 	@Test
 	public void createEmptyBoletin() {
 		Boletin b = new Boletin();
@@ -51,12 +52,13 @@ public class BoletinTestFirstFixtureSimple {
 		categoria2 = EnumCategoria.nacional;
 		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-		
-		b=new Boletin();
+
+		b = new Boletin();
 	}
 
 	@Tag("Positive")
 	@Tag("ArrayEquals")
+	@Tag("TDD")
 	@Test
 	public void createNotEmptyBoletin() {
 		ArrayList<Noticia> al = new ArrayList<>();
@@ -69,6 +71,7 @@ public class BoletinTestFirstFixtureSimple {
 
 	@Tag("Positive")
 	@Tag("ArrayEquals")
+	@Tag("TDD")
 	@Test
 	public void addNoticia() {
 		b.addNoticia(n);
@@ -78,13 +81,18 @@ public class BoletinTestFirstFixtureSimple {
 	}
 
 	@Tag("Negative")
+	@Tag("TDD")
 	@Test
 	public void addNoticiaNula() {
-		Noticia n2=null;
-		assertThrows(IllegalArgumentException.class, () -> {b.addNoticia(n2);;});
+		Noticia n2 = null;
+		assertThrows(IllegalArgumentException.class, () -> {
+			b.addNoticia(n2);
+			;
+		});
 	}
 
 	@Tag("Positive")
+	@Tag("TDD")
 	@Test
 	public void numeroNoticias() {
 		b.addNoticia(n);
@@ -92,6 +100,7 @@ public class BoletinTestFirstFixtureSimple {
 	}
 
 	@Tag("Positive")
+	@Tag("TDD")
 	@Test
 	public void getFechaMasReciente() {
 		b.addNoticia(n);
@@ -101,6 +110,7 @@ public class BoletinTestFirstFixtureSimple {
 	}
 
 	@Tag("Positive")
+	@Tag("TDD")
 	@Test
 	public void getFechaMasAntigua() {
 		b.addNoticia(n);
@@ -111,6 +121,7 @@ public class BoletinTestFirstFixtureSimple {
 
 	@Tag("Positive")
 	@Tag("ArrayEquals")
+	@Tag("TDD")
 	@Test
 	public void listaCronologica() {
 		b.addNoticia(n);
@@ -127,6 +138,6 @@ public class BoletinTestFirstFixtureSimple {
 	public void tearDown() {
 		n = null;
 		n2 = null;
-		b=null;
+		b = null;
 	}
 }

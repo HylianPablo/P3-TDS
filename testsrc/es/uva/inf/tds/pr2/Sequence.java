@@ -5,13 +5,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class Sequence {
+
+	@Tag("Sequence")
 	@Test
 	public void secuenciaNormal() {
 		Boletin boletin1 = new Boletin();
-		assertNull(boletin1);
+		assertNotNull(boletin1);
 
 		LocalDate fechaConcretaMal = LocalDate.of(2019, 5, 1);
 		LocalDate fechaConcreta = LocalDate.of(2019, 11, 26);
@@ -120,7 +123,6 @@ public class Sequence {
 		listaCategorias.add(noticia3);
 
 		assertArrayEquals(listaCategorias.toArray(), boletin1.getNewsByCategory().toArray());
-		// nacional, internacional,sociedad, economa, deporte y cultura.
 
 		ArrayList<Noticia> listaSimilares = new ArrayList<>();
 		listaSimilares.add(noticia1);
@@ -128,12 +130,14 @@ public class Sequence {
 
 		assertArrayEquals(listaSimilares.toArray(), boletin1.getSimilarNews(noticia1).toArray());
 
-		assertNull(boletin1.getSubconjuntoFecha(fechaConcretaMal));
+		Boletin test3 = boletin1.getSubconjuntoFecha(fechaConcretaMal);
+		assertEquals(0, test3.getNumberOfNoticias());
 		Boletin boletin3 = new Boletin();
 		boletin3.addNoticia(noticia3);
 		assertEquals(boletin3, boletin1.getSubconjuntoFecha(fechaConcreta));
 
-		assertNull(boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaAnterior2));
+		Boletin test4 = boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaAnterior2);
+		assertEquals(0, test4.getNumberOfNoticias());
 		assertEquals(boletin1, boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaPosterior));
 
 		Boletin boletin4 = new Boletin();
@@ -144,13 +148,15 @@ public class Sequence {
 		Boletin boletin5 = new Boletin();
 		boletin5.addNoticia(noticia1);
 		assertEquals(boletin5, boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.cultura, fechaPublicacion));
-		assertNull(boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.cultura, fechaPublicacion4));
+		Boletin test5 = boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.cultura, fechaPublicacion4);
+		assertEquals(0, test5.getNumberOfNoticias());
 
 		Boletin boletin6 = new Boletin();
 		boletin6.addNoticia(noticia1);
 		boletin6.addNoticia(noticia3);
 		assertEquals(boletin6,
 				boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.cultura, fechaPublicacion, fechaPublicacion3));
-		assertNull(boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.cultura, fechaAnterior, fechaAnterior2));
+		Boletin test6 = boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.cultura, fechaAnterior, fechaAnterior2);
+		assertEquals(0, test6.getNumberOfNoticias());
 	}
 }

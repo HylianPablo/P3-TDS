@@ -1,10 +1,12 @@
 package es.uva.inf.tds.pr2;
 
+/**
+ * Enumeración que representa las categorías válidas de las noticias.
+ * 
+ * @author migusan
+ * @author pamarti
+ *
+ */
 public enum EnumCategoria {
-	nacional,
-	internacional,
-	sociedad,
-	economia,
-	deporte,
-	cultura
+	nacional, internacional, sociedad, economia, deporte, cultura
 }
