@@ -1,4 +1,4 @@
 autoEnabled=true
 eclipse.preferences.version=1
 extraProperties=
-fileExclusions=FILE\:testsrc/es/uva/inf/tds/pr2/NoticiaTest.java
+fileExclusions=FILE\:testsrc/es/uva/inf/tds/pr2/NoticiaTest.java\r\nFILE\:testsrc/es/uva/inf/tds/pr2/Sequence.java
