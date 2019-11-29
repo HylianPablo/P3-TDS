@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-public class BoletinBlackBox {
+public class BoletinBlackBoxSimple {
 
 	private String titular;
 	private LocalDate fechaPublicacion;

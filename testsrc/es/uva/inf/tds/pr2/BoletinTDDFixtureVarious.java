@@ -158,7 +158,7 @@ public class BoletinTDDFixtureVarious {
 		fechaPublicacion6 = LocalDate.of(2019, 11, 19);
 		categoria6 = EnumCategoria.internacional;
 		url6 = "https://www." + fuente6 + '/' + categoria6 + '/' + titular6;
-		Noticia n6 = new Noticia(titular6, fechaPublicacion6, fuente6, url6, categoria6);
+		n6 = new Noticia(titular6, fechaPublicacion6, fuente6, url6, categoria6);
 
 		b.addNoticia(n);
 		b.addNoticia(n2);
@@ -170,7 +170,6 @@ public class BoletinTDDFixtureVarious {
 
 		ArrayList<Noticia> al = new ArrayList<>();
 		al.add(n4);
-		al.add(n6);
 
 		assertArrayEquals(al.toArray(), b.getSimilarNews(n2).toArray());
 	}

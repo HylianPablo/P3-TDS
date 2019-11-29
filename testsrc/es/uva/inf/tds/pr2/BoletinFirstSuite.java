@@ -9,7 +9,7 @@ import org.junit.platform.suite.api.SelectPackages;
 
 @RunWith(JUnitPlatform.class)
 @SelectPackages("es.uva.inf.tds.tdd.money")
-@SuiteClasses({ BoletinTDDFixtureSimple.class, BoletinTDDFixtureVarious.class, BoletinBlackBox.class })
+@SuiteClasses({ BoletinTDDFixtureSimple.class, BoletinTDDFixtureVarious.class, BoletinBlackBoxSimple.class, BoletinBlackBoxVarious.class })
 @IncludeTags({ "Positive|Negative" })
 @ExcludeTags({ "BlackBoxTestFirst" })
 

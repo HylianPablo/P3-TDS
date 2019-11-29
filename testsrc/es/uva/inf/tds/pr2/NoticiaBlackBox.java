@@ -16,6 +16,13 @@ public class NoticiaBlackBox {
 	private EnumCategoria categoria;
 	private String url;
 	private Noticia n;
+	
+	private String titular2;
+	private LocalDate fechaPublicacion2;
+	private String fuente2;
+	private EnumCategoria categoria2;
+	private String url2;
+	private Noticia n2;
 
 	@BeforeEach
 	public void setUp() {
@@ -26,17 +33,22 @@ public class NoticiaBlackBox {
 		url = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
+		
+		titular2 = "Hola";
+		fechaPublicacion2 = LocalDate.of(2019, 11, 15);
+		fuente2 = "Adios";
+		categoria2 = EnumCategoria.nacional;
+		url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
+
+		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 	}
 
 	@Tag("BlackBoxTestFirst")
 	@Tag("Negative")
 	@Test
 	public void testCeroPalabras() {
-		String titular = "";
-		LocalDate fechaPublicacion = LocalDate.of(2019, 11, 14);
-		String fuente = "Adios";
-		EnumCategoria categoria = EnumCategoria.nacional;
-		String url = "https://www." + fuente + '/' + categoria + '/' + titular;
+		titular = "";
+		url = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		assertThrows(IllegalArgumentException.class, () -> {
 			@SuppressWarnings("unused")
@@ -48,14 +60,6 @@ public class NoticiaBlackBox {
 	@Tag("Positive")
 	@Test
 	public void noticiaPosterior() {
-		String titular2 = "Hola";
-		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 15);
-		String fuente2 = "Adios";
-		EnumCategoria categoria2 = EnumCategoria.nacional;
-		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
-
-		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-
 		assertEquals("posterior", n.comparaFechaNoticia(n2));
 	}
 
@@ -63,13 +67,10 @@ public class NoticiaBlackBox {
 	@Tag("BlackBoxTestFirst")
 	@Test
 	public void noticiaAnterior() {
-		String titular2 = "Hola";
-		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 13);
-		String fuente2 = "Adios";
-		EnumCategoria categoria2 = EnumCategoria.nacional;
-		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
+		fechaPublicacion2 = LocalDate.of(2019, 11, 13);
+		url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
-		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
+		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
 		assertEquals("anterior", n.comparaFechaNoticia(n2));
 	}
@@ -78,13 +79,10 @@ public class NoticiaBlackBox {
 	@Tag("BlackBoxTestFirst")
 	@Test
 	public void noticiaNoSimilarCategoria() {
-		String titular2 = "Hola";
-		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 16);
-		String fuente2 = "Adios";
-		EnumCategoria categoria2 = EnumCategoria.internacional;
-		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
-
-		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
+		fechaPublicacion2 = LocalDate.of(2019, 11, 16);
+		categoria2 = EnumCategoria.internacional;
+		url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
+		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
 		assertFalse(n.isSimilar(n2));
 		fail("Until GREEN Phase");
@@ -94,13 +92,10 @@ public class NoticiaBlackBox {
 	@Tag("BlackBoxTestFirst")
 	@Test
 	public void noticiaNoSimilarFecha() {
-		String titular2 = "Hola";
-		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 17);
-		String fuente2 = "Adios";
-		EnumCategoria categoria2 = EnumCategoria.nacional;
-		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
+		fechaPublicacion2 = LocalDate.of(2019, 11, 17);
+		url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
-		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
+		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
 		assertFalse(n.isSimilar(n2));
 		fail("Until GREEN Phase");
