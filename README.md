@@ -1,4 +1,4 @@
-MH: XX horas y YY minutos.
+MH: 15 horas y 20 minutos.
 
 NOC: 2 clases.
 
