@@ -9,9 +9,9 @@ import org.junit.platform.suite.api.SelectPackages;
 
 @RunWith(JUnitPlatform.class)
 @SelectPackages("es.uva.inf.tds.tdd.money")
-@SuiteClasses({ NoticiaTestFirstFixture.class, NoticiaTestFirstOther.class })
-//@IncludeTags({"TDD|BlackBox"})
-//@ExcludeTags({"Sequences"})
+@SuiteClasses({ NoticiaTestFirstFixture.class, NoticiaTestFirstOther.class, NoticiaBlackBox.class })
+@IncludeTags({"Positive | Negative | BlackBox"})
+@ExcludeTags({"Fixture"})
 
 public class NoticiaFirstSuite {
 

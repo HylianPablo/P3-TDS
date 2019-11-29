@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class BoletinTestFirstFixtureSimple {
@@ -26,6 +27,7 @@ public class BoletinTestFirstFixtureSimple {
 	private Noticia n2;
 	private Boletin b;
 
+	@Tag("Positive")
 	@Test
 	public void createEmptyBoletin() {
 		Boletin b = new Boletin();
@@ -53,6 +55,8 @@ public class BoletinTestFirstFixtureSimple {
 		b=new Boletin();
 	}
 
+	@Tag("Positive")
+	@Tag("ArrayEquals")
 	@Test
 	public void createNotEmptyBoletin() {
 		ArrayList<Noticia> al = new ArrayList<>();
@@ -60,29 +64,34 @@ public class BoletinTestFirstFixtureSimple {
 
 		b = new Boletin(al);
 		assertNotNull(b);
-		assertEquals(al, b.getNoticias());
+		assertArrayEquals(al.toArray(), b.getNoticias().toArray());
 	}
 
+	@Tag("Positive")
+	@Tag("ArrayEquals")
 	@Test
 	public void addNoticia() {
 		b.addNoticia(n);
 		ArrayList<Noticia> al = new ArrayList<>();
 		al.add(n);
-		assertEquals(al, b.getNoticias());
+		assertArrayEquals(al.toArray(), b.getNoticias().toArray());
 	}
 
+	@Tag("Negative")
 	@Test
 	public void addNoticiaNula() {
 		Noticia n2=null;
 		assertThrows(IllegalArgumentException.class, () -> {b.addNoticia(n2);;});
 	}
 
+	@Tag("Positive")
 	@Test
 	public void numeroNoticias() {
 		b.addNoticia(n);
 		assertSame(1, b.getNumberOfNoticias());
 	}
 
+	@Tag("Positive")
 	@Test
 	public void getFechaMasReciente() {
 		b.addNoticia(n);
@@ -91,6 +100,7 @@ public class BoletinTestFirstFixtureSimple {
 		assertEquals(fechaPublicacion, b.getMostRecentDate());
 	}
 
+	@Tag("Positive")
 	@Test
 	public void getFechaMasAntigua() {
 		b.addNoticia(n);
@@ -99,6 +109,8 @@ public class BoletinTestFirstFixtureSimple {
 		assertEquals(fechaPublicacion2, b.getOldestDate());
 	}
 
+	@Tag("Positive")
+	@Tag("ArrayEquals")
 	@Test
 	public void listaCronologica() {
 		b.addNoticia(n);
@@ -108,7 +120,7 @@ public class BoletinTestFirstFixtureSimple {
 		al.add(n2);
 		al.add(n);
 
-		assertEquals(al, b.getChronologicalOrder());
+		assertArrayEquals(al.toArray(), b.getChronologicalOrder().toArray());
 	}
 
 	@AfterEach
@@ -117,5 +129,4 @@ public class BoletinTestFirstFixtureSimple {
 		n2 = null;
 		b=null;
 	}
-
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class BoletinTestFirstFixtureVarious {
@@ -113,6 +114,8 @@ public class BoletinTestFirstFixtureVarious {
 			n7 = new Noticia(titular7, fechaPublicacion7, fuente7, url7, categoria7);
 		}
 		
+		@Tag("Positive")
+		@Tag("ArrayEquals")
 		@Test
 		public void listaCategorias() {
 			Boletin b = new Boletin();
@@ -134,9 +137,11 @@ public class BoletinTestFirstFixtureVarious {
 			al.add(n5);
 			al.add(n6);
 
-			assertEquals(al, b.getNewsByCategory());
+			assertArrayEquals(al.toArray(), b.getNewsByCategory().toArray());
 		}
 
+		@Tag("Positive")
+		@Tag("ArrayEquals")
 		@Test
 		public void noticiasSimilares() {
 			Boletin b = new Boletin();
@@ -167,16 +172,18 @@ public class BoletinTestFirstFixtureVarious {
 			al.add(n4);
 			al.add(n6);
 
-			assertEquals(al, b.getSimilarNews(n2));
+			assertArrayEquals(al.toArray(), b.getSimilarNews(n2).toArray());
 		}
 		
+		@Tag("Negative")
 		@Test
 		public void noticiasSimilaresANula() {
 			Boletin b= new Boletin();
 			n2=null;
-			assertThrows(IllegalArgumentException.class, () -> {b.getSimilarNews(n2);;});
+			assertThrows(IllegalArgumentException.class, () -> {b.getSimilarNews(n2);});
 		}
 
+		@Tag("Positive")
 		@Test
 		public void subconjuntoFecha() {
 			Boletin todas = new Boletin();
@@ -210,6 +217,7 @@ public class BoletinTestFirstFixtureVarious {
 			assertEquals(validas, todas.getSubconjuntoFecha(fechaBuscada));
 		}
 		
+		@Tag("Negative")
 		@Test
 		public void subconjuntoFechaNula() {
 			Boletin b= new Boletin();
@@ -217,6 +225,7 @@ public class BoletinTestFirstFixtureVarious {
 			assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoFecha(fechaPublicacion);});
 		}
 
+		@Tag("Positive")
 		@Test
 		public void subconjuntoIntervalo() {
 			Boletin todas = new Boletin();
@@ -260,6 +269,7 @@ public class BoletinTestFirstFixtureVarious {
 			assertEquals(validas, todas.getSubconjuntoIntervalo(inicioIntervalo, finalIntervalo));
 		}
 		
+		@Tag("Negative")
 		@Test
 		public void subconjuntoIntervalosNull() {
 			LocalDate inicioIntervalo = null;
@@ -269,6 +279,7 @@ public class BoletinTestFirstFixtureVarious {
 			assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoIntervalo(inicioIntervalo, finalIntervalo);});
 		}
 
+		@Tag("Positive")
 		@Test
 		public void subconjuntoCategoria() {
 			Boletin todas = new Boletin();
@@ -290,6 +301,7 @@ public class BoletinTestFirstFixtureVarious {
 			assertEquals(validas, todas.getSubconjuntoCategoria(categoriaBuscada));
 		}
 		
+		@Tag("Negative")
 		@Test
 		public void subconjuntoCategoriaNull() {
 			categoria4=null;
@@ -297,6 +309,7 @@ public class BoletinTestFirstFixtureVarious {
 			assertThrows(IllegalArgumentException.class, () -> {b.getSubconjuntoCategoria(categoria4);});
 		}
 
+		@Tag("Positive")
 		@Test
 		public void subconjuntoCategoriaFecha() {
 			Boletin todas = new Boletin();
@@ -326,6 +339,7 @@ public class BoletinTestFirstFixtureVarious {
 			assertEquals(validas, todas.getSubconjuntoCategoriaFecha(categoriaBuscada, fechaConcreta));
 		}
 		
+		@Tag("Negative")
 		@Test
 		public void subconjuntoCategoriaFechaNulls() {
 			fechaPublicacion=null;
@@ -335,6 +349,7 @@ public class BoletinTestFirstFixtureVarious {
 			
 		}
 
+		@Tag("Positive")
 		@Test
 		public void subconjuntoCategoriaIntervalo() {
 			Boletin todas = new Boletin();
@@ -365,6 +380,7 @@ public class BoletinTestFirstFixtureVarious {
 					todas.getSubconjuntoCategoriaIntervalo(categoriaBuscada, inicioIntervalo, finalIntervalo));
 		}
 		
+		@Tag("Negative")
 		@Test
 		public void subconjuntoCategoriaIntervaloNulls() {
 			LocalDate inicioIntervalo = null;
