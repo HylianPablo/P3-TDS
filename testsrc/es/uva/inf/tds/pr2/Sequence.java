@@ -21,6 +21,21 @@ public class Sequence {
 		LocalDate fechaAnterior = LocalDate.of(2018, 1, 1);
 		LocalDate fechaAnterior2 = LocalDate.of(2018, 12, 27);
 		LocalDate fechaPosterior = LocalDate.of(2020, 1, 1);
+		
+		ArrayList<Noticia> vacia = new ArrayList<>();
+		
+		assertEquals(vacia, boletin1.getChronologicalOrder());
+		assertNull(boletin1.getMostRecentDate());
+		assertEquals(boletin1, boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaPosterior));
+		assertEquals(boletin1, boletin1.getSubconjuntoFecha(fechaConcreta));
+		assertEquals(boletin1, boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.nacional, fechaAnterior, fechaAnterior));
+		assertEquals(boletin1, boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.nacional, fechaConcreta));
+		assertEquals(boletin1, boletin1.getSubconjuntoCategoria(EnumCategoria.nacional));
+		assertNull(boletin1.getOldestDate());
+		assertEquals(0, boletin1.getNumberOfNoticias());
+		assertEquals(vacia, boletin1.getNoticias());
+		assertEquals(vacia, boletin1.getNewsByCategory());
+	
 
 		String titular = "Pruebas!";
 		LocalDate fechaPublicacion = LocalDate.of(2019, 11, 28);
@@ -29,35 +44,19 @@ public class Sequence {
 		String url = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia noticia1 = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
-		assertNotNull(noticia1);
-
-		assertEquals(titular, noticia1.getTitular());
-		assertEquals(fechaPublicacion, noticia1.getFechaPublicacion());
-		assertEquals(fuente, noticia1.getFuente());
-		assertEquals(categoria, noticia1.getCategoria());
-		assertEquals(url, noticia1.getUrl());
 
 		boletin1.addNoticia(noticia1);
-		assertNotNull(boletin1);
 
 		String titular2 = "Titular cuyo numero de palabras se encuentra justo en el limite superior";
 		EnumCategoria categoria2 = EnumCategoria.nacional;
 		String url2 = "https://www." + fuente + '/' + categoria2 + '/' + titular2;
 
 		Noticia noticia2 = new Noticia(titular2, fechaPublicacion, fuente, url2, categoria2);
-		assertNotEquals(noticia2, noticia1);
-
-		assertEquals("iguales", noticia2.comparaFechaNoticia(noticia1));
-		assertFalse(noticia1.isSimilar(noticia2));
 
 		LocalDate fechaPublicacion3 = LocalDate.of(2019, 11, 28);
 		String fuente3 = "cicloRGB";
 		String url3 = "https://www." + fuente3 + '/' + categoria + '/' + titular;
 		Noticia noticia3 = new Noticia(titular, fechaPublicacion3, fuente3, url3, categoria);
-
-		assertTrue(noticia1.isSimilar(noticia3));
-		assertEquals("posterior", noticia1.comparaFechaNoticia(noticia3));
-		assertEquals("anterior", noticia3.comparaFechaNoticia(noticia1));
 
 		LocalDate fechaPublicacion4 = LocalDate.of(2019, 12, 28);
 		EnumCategoria categoria4 = EnumCategoria.internacional;
@@ -95,12 +94,26 @@ public class Sequence {
 
 		assertArrayEquals(lista.toArray(), boletin1.getNoticias().toArray());
 		assertEquals(7, boletin1.getNumberOfNoticias());
+		
+		Boletin test4 = boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaAnterior2);
+		assertEquals(0, test4.getNumberOfNoticias());
+		assertEquals(boletin1, boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaPosterior));
 
-		Boletin boletin2 = new Boletin(lista);
-		assertEquals(boletin1.getNumberOfNoticias(), boletin2.getNumberOfNoticias());
+		Boletin boletin6 = new Boletin();
+		boletin6.addNoticia(noticia1);
+		boletin6.addNoticia(noticia3);
+		assertEquals(boletin6,
+				boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.cultura, fechaPublicacion, fechaPublicacion3));
+		Boletin test6 = boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.cultura, fechaAnterior, fechaAnterior2);
+		assertEquals(0, test6.getNumberOfNoticias());
 
 		assertEquals(fechaPublicacion4, boletin1.getMostRecentDate());
 		assertEquals(fechaPublicacion5, boletin1.getOldestDate());
+		
+		Boletin boletin4 = new Boletin();
+		boletin4.addNoticia(noticia1);
+		boletin4.addNoticia(noticia3);
+		assertEquals(boletin4, boletin1.getSubconjuntoCategoria(EnumCategoria.cultura));
 
 		ArrayList<Noticia> listaOrdenada = new ArrayList<>();
 		listaOrdenada.add(noticia5);
@@ -136,27 +149,11 @@ public class Sequence {
 		boletin3.addNoticia(noticia3);
 		assertEquals(boletin3, boletin1.getSubconjuntoFecha(fechaConcreta));
 
-		Boletin test4 = boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaAnterior2);
-		assertEquals(0, test4.getNumberOfNoticias());
-		assertEquals(boletin1, boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaPosterior));
-
-		Boletin boletin4 = new Boletin();
-		boletin4.addNoticia(noticia1);
-		boletin4.addNoticia(noticia3);
-		assertEquals(boletin4, boletin1.getSubconjuntoCategoria(EnumCategoria.cultura));
-
 		Boletin boletin5 = new Boletin();
 		boletin5.addNoticia(noticia1);
 		assertEquals(boletin5, boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.cultura, fechaPublicacion));
 		Boletin test5 = boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.cultura, fechaPublicacion4);
 		assertEquals(0, test5.getNumberOfNoticias());
-
-		Boletin boletin6 = new Boletin();
-		boletin6.addNoticia(noticia1);
-		boletin6.addNoticia(noticia3);
-		assertEquals(boletin6,
-				boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.cultura, fechaPublicacion, fechaPublicacion3));
-		Boletin test6 = boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.cultura, fechaAnterior, fechaAnterior2);
-		assertEquals(0, test6.getNumberOfNoticias());
+		
 	}
 }
