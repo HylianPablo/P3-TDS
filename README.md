@@ -1,36 +1,39 @@
-MH: 15 horas y 20 minutos.
+MH: 15 horas y 50 minutos.
 
 NOC: 2 clases.
 
-    -SLOC: 258   
+    -SLOC: 367   
 
     -LLOC: 75   
 
 
-NOT: 7 tests.
+NOT: 8 tests. Además de dos suites.
 
-    -SLOC: 1174   
+    -SLOC: 1451   
 
-    -LLOC: 935   
+    -LLOC: 1179   
 
 **Clases propias {SLOC, LLOC}:**  
-    -es.uva.inf.tds.pr2.Boletin  {165, 48}  
-    -es.uva.inf.tds.pr2.Noticia  {93, 27}  
+
+    -es.uva.inf.tds.pr2.Boletin  {244, 48}   
+    -es.uva.inf.tds.pr2.Noticia  {123, 27}   
     
 **Tests propios {SLOC, LLOC}:**  
-    -es.uva.inf.tds.pr2.BoletinBlackBox  {224, 178}  
-    -es.uva.inf.tds.pr2.BoletinTestFirstFixtureSimple  {132, 108}  
-    -es.uva.inf.tds.pr2.BoletinTestFirstFixtureVarious  {405, 323}  
-    -es.uva.inf.tds.pr2.NoticiaBlackBox  {107, 85}  
-    -es.uva.inf.tds.pr2.NoticiaTestFirstFixture  {114, 91}  
-    -es.uva.inf.tds.pr2.NoticiaTestFirstFixtureOther  {37, 29}  
-    -es.uva.inf.tds.pr2.Sequence  {155, 121}  
+
+    -es.uva.inf.tds.pr2.BoletinBlackBoxSimple  {239, 194}  
+    -es.uva.inf.tds.pr2.BoletinBlackBoxVarious  {215, 177}  
+    -es.uva.inf.tds.pr2.BoletinTDDFixtureSimple  {143, 119}  
+    -es.uva.inf.tds.pr2.BoletinTDDFixtureVarious  {425, 347} 
+    -es.uva.inf.tds.pr2.NoticiaBlackBox  {104, 82}  
+    -es.uva.inf.tds.pr2.NoticiaTDDFixture  {123, 101}  
+    -es.uva.inf.tds.pr2.NoticiaTDDOther  {43, 35}  
+    -es.uva.inf.tds.pr2.Sequence  {159, 124}  
     
     
 **Clases de terceros**  
+
     -java.time.LocalDate  
     -java.util.ArrayList  
-    
     -java.time.LocalDate  
     -java.util.ArrayList  
     -org.junit.jupiter.api.AfterEach  
