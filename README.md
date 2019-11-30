@@ -34,10 +34,14 @@ NOT: 8 tests. Además de dos suites.
 
     -java.time.LocalDate  
     -java.util.ArrayList  
-    -java.time.LocalDate  
-    -java.util.ArrayList  
     -org.junit.jupiter.api.AfterEach  
     -org.junit.jupiter.api.Assertions.*  
     -org.junit.jupiter.api.BeforeEach  
     -org.junit.jupiter.api.Tag  
     -org.junit.jupiter.api.Test  
+    -org.junit.runner.RunWith;  
+    -org.junit.runners.Suite.SuiteClasses;  
+    -org.junit.platform.runner.JUnitPlatform;  
+    -org.junit.platform.suite.api.ExcludeTags;  
+    -org.junit.platform.suite.api.IncludeTags;  
+    -org.junit.platform.suite.api.SelectPackages;  
