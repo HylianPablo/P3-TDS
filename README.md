@@ -7,11 +7,11 @@ NOC: 2 clases.
     -LLOC: 75   
 
 
-NOT: 8 tests. Además de dos suites.
+NOT: 9 tests. Además de dos suites.
 
-    -SLOC: 1451   
+    -SLOC: 1492   
 
-    -LLOC: 1179   
+    -LLOC: 1199   
 
 **Clases propias {SLOC, LLOC}:**  
 
@@ -28,7 +28,7 @@ NOT: 8 tests. Además de dos suites.
     -es.uva.inf.tds.pr2.NoticiaTDDFixture  {109, 88}  
     -es.uva.inf.tds.pr2.NoticiaTDDOther  {43, 35}  
     -es.uva.inf.tds.pr2 BoletinSequence  {159, 124}
-    -es.uva.inf.tds.pr2 NoticiaSequence  {29, 24}
+    -es.uva.inf.tds.pr2 NoticiaSequence  {41, 29}
     
     
 **Clases de terceros**  
