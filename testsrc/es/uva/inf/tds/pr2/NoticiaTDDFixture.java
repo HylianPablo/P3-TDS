@@ -87,23 +87,6 @@ public class NoticiaTDDFixture {
 		assertTrue(n.isSimilar(n2));
 	}
 
-	@Tag("Positive")
-	@Tag("Fixture")
-	@Tag("TDD")
-	@Test
-	public void noticiaNoSimilar() {
-		String titular2 = "Adios";
-		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 16);
-		String fuente2 = "Adios";
-		EnumCategoria categoria2 = EnumCategoria.nacional;
-		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
-
-		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-
-		assertFalse(n.isSimilar(n2));
-		fail("Until GREEN Phase");
-	}
-
 	@Tag("Negative")
 	@Tag("Fixture")
 	@Tag("TDD")
