@@ -1,0 +1,29 @@
+<project name="practica3" default="compilar">
+
+	<target name="compilar" description="Compila tanto fuentes como tests">
+		<exec dir="." executable="sh">
+		<arg line= "-c 'mvn compile test-compile'"/>
+		</exec>
+	</target>
+	
+	<target name="ejecutarTestsTDDyCajaNegra" description="Tests TDD y BB">
+		<exec dir="." executable="sh">
+			<arg line= "-c 'mvn -Dtest=*BlackBox* test'"/>
+		</exec>
+	</target>
+	<target name="ejecutarPruebasSecuencia" description="Tests de secuencia">
+			<exec dir="." executable="sh">
+				<arg line= "-c 'mvn -Dtest=*Sequence.java test'"/>
+			</exec>
+	</target>
+	<target name="documentar" description="Generar javadoc del proyecto">
+			<exec dir="." executable="sh">
+				<arg line= "-c 'mvn javadoc:javadoc'"/>
+			</exec>
+	</target>
+	<target name="limpiar" description="Limpia el proyecto">
+			<exec dir="." executable="sh">
+				<arg line= "-c 'mvn clean'"/>
+			</exec>
+		</target>
+</project>
