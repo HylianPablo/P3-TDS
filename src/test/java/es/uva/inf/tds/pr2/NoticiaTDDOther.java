@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import es.uva.inf.tds.pr2.EnumCategoria;
+import es.uva.inf.tds.pr2.Noticia;
+
 public class NoticiaTDDOther {
 
 	@Tag("Negative")

@@ -7,7 +7,8 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-//Empieza a las 14:10
+import es.uva.inf.tds.pr2.EnumCategoria;
+import es.uva.inf.tds.pr2.Noticia;
 
 public class NoticiaSequence {
 
@@ -21,16 +22,15 @@ public class NoticiaSequence {
 		String url = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
-		
+
 		LocalDate fecha2 = LocalDate.of(2019, 11, 12);
-		Noticia n2 = new Noticia(titular,fecha2,"elmundo.es",url,categoria);
-		
+		Noticia n2 = new Noticia(titular, fecha2, "elmundo.es", url, categoria);
+
 		boolean b = n.isSimilar(n2);
 		assertTrue(b);
 		String s = n.comparaFechaNoticia(n2);
-		assertEquals("posterior",s);
-		
-		
+		assertEquals("posterior", s);
+
 		assertNotNull(n);
 		assertEquals(titular, n.getTitular());
 		assertEquals(fechaPublicacion, n.getFechaPublicacion());
@@ -38,5 +38,4 @@ public class NoticiaSequence {
 		assertEquals(categoria, n.getCategoria());
 		assertEquals(url, n.getUrl());
 	}
-
 }
