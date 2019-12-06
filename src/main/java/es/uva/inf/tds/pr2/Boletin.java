@@ -2,6 +2,8 @@ package es.uva.inf.tds.pr2;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import org.easymock.Mock;
+import static org.easymock.EasyMock.*;
 
 /**
  * Clase que representa un boletín de noticias. <br>
@@ -16,6 +18,8 @@ import java.util.ArrayList;
  */
 public class Boletin {
 
+	private ArrayList<Noticia> listaNoticias;
+
 	/**
 	 * Creación de un boletín de noticias a partir de un conjunto inicial de
 	 * noticia.
@@ -23,17 +27,20 @@ public class Boletin {
 	 * @param al {@code ArrayList} compuesto por {@code Noticias} que representa el
 	 *           conjunto inicial de noticias.
 	 * @throws {@code IllegalArgumentException} si la lista introducida por
-	 *                parámetro es {@code null}.
+	 *         parámetro es {@code null}.
 	 */
 	public Boletin(ArrayList<Noticia> al) {
-		// TODO Crear constructor con noticias. Utilizar un atributo privado ArrayList
+		if (al == null) {
+			throw new IllegalArgumentException();
+		}
+		listaNoticias = al;
 	}
 
 	/**
 	 * Creación de un boletín de noticias vacío.
 	 */
 	public Boletin() {
-		// TODO Crear constructor vacío
+		listaNoticias = new ArrayList<>();
 	}
 
 	/**
@@ -42,8 +49,7 @@ public class Boletin {
 	 * @return {@code ArrayList} que representa el conjunto de noticias del boletín.
 	 */
 	public ArrayList<Noticia> getNoticias() {
-		// TODO Devolver las noticias del boletín
-		return new ArrayList<Noticia>();
+		return listaNoticias;
 	}
 
 	/**
@@ -51,11 +57,13 @@ public class Boletin {
 	 * 
 	 * @param n {@code Noticia} a agregar al boletín.
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia a
-	 *                introducir sea {@code null}.
+	 *         introducir sea {@code null}.
 	 */
 	public void addNoticia(Noticia n) {
-		// TODO Agregar noticia al ArrayList
-
+		if (n == null) {
+			throw new IllegalArgumentException();
+		}
+		listaNoticias.add(n);
 	}
 
 	/**
@@ -64,8 +72,7 @@ public class Boletin {
 	 * @return Número entero que representa la cantidad de noticias del boletín.
 	 */
 	public int getNumberOfNoticias() {
-		// TODO Devolver size() del arrayList
-		return 0;
+		return listaNoticias.size();
 	}
 
 	/**
@@ -76,9 +83,14 @@ public class Boletin {
 	 *         recientemente.
 	 */
 	public LocalDate getMostRecentDate() {
-		// TODO Recorrer las noticias con un centinela, devolver el índice que indique
-		// el centinela
-		return null;
+		// mejorable
+		LocalDate fechaReciente = LocalDate.of(0, 1, 1);
+
+		for (int i = 0; i < listaNoticias.size(); i++) {
+			if (listaNoticias.get(i).getFechaPublicacion().compareTo(fechaReciente) > 0)
+				fechaReciente = listaNoticias.get(i).getFechaPublicacion();
+		}
+		return fechaReciente;
 	}
 
 	/**
@@ -89,9 +101,14 @@ public class Boletin {
 	 *         publicada.
 	 */
 	public LocalDate getOldestDate() {
-		// TODO Recorrer las noticias con un centinela, devolver el índice que indique
-		// el centinelaAuto-generated method stub
-		return null;
+		// mejorable
+		LocalDate fechaAntigua = LocalDate.of(9999, 1, 1);
+
+		for (int i = 0; i < listaNoticias.size(); i++) {
+			if (listaNoticias.get(i).getFechaPublicacion().compareTo(fechaAntigua) < 0)
+				fechaAntigua = listaNoticias.get(i).getFechaPublicacion();
+		}
+		return fechaAntigua;
 	}
 
 	/**
@@ -103,8 +120,25 @@ public class Boletin {
 	 *         ordenadas cronológicamente.
 	 */
 	public ArrayList<Noticia> getChronologicalOrder() {
-		// TODO Recorre las noticias y crea un nuevo ArrayList ordenado por fecha
-		return new ArrayList<Noticia>();
+		// mejorable
+		ArrayList<Noticia> resultado = new ArrayList<>();
+		ArrayList<LocalDate> listaPorFechas = new ArrayList<>();
+		ArrayList<Integer> valores = new ArrayList<>();
+
+		for (int j = 0; j < listaNoticias.size(); j++) {
+			listaPorFechas.add(listaNoticias.get(j).getFechaPublicacion());
+		}
+
+		while (listaPorFechas.size() > 0) {
+			int i = listaPorFechas.indexOf(getOldestDate());
+			valores.add(i);
+			listaPorFechas.remove(i);
+		}
+
+		for (int valor : valores) {
+			resultado.add(listaNoticias.get(valor));
+		}
+		return resultado;
 	}
 
 	/**
@@ -119,10 +153,49 @@ public class Boletin {
 	 *         ordenadas por categoría.
 	 */
 	public ArrayList<Noticia> getNewsByCategory() {
-		// TODO Recorre las noticias y crea un nuevo ArrayList ordenado por categorías.
-		// Por cada iteración elimina o descarta los ya añadidos. Comprobar todos los
-		// casos.
-		return new ArrayList<Noticia>();
+		ArrayList<Noticia> cronologico = getChronologicalOrder();
+		ArrayList<Noticia> resultado = new ArrayList<>();
+
+		for (Noticia noticia : cronologico) {
+			if (noticia.getCategoria().equals(EnumCategoria.nacional)) {
+				resultado.add(noticia);
+				cronologico.remove(noticia);
+			}
+		}
+
+		for (Noticia noticia : cronologico) {
+			if (noticia.getCategoria().equals(EnumCategoria.internacional)) {
+				resultado.add(noticia);
+				cronologico.remove(noticia);
+			}
+		}
+
+		for (Noticia noticia : cronologico) {
+			if (noticia.getCategoria().equals(EnumCategoria.sociedad)) {
+				resultado.add(noticia);
+				cronologico.remove(noticia);
+			}
+		}
+
+		for (Noticia noticia : cronologico) {
+			if (noticia.getCategoria().equals(EnumCategoria.economia)) {
+				resultado.add(noticia);
+				cronologico.remove(noticia);
+			}
+		}
+
+		for (Noticia noticia : cronologico) {
+			if (noticia.getCategoria().equals(EnumCategoria.deporte)) {
+				resultado.add(noticia);
+				cronologico.remove(noticia);
+			}
+		}
+
+		for (Noticia noticia : cronologico) {
+			resultado.add(noticia);
+		}
+
+		return resultado;
 	}
 
 	/**
@@ -135,12 +208,21 @@ public class Boletin {
 	 * @return {@code ArrayList} que representa la lista de noticias con igual
 	 *         categoría a la categoría de la noticia dada.
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia
-	 *                introducida sea {@code null}.
+	 *         introducida sea {@code null}.
 	 */
 	public ArrayList<Noticia> getSimilarNews(Noticia n) {
-		// TODO Recorre las noticias y crea un nuevo ArrayList con las noticias
-		// similares. Lanzar antes de nada una excepción en caso de ser Noticia null.
-		return new ArrayList<Noticia>();
+		if (n == null) {
+			throw new IllegalArgumentException();
+		}
+		ArrayList<Noticia> resultado = new ArrayList<>();
+
+		for (Noticia noticia : listaNoticias) {
+			if (noticia.isSimilar(n)) {
+				resultado.add(noticia);
+			}
+		}
+
+		return resultado;
 	}
 
 	/**
@@ -152,12 +234,20 @@ public class Boletin {
 	 * @return Sub-boletín compuesto únicamente por las noticias que tienen la fecha
 	 *         introducida.
 	 * @throws {@code IllegalArgumentException} en caso de que la fecha introducida
-	 *                sea {@code null}.
+	 *         sea {@code null}.
 	 */
 	public Boletin getSubconjuntoFecha(LocalDate fechaBuscada) {
-		// TODO Comprobar que la fecha introducida no es nula. Crear un nuevo boletín y
-		// agregar los coincidentes.
-		return null;
+		if (fechaBuscada == null) {
+			throw new IllegalArgumentException();
+		}
+		ArrayList<Noticia> resultado = new ArrayList<>();
+
+		for (Noticia noticia : listaNoticias) {
+			if (noticia.getFechaPublicacion().compareTo(fechaBuscada) == 0) {
+				resultado.add(noticia);
+			}
+		}
+		return new Boletin(resultado);
 	}
 
 	/**
@@ -172,12 +262,23 @@ public class Boletin {
 	 * @return Sub-boletín compuesto únicamente por las noticias con fecha en el
 	 *         intervalo compuesto por las dos fechas introducidas por parámetros.
 	 * @throws {@code IllegalArgumentException} en caso de que alguna de las fechas
-	 *                introducidas por parámetro sea {@code null}.
+	 *         introducidas por parámetro sea {@code null}.
 	 */
 	public Boletin getSubconjuntoIntervalo(LocalDate inicioIntervalo, LocalDate finalIntervalo) {
-		// TODO Comprobar que la fechas introducida no son nulas, por separado. Crear un
-		// nuevo boletín y agregar los coincidentes.
-		return null;
+		if (inicioIntervalo == null || finalIntervalo == null) {
+			throw new IllegalArgumentException();
+		}
+
+		ArrayList<Noticia> resultado = new ArrayList<>();
+
+		for (Noticia noticia : listaNoticias) {
+			if (noticia.getFechaPublicacion().compareTo(inicioIntervalo) >= 0
+					&& noticia.getFechaPublicacion().compareTo(finalIntervalo) <= 0) {
+				resultado.add(noticia);
+			}
+		}
+
+		return new Boletin(resultado);
 	}
 
 	/**
@@ -188,13 +289,21 @@ public class Boletin {
 	 *                         buscar.
 	 * @return Sub-boletín compuesto únicamente por las noticas con categoría igual
 	 *         a la recibida por parámetro.
-	 * @throws {@code IllegalArgumentException} en caso de que la enumeración
-	 *                introducida por parámetro sea {@code null}.
+	 * @throws {@code IllegalArgumentException} en caso de que la categoria
+	 *         introducida por parámetro sea {@code null}.
 	 */
 	public Boletin getSubconjuntoCategoria(EnumCategoria categoriaBuscada) {
-		// TODO Comprobar que la categoría introducida no es nula. Crear un nuevo
-		// boletín y agregar los coincidentes.
-		return null;
+		if (categoriaBuscada == null) {
+			throw new IllegalArgumentException();
+		}
+		ArrayList<Noticia> resultado = new ArrayList<>();
+
+		for (Noticia noticia : listaNoticias) {
+			if (noticia.getCategoria().equals(categoriaBuscada)) {
+				resultado.add(noticia);
+			}
+		}
+		return new Boletin(resultado);
 	}
 
 	/**
@@ -207,13 +316,22 @@ public class Boletin {
 	 *                         entre las noticias del boletín.
 	 * @return Sub-boletín compuesto únicamente por las noticias con fecha y
 	 *         categoría iguales a las introducidas por parámetro.
-	 * @throws {@code IllegalArgumentException} en caso de que la enumeración o la
-	 *                fecha introducidas por parámetro sean {@code null}.
+	 * @throws {@code IllegalArgumentException} en caso de que la categoría o la
+	 *         fecha introducidas por parámetro sean {@code null}.
 	 */
 	public Boletin getSubconjuntoCategoriaFecha(EnumCategoria categoriaBuscada, LocalDate fechaConcreta) {
-		// TODO Comprobar que la fecha o la categoría introducidas no son nulas, por
-		// separado. Crear un nuevo boletín y agregar los coincidentes.
-		return null;
+		if (fechaConcreta == null || categoriaBuscada == null) {
+			throw new IllegalArgumentException();
+		}
+		ArrayList<Noticia> resultado = new ArrayList<>();
+
+		for (Noticia noticia : listaNoticias) {
+			if (noticia.getFechaPublicacion().compareTo(fechaConcreta) == 0
+					&& noticia.getCategoria().equals(categoriaBuscada)) {
+				resultado.add(noticia);
+			}
+		}
+		return new Boletin(resultado);
 	}
 
 	/**
@@ -231,14 +349,26 @@ public class Boletin {
 	 * @return Sub-boletín compuesto únicamente por las noticias con categoría igual
 	 *         a la introducida por parámetro y fecha contenida entre las dos fechas
 	 *         introducidas por parámetro.
-	 * @throws {@code IllegalArgumentException} en caso de la enumeración o alguna
-	 *                de las fechas introducidas por parámetro sean {@code null}.
+	 * @throws {@code IllegalArgumentException} en caso de que la categoría o alguna
+	 *         de las fechas introducidas por parámetro sean {@code null}.
 	 */
 	public Boletin getSubconjuntoCategoriaIntervalo(EnumCategoria categoriaBuscada, LocalDate inicioIntervalo,
 			LocalDate finalIntervalo) {
-		// TODO Comprobar que las fechas o la categoría introducidas no son nulas, por
-		// separado. Crear un nuevo boletín y agregar los coincidentes.
-		return null;
+		if (categoriaBuscada == null || inicioIntervalo == null || finalIntervalo == null) {
+			throw new IllegalArgumentException();
+		}
+
+		ArrayList<Noticia> resultado = new ArrayList<>();
+
+		for (Noticia noticia : listaNoticias) {
+			if (noticia.getCategoria().equals(categoriaBuscada)
+					&& noticia.getFechaPublicacion().compareTo(inicioIntervalo) >= 0
+					&& noticia.getFechaPublicacion().compareTo(finalIntervalo) <= 0) {
+				resultado.add(noticia);
+			}
+		}
+
+		return new Boletin(resultado);
 	}
 
 }
