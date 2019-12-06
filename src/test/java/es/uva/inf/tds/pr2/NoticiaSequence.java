@@ -39,3 +39,4 @@ public class NoticiaSequence {
 		assertEquals(url, n.getUrl());
 	}
 }
+

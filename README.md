@@ -1,4 +1,4 @@
-MH: 15 horas y 50 minutos.
+MH: 16 horas y 00 minutos.
 
 NOC: 2 clases.
 
@@ -7,11 +7,11 @@ NOC: 2 clases.
     -LLOC: 75   
 
 
-NOT: 8 tests. Además de dos suites.
+NOT: 9 tests. Además de dos suites.
 
-    -SLOC: 1451   
+    -SLOC: 1492   
 
-    -LLOC: 1179   
+    -LLOC: 1199   
 
 **Clases propias {SLOC, LLOC}:**  
 
@@ -24,10 +24,11 @@ NOT: 8 tests. Además de dos suites.
     -es.uva.inf.tds.pr2.BoletinBlackBoxVarious  {215, 177}  
     -es.uva.inf.tds.pr2.BoletinTDDFixtureSimple  {143, 119}  
     -es.uva.inf.tds.pr2.BoletinTDDFixtureVarious  {425, 347} 
-    -es.uva.inf.tds.pr2.NoticiaBlackBox  {104, 82}  
-    -es.uva.inf.tds.pr2.NoticiaTDDFixture  {123, 101}  
+    -es.uva.inf.tds.pr2.NoticiaBlackBox  {118, 86}  
+    -es.uva.inf.tds.pr2.NoticiaTDDFixture  {109, 88}  
     -es.uva.inf.tds.pr2.NoticiaTDDOther  {43, 35}  
-    -es.uva.inf.tds.pr2.Sequence  {159, 124}  
+    -es.uva.inf.tds.pr2 BoletinSequence  {159, 124}
+    -es.uva.inf.tds.pr2 NoticiaSequence  {41, 29}
     
     
 **Clases de terceros**  
