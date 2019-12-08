@@ -121,7 +121,7 @@ public class Boletin {
 		ArrayList<Noticia> resultado = new ArrayList<>();
 		ArrayList<Noticia> copia = listaNoticias;
 
-		while (copia.size() > 0) {
+		while (!copia.isEmpty()) {
 			int posicionAntigua = copia.indexOf(getOldestDate());
 			resultado.add(copia.get(posicionAntigua));
 			copia.remove(posicionAntigua);
@@ -358,6 +358,34 @@ public class Boletin {
 		}
 
 		return new Boletin(resultado);
+	}
+
+	/**
+	 * Obtiene el porcentaje de similitud entre dos boletines, se comprueba la
+	 * similitud entre el objeto actual y el pasado por parámetro. Dos noticias son
+	 * similares si comparten titular y categoría y su fecha no se diferencia en más
+	 * de dos días.
+	 * 
+	 * @param boletinComparar Objeto boletín a comparar con el objeto actual,
+	 *                        cuantas noticias similares tiene.
+	 * @return porcentaje en punto flotante
+	 * @throws IllegalArgumentException Si el boletin a comparar es nulo
+	 */
+	public double getGradoSimilitud(Boletin boletinComparar) {
+		if (boletinComparar == null) {
+			throw new IllegalArgumentException();
+		}
+		int noticiasSimilares = 0;
+		ArrayList<Noticia> copia = boletinComparar.getNoticias();
+
+		for(int i = 0; i<listaNoticias.size(); i++) {
+			for(int j = 0; j<boletinComparar.getNumberOfNoticias(); j++) {
+				if(listaNoticias.get(i).isSimilar(copia.get(j)))
+						noticiasSimilares++;
+			}
+		}
+		
+		return noticiasSimilares*100/listaNoticias.size();
 	}
 
 }
