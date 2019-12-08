@@ -83,7 +83,6 @@ public class Boletin {
 	 *         recientemente.
 	 */
 	public LocalDate getMostRecentDate() {
-		// mejorable
 		LocalDate fechaReciente = LocalDate.of(0, 1, 1);
 
 		for (int i = 0; i < listaNoticias.size(); i++) {
@@ -101,7 +100,6 @@ public class Boletin {
 	 *         publicada.
 	 */
 	public LocalDate getOldestDate() {
-		// mejorable
 		LocalDate fechaAntigua = LocalDate.of(9999, 1, 1);
 
 		for (int i = 0; i < listaNoticias.size(); i++) {
@@ -120,24 +118,15 @@ public class Boletin {
 	 *         ordenadas cronológicamente.
 	 */
 	public ArrayList<Noticia> getChronologicalOrder() {
-		// mejorable
 		ArrayList<Noticia> resultado = new ArrayList<>();
-		ArrayList<LocalDate> listaPorFechas = new ArrayList<>();
-		ArrayList<Integer> valores = new ArrayList<>();
+		ArrayList<Noticia> copia = listaNoticias;
 
-		for (int j = 0; j < listaNoticias.size(); j++) {
-			listaPorFechas.add(listaNoticias.get(j).getFechaPublicacion());
+		while (copia.size() > 0) {
+			int posicionAntigua = copia.indexOf(getOldestDate());
+			resultado.add(copia.get(posicionAntigua));
+			copia.remove(posicionAntigua);
 		}
 
-		while (listaPorFechas.size() > 0) {
-			int i = listaPorFechas.indexOf(getOldestDate());
-			valores.add(i);
-			listaPorFechas.remove(i);
-		}
-
-		for (int valor : valores) {
-			resultado.add(listaNoticias.get(valor));
-		}
 		return resultado;
 	}
 
