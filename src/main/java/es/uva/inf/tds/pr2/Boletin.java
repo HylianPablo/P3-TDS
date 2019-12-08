@@ -2,8 +2,7 @@ package es.uva.inf.tds.pr2;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import org.easymock.Mock;
-import static org.easymock.EasyMock.*;
+
 
 /**
  * Clase que representa un boletín de noticias. <br>
@@ -18,7 +17,7 @@ import static org.easymock.EasyMock.*;
  */
 public class Boletin {
 
-	private ArrayList<Noticia> listaNoticias;
+	private ArrayList<INoticia> listaNoticias;
 
 	/**
 	 * Creación de un boletín de noticias a partir de un conjunto inicial de
@@ -29,7 +28,7 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} si la lista introducida por
 	 *         parámetro es {@code null}.
 	 */
-	public Boletin(ArrayList<Noticia> al) {
+	public Boletin(ArrayList<INoticia> al) {
 		if (al == null) {
 			throw new IllegalArgumentException();
 		}
@@ -48,22 +47,25 @@ public class Boletin {
 	 * 
 	 * @return {@code ArrayList} que representa el conjunto de noticias del boletín.
 	 */
-	public ArrayList<Noticia> getNoticias() {
+	public ArrayList<INoticia> getNoticias() {
 		return listaNoticias;
 	}
 
 	/**
 	 * Agrega una noticia al boletín.
 	 * 
-	 * @param n {@code Noticia} a agregar al boletín.
+	 * @param in {@code Noticia} a agregar al boletín.
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia a
 	 *         introducir sea {@code null}.
+	 * @throws {@code IllegalArgumentException} en caso de que la noticia ya exista.
 	 */
-	public void addNoticia(Noticia n) {
-		if (n == null) {
+	public void addNoticia(INoticia in) {
+		if (in == null) {
 			throw new IllegalArgumentException();
 		}
-		listaNoticias.add(n);
+		if(listaNoticias.contains(in))
+			throw new IllegalArgumentException();
+		listaNoticias.add(in);
 	}
 
 	/**
@@ -117,15 +119,16 @@ public class Boletin {
 	 * @return {@code ArrayList} que representa la lista de noticias del boletín
 	 *         ordenadas cronológicamente.
 	 */
-	public ArrayList<Noticia> getChronologicalOrder() {
-		ArrayList<Noticia> resultado = new ArrayList<>();
-		ArrayList<Noticia> copia = listaNoticias;
+	public ArrayList<INoticia> getChronologicalOrder() { //REVISAR
+		ArrayList<INoticia> resultado = new ArrayList<>();
+		ArrayList<INoticia> copia = listaNoticias;
 
 		while (!copia.isEmpty()) {
-			int posicionAntigua = copia.indexOf(getOldestDate());
-			resultado.add(copia.get(posicionAntigua));
-			copia.remove(posicionAntigua);
+			int posicionAntigua = listaNoticias.indexOf(getOldestDate());
+			resultado.add(listaNoticias.get(posicionAntigua));
+			listaNoticias.remove(posicionAntigua);
 		}
+		listaNoticias=copia;
 
 		return resultado;
 	}
@@ -141,46 +144,46 @@ public class Boletin {
 	 * @return {@code ArrayList} que representa la lista de noticias del boletín
 	 *         ordenadas por categoría.
 	 */
-	public ArrayList<Noticia> getNewsByCategory() {
-		ArrayList<Noticia> cronologico = getChronologicalOrder();
-		ArrayList<Noticia> resultado = new ArrayList<>();
+	public ArrayList<INoticia> getNewsByCategory() {
+		ArrayList<INoticia> cronologico = getChronologicalOrder();
+		ArrayList<INoticia> resultado = new ArrayList<>();
 
-		for (Noticia noticia : cronologico) {
+		for (INoticia noticia : cronologico) {
 			if (noticia.getCategoria().equals(EnumCategoria.nacional)) {
 				resultado.add(noticia);
 				cronologico.remove(noticia);
 			}
 		}
 
-		for (Noticia noticia : cronologico) {
+		for (INoticia noticia : cronologico) {
 			if (noticia.getCategoria().equals(EnumCategoria.internacional)) {
 				resultado.add(noticia);
 				cronologico.remove(noticia);
 			}
 		}
 
-		for (Noticia noticia : cronologico) {
+		for (INoticia noticia : cronologico) {
 			if (noticia.getCategoria().equals(EnumCategoria.sociedad)) {
 				resultado.add(noticia);
 				cronologico.remove(noticia);
 			}
 		}
 
-		for (Noticia noticia : cronologico) {
+		for (INoticia noticia : cronologico) {
 			if (noticia.getCategoria().equals(EnumCategoria.economia)) {
 				resultado.add(noticia);
 				cronologico.remove(noticia);
 			}
 		}
 
-		for (Noticia noticia : cronologico) {
+		for (INoticia noticia : cronologico) {
 			if (noticia.getCategoria().equals(EnumCategoria.deporte)) {
 				resultado.add(noticia);
 				cronologico.remove(noticia);
 			}
 		}
 
-		for (Noticia noticia : cronologico) {
+		for (INoticia noticia : cronologico) {
 			resultado.add(noticia);
 		}
 
@@ -199,13 +202,13 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia
 	 *         introducida sea {@code null}.
 	 */
-	public ArrayList<Noticia> getSimilarNews(Noticia n) {
+	public ArrayList<INoticia> getSimilarNews(Noticia n) {
 		if (n == null) {
 			throw new IllegalArgumentException();
 		}
-		ArrayList<Noticia> resultado = new ArrayList<>();
+		ArrayList<INoticia> resultado = new ArrayList<>();
 
-		for (Noticia noticia : listaNoticias) {
+		for (INoticia noticia : listaNoticias) {
 			if (noticia.isSimilar(n)) {
 				resultado.add(noticia);
 			}
@@ -229,9 +232,9 @@ public class Boletin {
 		if (fechaBuscada == null) {
 			throw new IllegalArgumentException();
 		}
-		ArrayList<Noticia> resultado = new ArrayList<>();
+		ArrayList<INoticia> resultado = new ArrayList<>();
 
-		for (Noticia noticia : listaNoticias) {
+		for (INoticia noticia : listaNoticias) {
 			if (noticia.getFechaPublicacion().compareTo(fechaBuscada) == 0) {
 				resultado.add(noticia);
 			}
@@ -258,9 +261,9 @@ public class Boletin {
 			throw new IllegalArgumentException();
 		}
 
-		ArrayList<Noticia> resultado = new ArrayList<>();
+		ArrayList<INoticia> resultado = new ArrayList<>();
 
-		for (Noticia noticia : listaNoticias) {
+		for (INoticia noticia : listaNoticias) {
 			if (noticia.getFechaPublicacion().compareTo(inicioIntervalo) >= 0
 					&& noticia.getFechaPublicacion().compareTo(finalIntervalo) <= 0) {
 				resultado.add(noticia);
@@ -285,9 +288,9 @@ public class Boletin {
 		if (categoriaBuscada == null) {
 			throw new IllegalArgumentException();
 		}
-		ArrayList<Noticia> resultado = new ArrayList<>();
+		ArrayList<INoticia> resultado = new ArrayList<>();
 
-		for (Noticia noticia : listaNoticias) {
+		for (INoticia noticia : listaNoticias) {
 			if (noticia.getCategoria().equals(categoriaBuscada)) {
 				resultado.add(noticia);
 			}
@@ -312,9 +315,9 @@ public class Boletin {
 		if (fechaConcreta == null || categoriaBuscada == null) {
 			throw new IllegalArgumentException();
 		}
-		ArrayList<Noticia> resultado = new ArrayList<>();
+		ArrayList<INoticia> resultado = new ArrayList<>();
 
-		for (Noticia noticia : listaNoticias) {
+		for (INoticia noticia : listaNoticias) {
 			if (noticia.getFechaPublicacion().compareTo(fechaConcreta) == 0
 					&& noticia.getCategoria().equals(categoriaBuscada)) {
 				resultado.add(noticia);
@@ -347,9 +350,9 @@ public class Boletin {
 			throw new IllegalArgumentException();
 		}
 
-		ArrayList<Noticia> resultado = new ArrayList<>();
+		ArrayList<INoticia> resultado = new ArrayList<>();
 
-		for (Noticia noticia : listaNoticias) {
+		for (INoticia noticia : listaNoticias) {
 			if (noticia.getCategoria().equals(categoriaBuscada)
 					&& noticia.getFechaPublicacion().compareTo(inicioIntervalo) >= 0
 					&& noticia.getFechaPublicacion().compareTo(finalIntervalo) <= 0) {
@@ -376,7 +379,7 @@ public class Boletin {
 			throw new IllegalArgumentException();
 		}
 		int noticiasSimilares = 0;
-		ArrayList<Noticia> copia = boletinComparar.getNoticias();
+		ArrayList<INoticia> copia = boletinComparar.getNoticias();
 
 		for(int i = 0; i<listaNoticias.size(); i++) {
 			for(int j = 0; j<boletinComparar.getNumberOfNoticias(); j++) {

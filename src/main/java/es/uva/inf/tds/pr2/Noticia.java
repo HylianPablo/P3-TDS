@@ -13,7 +13,7 @@ import java.time.LocalDate;
  * @author migusan
  *
  */
-public class Noticia {
+public class Noticia implements INoticia {
 
 	/**
 	 * Creación de una noticia a partir de un titular, una fecha de publicación, una
@@ -114,7 +114,7 @@ public class Noticia {
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia recibida
 	 *                por parámetro sea {@code null}.
 	 */
-	public boolean isSimilar(Noticia n) {
+	public boolean isSimilar(INoticia n) {
 		// TODO Comprobar los campos requeridos. Devolver false si uno de los campos
 		// falla. En otro caso devolver true.
 		return false;

@@ -1,6 +1,12 @@
 package es.uva.inf.tds.pr2;
 
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.easymock.Mock;
+import static org.easymock.EasyMock.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +28,7 @@ public class BoletinTDDFixtureVarious {
 	private EnumCategoria categoria;
 	private String url;
 	private Noticia n;
+	private INoticia in;
 
 	private String titular2;
 	private LocalDate fechaPublicacion2;
@@ -29,6 +36,7 @@ public class BoletinTDDFixtureVarious {
 	private EnumCategoria categoria2;
 	private String url2;
 	private Noticia n2;
+	private INoticia in2;
 
 	private String titular3;
 	private LocalDate fechaPublicacion3;
@@ -115,6 +123,8 @@ public class BoletinTDDFixtureVarious {
 		categoria7 = EnumCategoria.sociedad;
 		url7 = "https://www." + fuente7 + '/' + categoria7 + '/' + titular7;
 		n7 = new Noticia(titular7, fechaPublicacion7, fuente7, url7, categoria7);
+		
+		in=createMock(INoticia.class);
 	}
 
 	@Tag("Positive")
@@ -195,6 +205,12 @@ public class BoletinTDDFixtureVarious {
 	public void subconjuntoFecha() {
 		Boletin todas = new Boletin();
 		LocalDate fechaBuscada = LocalDate.of(2019, 10, 21);
+		
+		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).times(2);
+		replay(in);
+		todas.addNoticia(in);
+		assertEquals(fechaPublicacion, todas.getMostRecentDate());
+		verify(in);
 
 		titular3 = "En fecha";
 		fechaPublicacion3 = LocalDate.of(2019, 10, 21);
