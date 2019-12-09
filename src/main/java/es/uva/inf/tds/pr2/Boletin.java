@@ -3,7 +3,6 @@ package es.uva.inf.tds.pr2;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
 /**
  * Clase que representa un boletín de noticias. <br>
  * Puede crearse vacío o a partir de un conjunto de noticias, permitiendo operar
@@ -63,7 +62,7 @@ public class Boletin {
 		if (in == null) {
 			throw new IllegalArgumentException();
 		}
-		if(listaNoticias.contains(in))
+		if (listaNoticias.contains(in))
 			throw new IllegalArgumentException();
 		listaNoticias.add(in);
 	}
@@ -119,16 +118,20 @@ public class Boletin {
 	 * @return {@code ArrayList} que representa la lista de noticias del boletín
 	 *         ordenadas cronológicamente.
 	 */
-	public ArrayList<INoticia> getChronologicalOrder() { //REVISAR
+	public ArrayList<INoticia> getChronologicalOrder() { // REVISAR
 		ArrayList<INoticia> resultado = new ArrayList<>();
-		ArrayList<INoticia> copia = listaNoticias;
+		ArrayList<INoticia> copia = (ArrayList<INoticia>) listaNoticias.clone();
 
-		while (!copia.isEmpty()) {
-			int posicionAntigua = listaNoticias.indexOf(getOldestDate());
-			resultado.add(listaNoticias.get(posicionAntigua));
-			listaNoticias.remove(posicionAntigua);
+		while (!listaNoticias.isEmpty()) {
+			LocalDate fechaAntigua = getOldestDate();
+			for (int i = 0; i < listaNoticias.size(); i++) {
+				if (listaNoticias.get(i).getFechaPublicacion().compareTo(fechaAntigua) == 0) {
+					resultado.add(listaNoticias.get(i));
+					listaNoticias.remove(i);
+				}
+			}
 		}
-		listaNoticias=copia;
+		listaNoticias = copia;
 
 		return resultado;
 	}
@@ -147,39 +150,38 @@ public class Boletin {
 	public ArrayList<INoticia> getNewsByCategory() {
 		ArrayList<INoticia> cronologico = getChronologicalOrder();
 		ArrayList<INoticia> resultado = new ArrayList<>();
-
-		for (INoticia noticia : cronologico) {
-			if (noticia.getCategoria().equals(EnumCategoria.nacional)) {
-				resultado.add(noticia);
-				cronologico.remove(noticia);
+		for (int i = 0; i < cronologico.size(); i++) {
+			if (cronologico.get(i).getCategoria().equals(EnumCategoria.nacional)) {
+				resultado.add(cronologico.get(i));
+				cronologico.remove(i);
 			}
 		}
 
-		for (INoticia noticia : cronologico) {
-			if (noticia.getCategoria().equals(EnumCategoria.internacional)) {
-				resultado.add(noticia);
-				cronologico.remove(noticia);
+		for (int i = 0; i < cronologico.size(); i++) {
+			if (cronologico.get(i).getCategoria().equals(EnumCategoria.internacional)) {
+				resultado.add(cronologico.get(i));
+				cronologico.remove(i);
 			}
 		}
 
-		for (INoticia noticia : cronologico) {
-			if (noticia.getCategoria().equals(EnumCategoria.sociedad)) {
-				resultado.add(noticia);
-				cronologico.remove(noticia);
+		for (int i = 0; i < cronologico.size(); i++) {
+			if (cronologico.get(i).getCategoria().equals(EnumCategoria.sociedad)) {
+				resultado.add(cronologico.get(i));
+				cronologico.remove(i);
 			}
 		}
 
-		for (INoticia noticia : cronologico) {
-			if (noticia.getCategoria().equals(EnumCategoria.economia)) {
-				resultado.add(noticia);
-				cronologico.remove(noticia);
+		for (int i = 0; i < cronologico.size(); i++) {
+			if (cronologico.get(i).getCategoria().equals(EnumCategoria.economia)) {
+				resultado.add(cronologico.get(i));
+				cronologico.remove(i);
 			}
 		}
 
-		for (INoticia noticia : cronologico) {
-			if (noticia.getCategoria().equals(EnumCategoria.deporte)) {
-				resultado.add(noticia);
-				cronologico.remove(noticia);
+		for (int i = 0; i < cronologico.size(); i++) {
+			if (cronologico.get(i).getCategoria().equals(EnumCategoria.deporte)) {
+				resultado.add(cronologico.get(i));
+				cronologico.remove(i);
 			}
 		}
 
@@ -202,7 +204,7 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia
 	 *         introducida sea {@code null}.
 	 */
-	public ArrayList<INoticia> getSimilarNews(Noticia n) {
+	public ArrayList<INoticia> getSimilarNews(INoticia n) {
 		if (n == null) {
 			throw new IllegalArgumentException();
 		}
@@ -253,11 +255,18 @@ public class Boletin {
 	 *                        extremo superior del intervalo admitido.
 	 * @return Sub-boletín compuesto únicamente por las noticias con fecha en el
 	 *         intervalo compuesto por las dos fechas introducidas por parámetros.
+	 *         En caso de no tener noticias, devuelve un boletín vacío.
 	 * @throws {@code IllegalArgumentException} en caso de que alguna de las fechas
 	 *         introducidas por parámetro sea {@code null}.
+	 * @throws {@code IllegalArgumentException} en caso de que la fecha inicial del
+	 *         intervalo sea mayor que la final
 	 */
 	public Boletin getSubconjuntoIntervalo(LocalDate inicioIntervalo, LocalDate finalIntervalo) {
 		if (inicioIntervalo == null || finalIntervalo == null) {
+			throw new IllegalArgumentException();
+		}
+
+		if (inicioIntervalo.compareTo(finalIntervalo) > 0) {
 			throw new IllegalArgumentException();
 		}
 
@@ -268,6 +277,10 @@ public class Boletin {
 					&& noticia.getFechaPublicacion().compareTo(finalIntervalo) <= 0) {
 				resultado.add(noticia);
 			}
+		}
+
+		if (resultado.isEmpty()) {
+			return new Boletin();
 		}
 
 		return new Boletin(resultado);
@@ -372,7 +385,7 @@ public class Boletin {
 	 * @param boletinComparar Objeto boletín a comparar con el objeto actual,
 	 *                        cuantas noticias similares tiene.
 	 * @return porcentaje en punto flotante
-	 * @throws IllegalArgumentException Si el boletin a comparar es nulo
+	 * @throws {@code IllegalArgumentException} Si el boletin a comparar es nulo
 	 */
 	public double getGradoSimilitud(Boletin boletinComparar) {
 		if (boletinComparar == null) {
@@ -381,14 +394,14 @@ public class Boletin {
 		int noticiasSimilares = 0;
 		ArrayList<INoticia> copia = boletinComparar.getNoticias();
 
-		for(int i = 0; i<listaNoticias.size(); i++) {
-			for(int j = 0; j<boletinComparar.getNumberOfNoticias(); j++) {
-				if(listaNoticias.get(i).isSimilar(copia.get(j)))
-						noticiasSimilares++;
+		for (int i = 0; i < listaNoticias.size(); i++) {
+			for (int j = 0; j < boletinComparar.getNumberOfNoticias(); j++) {
+				if (listaNoticias.get(i).isSimilar(copia.get(j)))
+					noticiasSimilares++;
 			}
 		}
-		
-		return noticiasSimilares*100/listaNoticias.size();
+
+		return noticiasSimilares * 100 / listaNoticias.size();
 	}
 
 }
