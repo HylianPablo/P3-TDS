@@ -1,6 +1,7 @@
 package es.uva.inf.tds.pr2;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Clase que representa una noticia. Una noticia está compuesta por un titular,
@@ -14,6 +15,12 @@ import java.time.LocalDate;
  *
  */
 public class Noticia implements INoticia {
+
+	private String titular;
+	private LocalDate fechaPublicacion;
+	private String fuente;
+	private String url;
+	private EnumCategoria categoria;
 
 	/**
 	 * Creación de una noticia a partir de un titular, una fecha de publicación, una
@@ -31,9 +38,36 @@ public class Noticia implements INoticia {
 	 *                         noticia.
 	 * @throws {@code IllegalArgumentException} en caso de que el titular tenga más
 	 *                de 12 palabras o no tenga ninguna.
+	 * @throws {@code IllegalArgumentException} en caso de que el titular sea {@code null}.   
+	 * @throws {@code IllegalArgumentException} en caso de que la fecha de publicación sea {@code null}. 
+	 * @throws {@code IllegalArgumentException} en caso de que la fuente sea {@code null}. 
+	 * @throws {@code IllegalArgumentException} en caso de que la url sea {@code null}. 
+	 * @throws {@code IllegalArgumentException} en caso de que la categoría sea {@code null}.             
 	 */
 	public Noticia(String titular, LocalDate fechaPublicacion, String fuente, String url, EnumCategoria categoria) {
-		// TODO Asignar parámetros a atributos.
+		if(titular==null) {
+			throw new IllegalArgumentException();
+		}
+		if(fechaPublicacion==null) {
+			throw new IllegalArgumentException();
+		}
+		if(fuente==null) {
+			throw new IllegalArgumentException();
+		}
+		if(url==null) {
+			throw new IllegalArgumentException();
+		}
+		if(categoria==null) {
+			throw new IllegalArgumentException();
+		}
+		String[] countWords=titular.split(" ");
+		if(countWords.length>12 || titular.equals(""))
+			throw new IllegalArgumentException();
+		this.titular = titular;
+		this.fechaPublicacion = fechaPublicacion;
+		this.fuente = fuente;
+		this.url = url;
+		this.categoria = categoria;
 	}
 
 	/**
@@ -42,8 +76,7 @@ public class Noticia implements INoticia {
 	 * @return Cadena de caracteres que representa el titular de la noticia.
 	 */
 	public String getTitular() {
-		// TODO Devolver atributo titular.
-		return null;
+		return titular;
 	}
 
 	/**
@@ -53,8 +86,7 @@ public class Noticia implements INoticia {
 	 *         noticia.
 	 */
 	public LocalDate getFechaPublicacion() {
-		// TODO Devolver atributo fecha de publicación.
-		return null;
+		return fechaPublicacion;
 	}
 
 	/**
@@ -63,8 +95,7 @@ public class Noticia implements INoticia {
 	 * @return Cadena de caracteres que representa la fuente de la noticia.
 	 */
 	public String getFuente() {
-		// TODO Devolver atributo fuente.
-		return null;
+		return fuente;
 	}
 
 	/**
@@ -73,8 +104,7 @@ public class Noticia implements INoticia {
 	 * @return Cadena de caracteres que representa la URL de la noticia.
 	 */
 	public String getUrl() {
-		// TODO Devolver atributo url.
-		return null;
+		return url;
 	}
 
 	/**
@@ -83,8 +113,7 @@ public class Noticia implements INoticia {
 	 * @return Tipo enumerado que representa la categoría de la noticia.
 	 */
 	public EnumCategoria getCategoria() {
-		// TODO Devolver atributo categoria.
-		return null;
+		return categoria;
 	}
 
 	/**
@@ -99,8 +128,15 @@ public class Noticia implements INoticia {
 	 *                por parámetro sea {@code null}.
 	 */
 	public String comparaFechaNoticia(Noticia n) {
-		// TODO comparar ambos campos de fecha de las noticias con métodos de LocalDate.
-		return null;
+		if (n == null) {
+			throw new IllegalArgumentException();
+		}
+		if (fechaPublicacion.compareTo(n.getFechaPublicacion()) < 0) {
+			return "posterior";
+		} else if (fechaPublicacion.compareTo(n.getFechaPublicacion()) > 0) {
+			return "anterior";
+		}
+		return "igual";
 	}
 
 	/**
@@ -115,9 +151,18 @@ public class Noticia implements INoticia {
 	 *                por parámetro sea {@code null}.
 	 */
 	public boolean isSimilar(INoticia n) {
-		// TODO Comprobar los campos requeridos. Devolver false si uno de los campos
-		// falla. En otro caso devolver true.
-		return false;
+		if (n == null) {
+			throw new IllegalArgumentException();
+		}
+		if (Math.abs(fechaPublicacion.until(n.getFechaPublicacion(),ChronoUnit.DAYS)) > 2)
+			return false;
+
+		if (!titular.equals(n.getTitular()))
+			return false;
+
+		if (!categoria.equals(n.getCategoria()))
+			return false;
+		return true;
 	}
 
 }

@@ -15,11 +15,71 @@ public class NoticiaTDDOther {
 	@Tag("Negative")
 	@Tag("TDD")
 	@Test
-	public void testCrearNoticiaError() {
+	public void testCrearNoticiaErrorTitularNull() {
 		String titular = null;
+		LocalDate fechaPublicacion = LocalDate.of(2019, 1, 1);
+		String fuente = "a";
+		EnumCategoria categoria = EnumCategoria.nacional;
+		String url = "b";
+		assertThrows(IllegalArgumentException.class, () -> {
+			@SuppressWarnings("unused")
+			Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
+		});
+	}
+	
+	@Tag("Negative")
+	@Tag("TDD")
+	@Test
+	public void testCrearNoticiaErrorFechaNull() {
+		String titular = "c";
 		LocalDate fechaPublicacion = null;
+		String fuente = "a";
+		EnumCategoria categoria = EnumCategoria.nacional;
+		String url = "b";
+		assertThrows(IllegalArgumentException.class, () -> {
+			@SuppressWarnings("unused")
+			Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
+		});
+	}
+	
+	@Tag("Negative")
+	@Tag("TDD")
+	@Test
+	public void testCrearNoticiaErrorFuenteNull() {
+		String titular = "c";
+		LocalDate fechaPublicacion = LocalDate.of(2019, 1, 1);
 		String fuente = null;
+		EnumCategoria categoria = EnumCategoria.nacional;
+		String url = "b";
+		assertThrows(IllegalArgumentException.class, () -> {
+			@SuppressWarnings("unused")
+			Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
+		});
+	}
+	
+	@Tag("Negative")
+	@Tag("TDD")
+	@Test
+	public void testCrearNoticiaErrorCategoriaNull() {
+		String titular = "c";
+		LocalDate fechaPublicacion = LocalDate.of(2019, 1, 1);
+		String fuente = "a";
 		EnumCategoria categoria = null;
+		String url = "b";
+		assertThrows(IllegalArgumentException.class, () -> {
+			@SuppressWarnings("unused")
+			Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
+		});
+	}
+	
+	@Tag("Negative")
+	@Tag("TDD")
+	@Test
+	public void testCrearNoticiaErrorURLNull() {
+		String titular = "c";
+		LocalDate fechaPublicacion = LocalDate.of(2019, 1, 1);
+		String fuente = "a";
+		EnumCategoria categoria = EnumCategoria.nacional;
 		String url = null;
 		assertThrows(IllegalArgumentException.class, () -> {
 			@SuppressWarnings("unused")
@@ -30,8 +90,8 @@ public class NoticiaTDDOther {
 	@Tag("Positive")
 	@Tag("TDD")
 	@Test
-	public void testCatorcePalabras() {
-		String titular = "Uno dos tres cuatro cinco seis siete ocho nueve diez once doce trece catorce";
+	public void testTrecePalabras() {
+		String titular = "Uno dos tres cuatro cinco seis siete ocho nueve diez once doce trece";
 		LocalDate fechaPublicacion = LocalDate.of(2019, 11, 14);
 		String fuente = "Adios";
 		EnumCategoria categoria = EnumCategoria.nacional;

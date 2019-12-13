@@ -10,4 +10,6 @@ public interface INoticia {
 
 	public abstract EnumCategoria getCategoria();
 
+	public abstract String getTitular();
+
 }

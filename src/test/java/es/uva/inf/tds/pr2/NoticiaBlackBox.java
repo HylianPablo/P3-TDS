@@ -88,7 +88,6 @@ public class NoticiaBlackBox {
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
 		assertFalse(n.isSimilar(n2));
-		fail("Until GREEN Phase");
 	}
 
 	@Tag("Positive")
@@ -101,7 +100,6 @@ public class NoticiaBlackBox {
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
 		assertFalse(n.isSimilar(n2));
-		fail("Until GREEN Phase");
 	}
 	
 	@Tag("Positive")
@@ -117,7 +115,21 @@ public class NoticiaBlackBox {
 		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
 		assertFalse(n.isSimilar(n2));
-		fail("Until GREEN Phase");
+	}
+	
+	@Tag("Positive")
+	@Tag("BlackBoxTestFirst")
+	@Test
+	public void noticiaSimilarFecha2DiasAtras() {
+		String titular2 = "Hola";
+		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 12);
+		String fuente2 = "Adios";
+		EnumCategoria categoria2 = EnumCategoria.nacional;
+		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
+
+		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
+
+		assertTrue(n.isSimilar(n2));
 	}
 
 }

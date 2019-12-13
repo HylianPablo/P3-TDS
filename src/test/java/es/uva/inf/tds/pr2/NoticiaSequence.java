@@ -29,7 +29,7 @@ public class NoticiaSequence {
 		boolean b = n.isSimilar(n2);
 		assertTrue(b);
 		String s = n.comparaFechaNoticia(n2);
-		assertEquals("posterior", s);
+		assertEquals("anterior", s);
 
 		assertNotNull(n);
 		assertEquals(titular, n.getTitular());
