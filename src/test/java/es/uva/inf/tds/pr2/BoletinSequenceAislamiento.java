@@ -15,7 +15,7 @@ import es.uva.inf.tds.pr2.Boletin;
 import es.uva.inf.tds.pr2.EnumCategoria;
 import es.uva.inf.tds.pr2.Noticia;
 
-public class BoletinSequence {
+public class BoletinSequenceAislamiento {
 
 	@Tag("Sequence")
 	@Test
