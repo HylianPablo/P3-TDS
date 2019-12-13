@@ -67,6 +67,7 @@ public class BoletinBlackBoxVariousAislamiento {
 	@Tag("Positive")
 	@Tag("ArrayEquals")
 	@Tag("BlackBoxTestFirst")
+	@Tag("Isolation")
 	@Test
 	public void noticiasSimilaresMismaCat() {
 		Boletin b = new Boletin();
@@ -90,6 +91,7 @@ public class BoletinBlackBoxVariousAislamiento {
 	@Tag("Positive")
 	@Tag("ArrayEquals")
 	@Tag("BlackBoxTestFirst")
+	@Tag("Isolation")
 	@Test
 	public void listaCategoriasEDC() {
 		fechaPublicacion = LocalDate.of(2019, 6, 15);
@@ -125,6 +127,7 @@ public class BoletinBlackBoxVariousAislamiento {
 	@Tag("Positive")
 	@Tag("ArrayEquals")
 	@Tag("BlackBoxTestFirst")
+	@Tag("Isolation")
 	@Test
 	public void listaCategoriasIguales() {
 		fechaPublicacion = LocalDate.of(2019, 6, 15);
