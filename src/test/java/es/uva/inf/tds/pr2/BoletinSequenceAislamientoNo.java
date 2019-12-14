@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-public class BoletinSequenceNoAislamiento {
+public class BoletinSequenceAislamientoNo {
 
 	@Tag("Sequence")
 	@Test
