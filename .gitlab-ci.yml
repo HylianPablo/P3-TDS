@@ -3,6 +3,7 @@ image: maven:3.5.0-jdk-8-alpine
 variables:
   MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
   JACOCO_AGENT:   "target/coverage/jacoco.exec"
+  SONAR_USER_TOKEN: "176e9d8106df350a5dd91440a5dbb8e3de40785b"
 
 stages:
   - build
