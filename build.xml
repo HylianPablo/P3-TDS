@@ -1,4 +1,7 @@
-<project name="practica3" default="compilar">
+<project name="practica3" default="compilar" basedir=".">
+	<description>
+		Fichero build de Ant con los objetivos definidos en el enunciado de la pra 	ctica
+	</description>
 
 	<!-- Properties -->
 	<property name="jacocoagent" location="target/coverage/jacoco.exec" />
