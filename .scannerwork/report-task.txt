@@ -2,5 +2,5 @@ projectKey=es.uva.inf.tds.ejemploSonarQubePR3MigusanPamarti
 serverUrl=https://sonarqube.inf.uva.es
 serverVersion=7.3.0.15553
 dashboardUrl=https://sonarqube.inf.uva.es/dashboard?id=es.uva.inf.tds.ejemploSonarQubePR3MigusanPamarti
-ceTaskId=AW77ZHQI7GcXomPrykOQ
-ceTaskUrl=https://sonarqube.inf.uva.es/api/ce/task?id=AW77ZHQI7GcXomPrykOQ
+ceTaskId=AW8KYRX07GcXomPrykPB
+ceTaskUrl=https://sonarqube.inf.uva.es/api/ce/task?id=AW8KYRX07GcXomPrykPB
