@@ -33,7 +33,7 @@ public class Boletin {
 		if (al == null) {
 			throw new IllegalArgumentException();
 		}
-		listaNoticias = (ArrayList)al;
+		listaNoticias = (ArrayList) al;
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class Boletin {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<INoticia> getNewsByCategory() {
-		ArrayList<INoticia> cronologico = (ArrayList)getChronologicalOrder();
+		ArrayList<INoticia> cronologico = (ArrayList) getChronologicalOrder();
 		ArrayList<INoticia> resultado = new ArrayList<>();
 		for (int i = 0; i < cronologico.size(); i++) {
 			if (cronologico.get(i).getCategoria().equals(EnumCategoria.NACIONAL)) {
@@ -189,9 +189,7 @@ public class Boletin {
 			}
 		}
 
-		for (INoticia noticia : cronologico) {
-			resultado.add(noticia);
-		}
+		resultado.addAll(cronologico);
 
 		return resultado;
 	}
@@ -370,10 +368,10 @@ public class Boletin {
 		ArrayList<INoticia> resultado = new ArrayList<>();
 
 		for (INoticia noticia : listaNoticias) {
-			if (noticia.getCategoria().equals(categoriaBuscada)
-					&& noticia.getFechaPublicacion().compareTo(inicioIntervalo) >= 0
-					&& noticia.getFechaPublicacion().compareTo(finalIntervalo) <= 0) {
-				resultado.add(noticia);
+			if (noticia.getCategoria().equals(categoriaBuscada)) {
+				if (noticia.getFechaPublicacion().compareTo(inicioIntervalo) >= 0)
+					if (noticia.getFechaPublicacion().compareTo(finalIntervalo) <= 0)
+						resultado.add(noticia);
 			}
 		}
 
@@ -397,7 +395,7 @@ public class Boletin {
 			throw new IllegalArgumentException();
 		}
 		int noticiasSimilares = 0;
-		ArrayList<INoticia> copia = (ArrayList)boletinComparar.getNoticias();
+		ArrayList<INoticia> copia = (ArrayList) boletinComparar.getNoticias();
 
 		for (int i = 0; i < listaNoticias.size(); i++) {
 			for (int j = 0; j < boletinComparar.getNumberOfNoticias(); j++) {
