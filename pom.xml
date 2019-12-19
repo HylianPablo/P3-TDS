@@ -34,6 +34,30 @@
 				<groups>Boletin&amp;TDD</groups>
 			</properties>
 		</profile>
+		<profile>
+			<id>Unit</id>
+			<properties>
+				<groups>BlackBoxTestFirst|TDD</groups>
+			</properties>
+		</profile>
+		<profile>
+			<id>Isolation</id>
+			<properties>
+				<groups>Isolation</groups>
+			</properties>
+		</profile>
+		<profile>
+			<id>WhiteBox</id>
+			<properties>
+				<groups>WhiteBox</groups>
+			</properties>
+		</profile>
+		<profile>
+			<id>Sequence</id>
+			<properties>
+				<groups>Sequence</groups>
+			</properties>
+		</profile>
 	</profiles>
 	<dependencies>
 		<dependency>

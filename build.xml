@@ -38,6 +38,13 @@
 			<arg line="${arglineIni} mvn test -P Unit${arglineEnd}" />
 		</exec>
 	</target>
+	
+	<!-- Objetivo ejecutarTestsCajaBlanca -->
+		<target name="ejecutarTestsCajaBlanca" description="pruebas de caja blanca" depends="os-check">
+			<exec dir="." executable="${executable}">
+				<arg line="${arglineIni} mvn test -P WhiteBox${arglineEnd}" />
+			</exec>
+		</target>
 
 	<!-- Objetivo ejecutarTestEnAislamiento -->
 	<target name="ejecutarTestEnAislamiento" description="pruebas de caja blanca en aislamiento" depends="os-check">
