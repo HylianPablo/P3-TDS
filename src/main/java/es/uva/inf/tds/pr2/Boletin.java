@@ -368,10 +368,10 @@ public class Boletin {
 		ArrayList<INoticia> resultado = new ArrayList<>();
 
 		for (INoticia noticia : listaNoticias) {
-			if (noticia.getCategoria().equals(categoriaBuscada)) {
-				if (noticia.getFechaPublicacion().compareTo(inicioIntervalo) >= 0)
-					if (noticia.getFechaPublicacion().compareTo(finalIntervalo) <= 0)
-						resultado.add(noticia);
+			if (noticia.getCategoria().equals(categoriaBuscada)
+					&& noticia.getFechaPublicacion().isAfter(inicioIntervalo)
+					&& noticia.getFechaPublicacion().isBefore(finalIntervalo)) {
+				resultado.add(noticia);
 			}
 		}
 

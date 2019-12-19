@@ -10,17 +10,13 @@ import org.junit.jupiter.api.Test;
 
 class BoletinWhiteBoxTest {
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
-
 	@Tag("WhiteBox")
 	@Tag("Negative")
 	@Test
 	public void boletinArrayNulo() {
 		ArrayList<INoticia> nulo = null;
 		assertThrows(IllegalArgumentException.class, () -> {
+			@SuppressWarnings("unused")
 			Boletin boletinFallo = new Boletin(nulo);
 		});
 	}
