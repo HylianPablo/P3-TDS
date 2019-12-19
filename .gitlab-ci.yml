@@ -82,7 +82,7 @@ pages:
 deploy:
   stage: deploy
   script:
-    -     mvn org.apache.maven.plugins:maven-deploy-plugin:3.0.0:deploy-file -Durl=.m2/repository \
+    -     mvn org.apache.maven.plugins:maven-deploy-plugin:3.0.0-M1:deploy-file -Durl=.m2/repository \
                                                                                 -Dfile=target/p3-1.0-SNAPSHOT.jar \
                                                                                 -DpomFile=pom.xml \
                                                                                 -DrepositoryLayout=legacy
