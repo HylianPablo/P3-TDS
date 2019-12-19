@@ -79,7 +79,7 @@
 	</target>
 	<target name="prepare-agent" unless="jacoco-agent-present">
 		<exec dir="." executable="sh">
-			<arg line="-c 'mvn -Djacoco.destFile=${jacocoagent} clean org.jacoco:jacoco-maven-plugin:0.7.8:prepare-agent install'" />
+			<arg line="-c 'mvn -Djacoco.destFile=${jacocoagent} clean org.jacoco:jacoco-maven-plugin:0.8.5:prepare-agent install'" />
 		</exec>
 	</target>
 
