@@ -369,9 +369,10 @@ public class Boletin {
 
 		for (INoticia noticia : listaNoticias) {
 			if (noticia.getCategoria().equals(categoriaBuscada)
-					&& noticia.getFechaPublicacion().isAfter(inicioIntervalo)
-					&& noticia.getFechaPublicacion().isBefore(finalIntervalo)) {
+					&& noticia.getFechaPublicacion().compareTo(inicioIntervalo) >= 0
+					&& noticia.getFechaPublicacion().compareTo(finalIntervalo) <= 0) {
 				resultado.add(noticia);
+
 			}
 		}
 
