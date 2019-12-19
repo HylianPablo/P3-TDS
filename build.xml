@@ -46,12 +46,20 @@
 		</exec>
 	</target>
 
-	<!-- Objetivo documentar -->
-	<target name="documentar" description="Generar javadoc del proyecto">
+	<!-- Objetivo site -->
+	<target name="site" description="Generar javadoc del proyecto" depends="documentar">
 		<exec dir="." executable="sh">
 			<arg line="-c 'mvn site'" />
 		</exec>
 	</target>
+	
+	<!-- Objetivo documentar -->
+	<target name="documentar" description="genera el javadoc del proyecto">
+			<exec dir="." executable="sh">
+				<arg line="-c 'mvn javadoc:javadoc'" />
+			</exec>
+		</target>
+
 
 	<!-- Objetivo limpiar -->
 	<target name="limpiar" description="Limpia el proyecto">
@@ -76,7 +84,7 @@
 	</target>
 
 	<!-- Objetivo medidas -->
-	<target name="medidas" description="medidas">
+	<target name="medidas" description="medidas" depends="obtenerInformeCobertura">
 		<exec dir="." executable="sh">
 			<arg line="-c 'mvn -P Unit,Integration jxr:jxr pmd:pmd sonar:sonar -Dsonar.host.url=https://sonarqube.inf.uva.es/ -Dsonar.login=176e9d8106df350a5dd91440a5dbb8e3de40785b -Dsonar.analysis.mode=publish -Dsonar.issuesReport.console.enable=true -Dsonar.jacoco.reportPath=target/coverage/jacoco.exec -Dsonar.junit.reportPaths=target/surefire-reports'" />
 		</exec>
