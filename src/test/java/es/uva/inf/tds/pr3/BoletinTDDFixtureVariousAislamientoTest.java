@@ -1,6 +1,12 @@
-package es.uva.inf.tds.pr2;
+package es.uva.inf.tds.pr3;
 
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.easymock.Mock;
+import static org.easymock.EasyMock.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,122 +16,144 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-public class BoletinTDDFixtureVariousAislamientoNoTest {
+import es.uva.inf.tds.pr3.Boletin;
+import es.uva.inf.tds.pr3.EnumCategoria;
+import es.uva.inf.tds.pr3.INoticia;
 
-	private String titular;
+public class BoletinTDDFixtureVariousAislamientoTest {
+
 	private LocalDate fechaPublicacion;
-	private String fuente;
 	private EnumCategoria categoria;
-	private String url;
-	private Noticia n;
+	@Mock
+	private INoticia in;
 
-	private String titular2;
 	private LocalDate fechaPublicacion2;
-	private String fuente2;
 	private EnumCategoria categoria2;
-	private String url2;
-	private Noticia n2;
+	@Mock
+	private INoticia in2;
 
-	private String titular3;
 	private LocalDate fechaPublicacion3;
-	private String fuente3;
 	private EnumCategoria categoria3;
-	private String url3;
-	private Noticia n3;
+	@Mock
+	private INoticia in3;
 
 	@BeforeEach
 	public void setUpCategorias() {
-		titular = "Hola";
 		fechaPublicacion = LocalDate.of(2019, 11, 14);
-		fuente = "Adios";
 		categoria = EnumCategoria.NACIONAL;
-		url = "https://www." + fuente + '/' + categoria + '/' + titular;
-		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 
-		titular2 = "Hola2";
 		fechaPublicacion2 = LocalDate.of(2019, 11, 15);
-		fuente2 = "Adios2";
 		categoria2 = EnumCategoria.INTERNACIONAL;
-		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
-		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
-		titular3 = "Hola3";
 		fechaPublicacion3 = LocalDate.of(2019, 11, 16);
-		fuente3 = "Adios3";
 		categoria3 = EnumCategoria.SOCIEDAD;
-		url3 = "https://www." + fuente3 + '/' + categoria3 + '/' + titular3;
-		n3 = new Noticia(titular3, fechaPublicacion3, fuente3, url3, categoria3);
+
+		in = createMock(INoticia.class);
+		in2 = createMock(INoticia.class);
+		in3 = createMock(INoticia.class);
 	}
 
 	@Tag("Positive")
 	@Tag("ArrayEquals")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void listaCategorias() {
 		Boletin b = new Boletin();
 
-		b.addNoticia(n);
-		b.addNoticia(n3);
-		b.addNoticia(n2);
+		expect(in.getCategoria()).andReturn(categoria).anyTimes();
+		expect(in2.getCategoria()).andReturn(categoria2).anyTimes();
+		expect(in3.getCategoria()).andReturn(categoria3).anyTimes();
+		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).anyTimes();
+		expect(in2.getFechaPublicacion()).andReturn(fechaPublicacion2).anyTimes();
+		expect(in3.getFechaPublicacion()).andReturn(fechaPublicacion3).anyTimes();
+		replay(in);
+		replay(in2);
+		replay(in3);
 
-		ArrayList<Noticia> al = new ArrayList<>();
-		al.add(n);
-		al.add(n2);
-		al.add(n3);
+		b.addNoticia(in);
+		b.addNoticia(in3);
+		b.addNoticia(in2);
+
+		ArrayList<INoticia> al = new ArrayList<>();
+		al.add(in);
+		al.add(in2);
+		al.add(in3);
 
 		assertArrayEquals(al.toArray(), b.getNewsByCategory().toArray());
+		verify(in);
+		verify(in2);
+		verify(in3);
 	}
 
 	@Tag("Positive")
 	@Tag("ArrayEquals")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void noticiasSimilares() {
 		Boletin b = new Boletin();
 
-		n2 = new Noticia(titular, fechaPublicacion2, fuente2, url2, categoria);
-		b.addNoticia(n2);
-		b.addNoticia(n3);
+		b.addNoticia(in);
+		b.addNoticia(in2);
+		b.addNoticia(in3);
 
-		ArrayList<Noticia> al = new ArrayList<>();
-		al.add(n2);
+		expect(in2.isSimilar(in)).andReturn(true).anyTimes();
+		expect(in3.isSimilar(in)).andReturn(false).anyTimes();
+		replay(in2);
+		replay(in3);
 
-		assertArrayEquals(al.toArray(), b.getSimilarNews(n).toArray());
+		ArrayList<INoticia> al = new ArrayList<>();
+		al.add(in2);
+
+		assertArrayEquals(al.toArray(), b.getSimilarNews(in).toArray());
+		verify(in2);
 	}
 
 	@Tag("Negative")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void noticiasSimilaresANula() {
 		Boletin b = new Boletin();
-		n2 = null;
+		in2 = null;
 		assertThrows(IllegalArgumentException.class, () -> {
-			b.getSimilarNews(n2);
+			b.getSimilarNews(in2);
 		});
 	}
 
 	@Tag("Positive")
+	@Tag("ArrayEquals")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void subconjuntoFecha() {
 		Boletin todas = new Boletin();
 		LocalDate fechaBuscada = LocalDate.of(2019, 10, 21);
+
 		fechaPublicacion = fechaBuscada;
 		fechaPublicacion2 = LocalDate.of(2019, 10, 22);
-		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
-		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-		todas.addNoticia(n);
-		todas.addNoticia(n2);
+
+		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).times(1);
+		expect(in2.getFechaPublicacion()).andReturn(fechaPublicacion2).times(1);
+		replay(in);
+		replay(in2);
+
+		todas.addNoticia(in);
+		todas.addNoticia(in2);
 
 		Boletin validas = new Boletin();
-		validas.addNoticia(n);
+		validas.addNoticia(in);
 
 		assertArrayEquals(validas.getNoticias().toArray(),
 				todas.getSubconjuntoFecha(fechaBuscada).getNoticias().toArray());
+		verify(in);
+		verify(in2);
 	}
 
 	@Tag("Negative")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void subconjuntoFechaNula() {
 		Boletin b = new Boletin();
@@ -136,7 +164,9 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 	}
 
 	@Tag("Positive")
+	@Tag("ArrayEquals")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void subconjuntoIntervalo() {
 		Boletin todas = new Boletin();
@@ -148,24 +178,31 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		fechaPublicacion2 = LocalDate.of(2018, 1, 1);
 		fechaPublicacion3 = LocalDate.of(2019, 12, 31);
 
-		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
-		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-		n3 = new Noticia(titular3, fechaPublicacion3, fuente3, url3, categoria3);
+		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).anyTimes();
+		expect(in2.getFechaPublicacion()).andReturn(fechaPublicacion2).anyTimes();
+		expect(in3.getFechaPublicacion()).andReturn(fechaPublicacion3).anyTimes();
+		replay(in);
+		replay(in2);
+		replay(in3);
 
-		todas.addNoticia(n);
-		todas.addNoticia(n2);
-		todas.addNoticia(n3);
+		todas.addNoticia(in);
+		todas.addNoticia(in2);
+		todas.addNoticia(in3);
 
 		Boletin validas = new Boletin();
-		validas.addNoticia(n);
-		validas.addNoticia(n3);
+		validas.addNoticia(in);
+		validas.addNoticia(in3);
 
 		assertArrayEquals(validas.getNoticias().toArray(),
 				todas.getSubconjuntoIntervalo(inicioIntervalo, finalIntervalo).getNoticias().toArray());
+		verify(in);
+		verify(in2);
+		verify(in3);
 	}
 
 	@Tag("Negative")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void subconjuntoIntervalosNull() {
 		LocalDate inicioIntervalo = null;
@@ -178,24 +215,35 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 	}
 
 	@Tag("Positive")
+	@Tag("ArrayEquals")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoria() {
 		Boletin todas = new Boletin();
 
 		EnumCategoria categoriaBuscada = EnumCategoria.NACIONAL;
-		todas.addNoticia(n);
-		todas.addNoticia(n2);
+
+		expect(in.getCategoria()).andReturn(categoria).anyTimes();
+		expect(in2.getCategoria()).andReturn(categoria2).anyTimes();
+		replay(in);
+		replay(in2);
+
+		todas.addNoticia(in);
+		todas.addNoticia(in2);
 
 		Boletin validas = new Boletin();
-		validas.addNoticia(n);
+		validas.addNoticia(in);
 
 		assertArrayEquals(validas.getNoticias().toArray(),
 				todas.getSubconjuntoCategoria(categoriaBuscada).getNoticias().toArray());
+		verify(in);
+		verify(in2);
 	}
 
 	@Tag("Negative")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaNull() {
 		categoria3 = null;
@@ -206,7 +254,9 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 	}
 
 	@Tag("Positive")
+	@Tag("ArrayEquals")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaFecha() {
 		Boletin todas = new Boletin();
@@ -217,21 +267,30 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 
 		fechaPublicacion = LocalDate.of(2019, 11, 17);
 		fechaPublicacion2 = LocalDate.of(2019, 1, 1);
-		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
-		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
-		todas.addNoticia(n);
-		todas.addNoticia(n2);
+		expect(in.getCategoria()).andReturn(categoria).anyTimes();
+		expect(in2.getCategoria()).andReturn(categoria2).anyTimes();
+		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).anyTimes();
+		expect(in2.getFechaPublicacion()).andReturn(fechaPublicacion2).anyTimes();
+
+		replay(in);
+		replay(in2);
+
+		todas.addNoticia(in);
+		todas.addNoticia(in2);
 
 		Boletin validas = new Boletin();
-		validas.addNoticia(n);
+		validas.addNoticia(in);
 
 		assertArrayEquals(validas.getNoticias().toArray(),
 				todas.getSubconjuntoCategoriaFecha(categoriaBuscada, fechaConcreta).getNoticias().toArray());
+		verify(in);
+		verify(in2);
 	}
 
 	@Tag("Negative")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaFechaNulls() {
 		fechaPublicacion = null;
@@ -244,7 +303,9 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 	}
 
 	@Tag("Positive")
+	@Tag("ArrayEquals")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaIntervalo() {
 		Boletin todas = new Boletin();
@@ -257,19 +318,25 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		fechaPublicacion = LocalDate.of(2019, 1, 1);
 		fechaPublicacion2 = LocalDate.of(2018, 1, 1);
 		fechaPublicacion3 = LocalDate.of(2019, 12, 31);
-		url3 = "https://www." + fuente3 + '/' + categoria3 + '/' + titular3;
-		n3 = new Noticia(titular3, fechaPublicacion3, fuente3, url3, categoria);
 
-		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
-		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
+		expect(in.getCategoria()).andReturn(categoria).anyTimes();
+		expect(in2.getCategoria()).andReturn(categoria2).anyTimes();
+		expect(in3.getCategoria()).andReturn(categoria).anyTimes();
+		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).anyTimes();
+		expect(in2.getFechaPublicacion()).andReturn(fechaPublicacion2).anyTimes();
+		expect(in3.getFechaPublicacion()).andReturn(fechaPublicacion3).anyTimes();
 
-		todas.addNoticia(n);
-		todas.addNoticia(n2);
-		todas.addNoticia(n3);
+		replay(in);
+		replay(in2);
+		replay(in3);
+
+		todas.addNoticia(in);
+		todas.addNoticia(in2);
+		todas.addNoticia(in3);
 
 		Boletin validas = new Boletin();
-		validas.addNoticia(n);
-		validas.addNoticia(n3);
+		validas.addNoticia(in);
+		validas.addNoticia(in3);
 
 		assertArrayEquals(validas.getNoticias().toArray(),
 				todas.getSubconjuntoCategoriaIntervalo(categoriaBuscada, inicioIntervalo, finalIntervalo).getNoticias()
@@ -278,6 +345,7 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 
 	@Tag("Negative")
 	@Tag("TDD")
+	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaIntervaloNulls() {
 		LocalDate inicioIntervalo = null;
@@ -292,9 +360,9 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 
 	@AfterEach
 	public void tearDown() {
-		n = null;
-		n2 = null;
-		n3 = null;
+		in = null;
+		in2 = null;
+		in3 = null;
 	}
 
 }

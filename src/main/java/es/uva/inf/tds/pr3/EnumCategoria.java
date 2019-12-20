@@ -1,4 +1,4 @@
-package es.uva.inf.tds.pr2;
+package es.uva.inf.tds.pr3;
 
 /**
  * Enumeración que representa las categorías válidas de las noticias.

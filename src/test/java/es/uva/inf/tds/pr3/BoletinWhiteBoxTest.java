@@ -1,4 +1,4 @@
-package es.uva.inf.tds.pr2;
+package es.uva.inf.tds.pr3;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
+import es.uva.inf.tds.pr3.Boletin;
+import es.uva.inf.tds.pr3.EnumCategoria;
+import es.uva.inf.tds.pr3.INoticia;
+import es.uva.inf.tds.pr3.Noticia;
 
 class BoletinWhiteBoxTest {
 

@@ -1,95 +1,90 @@
-package es.uva.inf.tds.pr2;
+package es.uva.inf.tds.pr3;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import org.easymock.Mock;
-import static org.easymock.EasyMock.*;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import es.uva.inf.tds.pr2.Boletin;
-import es.uva.inf.tds.pr2.EnumCategoria;
+import es.uva.inf.tds.pr3.Boletin;
+import es.uva.inf.tds.pr3.EnumCategoria;
+import es.uva.inf.tds.pr3.Noticia;
 
-public class BoletinBlackBoxSimpleAislamientoTest {
+public class BoletinBlackBoxSimpleAislamientoNoTest {
 
+	private String titular;
 	private LocalDate fechaPublicacion;
+	private String fuente;
 	private EnumCategoria categoria;
-	@Mock
-	private INoticia in;
+	private String url;
+	private Noticia n;
 
+	private String titular2;
 	private LocalDate fechaPublicacion2;
+	private String fuente2;
 	private EnumCategoria categoria2;
-	@Mock
-	private INoticia in2;
+	private String url2;
+	private Noticia n2;
 
 	private Boletin b;
 
 	@BeforeEach
 	public void setUp() throws Exception {
 
+		titular = "Hola";
 		fechaPublicacion = LocalDate.of(2019, 11, 14);
+		fuente = "Adios";
 		categoria = EnumCategoria.NACIONAL;
+		url = "https://www." + fuente + '/' + categoria + '/' + titular;
+		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 
+		titular2 = "Hola2";
 		fechaPublicacion2 = LocalDate.of(2019, 12, 14);
+		fuente2 = "Adios2";
 		categoria2 = EnumCategoria.NACIONAL;
-
-		in = createMock(INoticia.class);
-		in2 = createMock(INoticia.class);
+		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
+		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
 		b = new Boletin();
 	}
 
 	@Tag("BlackBoxTestFirst")
 	@Tag("Negative")
-	@Tag("Isolation")
 	@Test
 	public void addNoticiaRepetida() {
-		b.addNoticia(in);
+		b.addNoticia(n);
 		assertThrows(IllegalArgumentException.class, () -> {
-			b.addNoticia(in);
+			b.addNoticia(n);
 		});
 	}
 
 	@Tag("BlackBoxTestFirst")
 	@Tag("Positive")
-	@Tag("Isolation")
 	@Test
-	public void numeroNoticiasBoletinVacio() {
+	public void testNumeroNoticiasBoletinVacio() {
 		assertEquals(0, b.getNumberOfNoticias());
 	}
 
 	@Tag("BlackBoxTestFirst")
-	@Tag("ArrayEquals")
 	@Tag("Positive")
-	@Tag("Isolation")
 	@Test
-	public void listaCronologicaMismaFecha() {
-		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).atLeastOnce();
-		expect(in2.getFechaPublicacion()).andReturn(fechaPublicacion).atLeastOnce();
-		replay(in);
-		replay(in2);
+	public void testListaCronologicaMismaFecha() {
+		b.addNoticia(n);
+		b.addNoticia(n2);
 
-		b.addNoticia(in);
-		b.addNoticia(in2);
-
-		ArrayList<INoticia> al = new ArrayList<>();
-		al.add(in);
-		al.add(in2);
+		ArrayList<Noticia> al = new ArrayList<>();
+		al.add(n);
+		al.add(n2);
 
 		assertArrayEquals(al.toArray(), b.getChronologicalOrder().toArray());
-		verify(in);
-		verify(in2);
 	}
 
 	@Tag("BlackBoxTestFirst")
 	@Tag("Negative")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoIntervaloInicialNull() {
 		LocalDate inicioIntervalo = null;
@@ -101,120 +96,72 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 	}
 
 	@Tag("BlackBoxTestFirst")
-	@Tag("ArrayEquals")
 	@Tag("Positive")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoIntervaloIguales() {
 		LocalDate int1 = LocalDate.of(2019, 11, 15);
 		LocalDate int2 = LocalDate.of(2019, 12, 14);
 
-		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).atLeastOnce();
-		replay(in);
-		b.addNoticia(in);
-
-		expect(in2.getFechaPublicacion()).andReturn(fechaPublicacion2).atLeastOnce();
-		replay(in2);
-		b.addNoticia(in2);
-
 		Boletin b2 = new Boletin();
-		b2.addNoticia(in2);
+		b2.addNoticia(n2);
+
+		b.addNoticia(n);
+		b.addNoticia(n2);
 
 		assertArrayEquals(b2.getNoticias().toArray(), b.getSubconjuntoIntervalo(int1, int2).getNoticias().toArray());
-
-		verify(in);
-		verify(in2);
 	}
 
 	@Tag("BlackBoxTestFirst")
-	@Tag("ArrayEquals")
 	@Tag("Positive")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaSinFecha() {
-
-		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).anyTimes();
-		expect(in.getCategoria()).andReturn(categoria).anyTimes();
-		replay(in);
-		b.addNoticia(in);
-
-		expect(in2.getFechaPublicacion()).andReturn(fechaPublicacion2).anyTimes();
-		expect(in2.getCategoria()).andReturn(categoria2).anyTimes();
-		replay(in2);
-		b.addNoticia(in2);
+		b.addNoticia(n);
+		b.addNoticia(n2);
 
 		Boletin b2 = new Boletin();
 		EnumCategoria c = EnumCategoria.SOCIEDAD;
+
 		assertArrayEquals(b2.getNoticias().toArray(),
 				b.getSubconjuntoCategoriaFecha(c, fechaPublicacion).getNoticias().toArray());
-
-		verify(in);
-		verify(in2);
 	}
 
 	@Tag("BlackBoxTestFirst")
-	@Tag("ArrayEquals")
 	@Tag("Positive")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaIntervaloMismaFecha() {
 		LocalDate int1 = LocalDate.of(2019, 11, 14);
 		LocalDate int2 = LocalDate.of(2019, 11, 14);
 		EnumCategoria c = EnumCategoria.NACIONAL;
 
-		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).atLeastOnce();
-		expect(in.getCategoria()).andReturn(categoria).atLeastOnce();
-		replay(in);
-		b.addNoticia(in);
-
-		expect(in2.getFechaPublicacion()).andReturn(fechaPublicacion2).atLeastOnce();
-		expect(in2.getCategoria()).andReturn(categoria2).atLeastOnce();
-		replay(in2);
-		b.addNoticia(in2);
-
 		Boletin b2 = new Boletin();
-		b2.addNoticia(in);
+		b2.addNoticia(n);
+
+		b.addNoticia(n);
+		b.addNoticia(n2);
 
 		assertArrayEquals(b2.getNoticias().toArray(),
 				b.getSubconjuntoCategoriaIntervalo(c, int1, int2).getNoticias().toArray());
-
-		verify(in);
-		verify(in2);
 	}
 
 	@Tag("BlackBoxTestFirst")
-	@Tag("ArrayEquals")
 	@Tag("Positive")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaSinIntervalo() {
 		LocalDate int1 = LocalDate.of(2010, 11, 14);
 		LocalDate int2 = LocalDate.of(2012, 11, 14);
 		EnumCategoria c = EnumCategoria.NACIONAL;
 
-		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).anyTimes();
-		expect(in.getCategoria()).andReturn(categoria).anyTimes();
-		replay(in);
-		b.addNoticia(in);
-
-		expect(in2.getFechaPublicacion()).andReturn(fechaPublicacion2).anyTimes();
-		expect(in2.getCategoria()).andReturn(categoria2).anyTimes();
-		replay(in2);
-		b.addNoticia(in2);
-
 		Boletin b2 = new Boletin();
+
+		b.addNoticia(n);
+		b.addNoticia(n2);
 
 		assertArrayEquals(b2.getNoticias().toArray(),
 				b.getSubconjuntoCategoriaIntervalo(c, int1, int2).getNoticias().toArray());
-
-		verify(in);
-		verify(in2);
-
 	}
 
 	@Tag("BlackBoxTestFirst")
 	@Tag("Negative")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoIntervaloFinalNull() {
 		LocalDate inicioIntervalo = LocalDate.of(2000, 1, 1);
@@ -227,7 +174,6 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 
 	@Tag("BlackBoxTestFirst")
 	@Tag("Negative")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaNullFecha() {
 		fechaPublicacion = null;
@@ -239,7 +185,6 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 
 	@Tag("BlackBoxTestFirst")
 	@Tag("Negative")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaFechaNull() {
 		fechaPublicacion = LocalDate.of(2000, 1, 1);
@@ -251,7 +196,6 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 
 	@Tag("BlackBoxTestFirst")
 	@Tag("Negative")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaNullIntervalo() {
 		LocalDate inicioIntervalo = LocalDate.of(2000, 1, 1);
@@ -265,7 +209,6 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 
 	@Tag("BlackBoxTestFirst")
 	@Tag("Negative")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaIntervaloNull1() {
 		LocalDate inicioIntervalo = null;
@@ -280,7 +223,6 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 
 	@Tag("BlackBoxTestFirst")
 	@Tag("Negative")
-	@Tag("Isolation")
 	@Test
 	public void subconjuntoCategoriaIntervaloNull2() {
 		LocalDate inicioIntervalo = LocalDate.of(2000, 1, 1);
@@ -295,8 +237,8 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 
 	@AfterEach
 	public void tearDown() {
-		in = null;
-		in2 = null;
+		n = null;
+		n2 = null;
 		b = null;
 	}
 
