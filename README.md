@@ -1,6 +1,6 @@
 MH: 22 horas y 50 minutos. 
 
-Code to test ratio: 
+Code to test ratio: 2081 (líneas de test) / 277 (líneas de código) -> **ratio 1:7.5**
 
 NOC: 2 clases y 1 interfaz.
 
@@ -17,10 +17,9 @@ NOT: 15 tests. Uno de White Box para Boletin.java.
 
 **Clases propias {SLOC, LLOC}:**  
 
-<<<<<<< HEAD
     -es.uva.inf.tds.pr2.Boletin  {410, 198}   
     -es.uva.inf.tds.pr2.Noticia  {172, 71}   
-    -es.uva.inf.tds.pr2.INoticia  {15, 8}
+    -es.uva.inf.tds.pr2.INoticia  {15, 8}  
     
 **Tests propios {SLOC, LLOC}:**  
 
@@ -57,9 +56,6 @@ NOT: 15 tests. Uno de White Box para Boletin.java.
     -org.easymock.EasyMock.replay;   
     -org.easymock.EasyMock.verify;   
     -org.junit.jupiter.api.Assertions.*;  
-=======
-    -es.uva.inf.tds.pr3.Boletin  {244, 48}   
-    -es.uva.inf.tds.pr3.Noticia  {123, 27}   
     
 **Tests propios {SLOC, LLOC}:**  
 
@@ -89,4 +85,3 @@ NOT: 15 tests. Uno de White Box para Boletin.java.
     -org.junit.platform.suite.api.ExcludeTags  
     -org.junit.platform.suite.api.IncludeTags  
     -org.junit.platform.suite.api.SelectPackages  
->>>>>>> a59e86b71afe926afeca45c821aab3b28cc80f58
