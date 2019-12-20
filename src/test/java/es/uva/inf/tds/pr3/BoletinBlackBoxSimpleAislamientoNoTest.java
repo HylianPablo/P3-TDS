@@ -1,4 +1,4 @@
-package es.uva.inf.tds.pr2;
+package es.uva.inf.tds.pr3;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,6 +9,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
+import es.uva.inf.tds.pr3.Boletin;
+import es.uva.inf.tds.pr3.EnumCategoria;
+import es.uva.inf.tds.pr3.Noticia;
 
 public class BoletinBlackBoxSimpleAislamientoNoTest {
 

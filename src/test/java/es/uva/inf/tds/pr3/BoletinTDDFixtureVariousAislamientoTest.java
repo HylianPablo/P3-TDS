@@ -1,4 +1,4 @@
-package es.uva.inf.tds.pr2;
+package es.uva.inf.tds.pr3;
 
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
@@ -16,8 +16,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import es.uva.inf.tds.pr2.Boletin;
-import es.uva.inf.tds.pr2.EnumCategoria;
+import es.uva.inf.tds.pr3.Boletin;
+import es.uva.inf.tds.pr3.EnumCategoria;
+import es.uva.inf.tds.pr3.INoticia;
 
 public class BoletinTDDFixtureVariousAislamientoTest {
 
