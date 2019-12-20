@@ -19,7 +19,7 @@
 		<profile>
 			<id>allTests</id>
 			<properties>
-				<groups>TDD|Noticia|Boletin</groups>
+				<groups>TDD|Noticia|Boletin|BlackBoxTestFirst|Isolation|WhiteBox|Sequence</groups>
 			</properties>
 		</profile>
 		<profile>
