@@ -24,7 +24,7 @@ class BoletinWhiteBoxTest {
 	@Tag("WhiteBox")
 	@Tag("Negative")
 	@Test
-	public void subconjuntoIntervaloIncorrecto() {
+	public void subconjuntoIntervaloInverso() {
 		Boletin boletin = new Boletin();
 		LocalDate inicioIntervalo = LocalDate.of(2018, 1, 1);
 		LocalDate finalIntervalo = LocalDate.of(2019, 12, 31);
@@ -32,6 +32,31 @@ class BoletinWhiteBoxTest {
 		assertThrows(IllegalArgumentException.class, () -> {
 			boletin.getSubconjuntoIntervalo(finalIntervalo, inicioIntervalo);
 		});
+	}
+
+	@Tag("WhiteBox")
+	@Tag("Negative")
+	@Test
+	public void subconjuntoIntervaloCategoriaMal() {
+		String titular = "Hola";
+		LocalDate fechaPublicacion = LocalDate.of(2018, 11, 20);
+		String fuente = "Adios";
+		EnumCategoria categoria = EnumCategoria.NACIONAL;
+		String url = "https://www." + fuente + '/' + categoria + '/' + titular;
+		Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
+
+		Boletin b = new Boletin();
+
+		LocalDate inicioIntervalo = LocalDate.of(2019, 1, 1);
+		LocalDate finalIntervalo = LocalDate.of(2019, 12, 31);
+		EnumCategoria c = EnumCategoria.NACIONAL;
+
+		Boletin b2 = new Boletin();
+		b2.addNoticia(n);
+		
+		assertArrayEquals(b.getNoticias().toArray(),
+				b2.getSubconjuntoCategoriaIntervalo(c, inicioIntervalo, finalIntervalo).getNoticias().toArray());
+
 	}
 
 }
