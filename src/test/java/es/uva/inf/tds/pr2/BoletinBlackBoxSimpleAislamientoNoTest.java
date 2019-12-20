@@ -117,7 +117,8 @@ public class BoletinBlackBoxSimpleAislamientoNoTest {
 		Boletin b2 = new Boletin();
 		EnumCategoria c = EnumCategoria.SOCIEDAD;
 
-		assertArrayEquals(b2.getNoticias().toArray(), b.getSubconjuntoCategoriaFecha(c, fechaPublicacion).getNoticias().toArray());
+		assertArrayEquals(b2.getNoticias().toArray(),
+				b.getSubconjuntoCategoriaFecha(c, fechaPublicacion).getNoticias().toArray());
 	}
 
 	@Tag("BlackBoxTestFirst")
@@ -134,7 +135,8 @@ public class BoletinBlackBoxSimpleAislamientoNoTest {
 		b.addNoticia(n);
 		b.addNoticia(n2);
 
-		assertArrayEquals(b2.getNoticias().toArray(), b.getSubconjuntoCategoriaIntervalo(c, int1, int2).getNoticias().toArray());
+		assertArrayEquals(b2.getNoticias().toArray(),
+				b.getSubconjuntoCategoriaIntervalo(c, int1, int2).getNoticias().toArray());
 	}
 
 	@Tag("BlackBoxTestFirst")
@@ -150,7 +152,8 @@ public class BoletinBlackBoxSimpleAislamientoNoTest {
 		b.addNoticia(n);
 		b.addNoticia(n2);
 
-		assertArrayEquals(b2.getNoticias().toArray(), b.getSubconjuntoCategoriaIntervalo(c, int1, int2).getNoticias().toArray());
+		assertArrayEquals(b2.getNoticias().toArray(),
+				b.getSubconjuntoCategoriaIntervalo(c, int1, int2).getNoticias().toArray());
 	}
 
 	@Tag("BlackBoxTestFirst")

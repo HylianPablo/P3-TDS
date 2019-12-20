@@ -33,7 +33,6 @@ public class BoletinBlackBoxVariousAislamientoNoTest {
 	private String url3;
 	private Noticia n3;
 
-
 	@BeforeEach
 	public void setUpCategorias() {
 		titular = "Hola";
@@ -58,7 +57,7 @@ public class BoletinBlackBoxVariousAislamientoNoTest {
 		n3 = new Noticia(titular3, fechaPublicacion3, fuente3, url3, categoria3);
 
 	}
-	
+
 	@Tag("Positive")
 	@Tag("ArrayEquals")
 	@Tag("BlackBoxTestFirst")
@@ -66,9 +65,9 @@ public class BoletinBlackBoxVariousAislamientoNoTest {
 	public void listaCategoriasEDC() {
 		fechaPublicacion = LocalDate.of(2019, 6, 15);
 		fechaPublicacion2 = LocalDate.of(2018, 1, 1);
-		
+
 		Boletin b = new Boletin();
-		
+
 		b.addNoticia(n3);
 		b.addNoticia(n);
 		b.addNoticia(n2);
@@ -80,7 +79,7 @@ public class BoletinBlackBoxVariousAislamientoNoTest {
 
 		assertArrayEquals(al.toArray(), b.getNewsByCategory().toArray());
 	}
-	
+
 	@Tag("Positive")
 	@Tag("ArrayEquals")
 	@Tag("BlackBoxTestFirst")
@@ -88,14 +87,14 @@ public class BoletinBlackBoxVariousAislamientoNoTest {
 	public void listaCategoriasIguales() {
 		fechaPublicacion = LocalDate.of(2019, 6, 15);
 		fechaPublicacion2 = LocalDate.of(2018, 1, 1);
-		
-		categoria=EnumCategoria.INTERNACIONAL;
+
+		categoria = EnumCategoria.INTERNACIONAL;
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
-		
+
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
-		
+
 		Boletin b = new Boletin();
-		
+
 		b.addNoticia(n);
 		b.addNoticia(n2);
 
@@ -105,15 +104,15 @@ public class BoletinBlackBoxVariousAislamientoNoTest {
 
 		assertArrayEquals(al.toArray(), b.getNewsByCategory().toArray());
 	}
-	
+
 	@Tag("Positive")
 	@Tag("ArrayEquals")
 	@Tag("BlackBoxTestFirst")
 	@Test
 	public void noticiasSimilaresMismaCat() {
 		Boletin b = new Boletin();
-		
-		titular="Hola2";
+
+		titular = "Hola2";
 		categoria = EnumCategoria.INTERNACIONAL;
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 
@@ -128,9 +127,9 @@ public class BoletinBlackBoxVariousAislamientoNoTest {
 
 	@AfterEach
 	public void tearDown() {
-		n=null;
-		n2=null;
-		n3=null;
+		n = null;
+		n2 = null;
+		n3 = null;
 	}
 
 }

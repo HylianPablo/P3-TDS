@@ -37,31 +37,36 @@ public class Noticia implements INoticia {
 	 * @param categoria        Tipo enumerado que representa la categoría de la
 	 *                         noticia.
 	 * @throws {@code IllegalArgumentException} en caso de que el titular tenga más
-	 *                de 12 palabras o no tenga ninguna.
-	 * @throws {@code IllegalArgumentException} en caso de que el titular sea {@code null}.   
-	 * @throws {@code IllegalArgumentException} en caso de que la fecha de publicación sea {@code null}. 
-	 * @throws {@code IllegalArgumentException} en caso de que la fuente sea {@code null}. 
-	 * @throws {@code IllegalArgumentException} en caso de que la url sea {@code null}. 
-	 * @throws {@code IllegalArgumentException} en caso de que la categoría sea {@code null}.             
+	 *         de 12 palabras o no tenga ninguna.
+	 * @throws {@code IllegalArgumentException} en caso de que el titular sea
+	 *         {@code null}.
+	 * @throws {@code IllegalArgumentException} en caso de que la fecha de
+	 *         publicación sea {@code null}.
+	 * @throws {@code IllegalArgumentException} en caso de que la fuente sea
+	 *         {@code null}.
+	 * @throws {@code IllegalArgumentException} en caso de que la url sea
+	 *         {@code null}.
+	 * @throws {@code IllegalArgumentException} en caso de que la categoría sea
+	 *         {@code null}.
 	 */
 	public Noticia(String titular, LocalDate fechaPublicacion, String fuente, String url, EnumCategoria categoria) {
-		if(titular==null) {
+		if (titular == null) {
 			throw new IllegalArgumentException();
 		}
-		if(fechaPublicacion==null) {
+		if (fechaPublicacion == null) {
 			throw new IllegalArgumentException();
 		}
-		if(fuente==null) {
+		if (fuente == null) {
 			throw new IllegalArgumentException();
 		}
-		if(url==null) {
+		if (url == null) {
 			throw new IllegalArgumentException();
 		}
-		if(categoria==null) {
+		if (categoria == null) {
 			throw new IllegalArgumentException();
 		}
-		String[] countWords=titular.split(" ");
-		if(countWords.length>12 || titular.equals(""))
+		String[] countWords = titular.split(" ");
+		if (countWords.length > 12 || titular.equals(""))
 			throw new IllegalArgumentException();
 		this.titular = titular;
 		this.fechaPublicacion = fechaPublicacion;
@@ -125,7 +130,7 @@ public class Noticia implements INoticia {
 	 *         varía entre {@code "anterior"} si la fecha por parámetro es menor,
 	 *         {@code "igual"} si es igual y {@code "posterior"} si es mayor.
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia recibida
-	 *                por parámetro sea {@code null}.
+	 *         por parámetro sea {@code null}.
 	 */
 	public String comparaFechaNoticia(Noticia n) {
 		if (n == null) {
@@ -148,20 +153,20 @@ public class Noticia implements INoticia {
 	 * @return {@code True} en caso de ser similares y {@code false} en caso
 	 *         contrario.
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia recibida
-	 *                por parámetro sea {@code null}.
+	 *         por parámetro sea {@code null}.
 	 */
 	public boolean isSimilar(INoticia n) {
 		if (n == null) {
 			throw new IllegalArgumentException();
 		}
-		if (Math.abs(fechaPublicacion.until(n.getFechaPublicacion(),ChronoUnit.DAYS)) > 2)
+		if (Math.abs(fechaPublicacion.until(n.getFechaPublicacion(), ChronoUnit.DAYS)) > 2)
 			return false;
 
 		if (!titular.equals(n.getTitular()))
 			return false;
 
 		return (categoria.equals(n.getCategoria()));
-		
+
 	}
 
 }

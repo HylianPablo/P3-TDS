@@ -51,7 +51,6 @@ public class BoletinSequenceAislamientoTest {
 		assertEquals(vacia, boletin1.getNoticias());
 		assertEquals(vacia, boletin1.getNewsByCategory());
 
-		
 		LocalDate fechaPublicacion = LocalDate.of(2019, 11, 28);
 		EnumCategoria categoria = EnumCategoria.CULTURA;
 

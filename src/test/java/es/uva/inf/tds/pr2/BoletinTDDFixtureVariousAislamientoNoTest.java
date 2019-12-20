@@ -68,7 +68,6 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		b.addNoticia(n3);
 		b.addNoticia(n2);
 
-
 		ArrayList<Noticia> al = new ArrayList<>();
 		al.add(n);
 		al.add(n2);
@@ -87,7 +86,6 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		n2 = new Noticia(titular, fechaPublicacion2, fuente2, url2, categoria);
 		b.addNoticia(n2);
 		b.addNoticia(n3);
-
 
 		ArrayList<Noticia> al = new ArrayList<>();
 		al.add(n2);
@@ -112,8 +110,8 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 	public void subconjuntoFecha() {
 		Boletin todas = new Boletin();
 		LocalDate fechaBuscada = LocalDate.of(2019, 10, 21);
-		fechaPublicacion=fechaBuscada;
-		fechaPublicacion2=LocalDate.of(2019, 10, 22);
+		fechaPublicacion = fechaBuscada;
+		fechaPublicacion2 = LocalDate.of(2019, 10, 22);
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 		todas.addNoticia(n);
@@ -122,7 +120,8 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		Boletin validas = new Boletin();
 		validas.addNoticia(n);
 
-		assertArrayEquals(validas.getNoticias().toArray(), todas.getSubconjuntoFecha(fechaBuscada).getNoticias().toArray());
+		assertArrayEquals(validas.getNoticias().toArray(),
+				todas.getSubconjuntoFecha(fechaBuscada).getNoticias().toArray());
 	}
 
 	@Tag("Negative")
@@ -144,7 +143,7 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 
 		LocalDate inicioIntervalo = LocalDate.of(2019, 1, 1);
 		LocalDate finalIntervalo = LocalDate.of(2019, 12, 31);
-		
+
 		fechaPublicacion = LocalDate.of(2019, 1, 1);
 		fechaPublicacion2 = LocalDate.of(2018, 1, 1);
 		fechaPublicacion3 = LocalDate.of(2019, 12, 31);
@@ -161,7 +160,8 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		validas.addNoticia(n);
 		validas.addNoticia(n3);
 
-		assertArrayEquals(validas.getNoticias().toArray(), todas.getSubconjuntoIntervalo(inicioIntervalo, finalIntervalo).getNoticias().toArray());
+		assertArrayEquals(validas.getNoticias().toArray(),
+				todas.getSubconjuntoIntervalo(inicioIntervalo, finalIntervalo).getNoticias().toArray());
 	}
 
 	@Tag("Negative")
@@ -190,7 +190,8 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		Boletin validas = new Boletin();
 		validas.addNoticia(n);
 
-		assertArrayEquals(validas.getNoticias().toArray(), todas.getSubconjuntoCategoria(categoriaBuscada).getNoticias().toArray());
+		assertArrayEquals(validas.getNoticias().toArray(),
+				todas.getSubconjuntoCategoria(categoriaBuscada).getNoticias().toArray());
 	}
 
 	@Tag("Negative")
@@ -225,7 +226,8 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		Boletin validas = new Boletin();
 		validas.addNoticia(n);
 
-		assertArrayEquals(validas.getNoticias().toArray(), todas.getSubconjuntoCategoriaFecha(categoriaBuscada, fechaConcreta).getNoticias().toArray());
+		assertArrayEquals(validas.getNoticias().toArray(),
+				todas.getSubconjuntoCategoriaFecha(categoriaBuscada, fechaConcreta).getNoticias().toArray());
 	}
 
 	@Tag("Negative")
@@ -270,7 +272,8 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		validas.addNoticia(n3);
 
 		assertArrayEquals(validas.getNoticias().toArray(),
-				todas.getSubconjuntoCategoriaIntervalo(categoriaBuscada, inicioIntervalo, finalIntervalo).getNoticias().toArray());
+				todas.getSubconjuntoCategoriaIntervalo(categoriaBuscada, inicioIntervalo, finalIntervalo).getNoticias()
+						.toArray());
 	}
 
 	@Tag("Negative")

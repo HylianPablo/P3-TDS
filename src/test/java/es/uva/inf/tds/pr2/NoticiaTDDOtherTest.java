@@ -26,7 +26,7 @@ public class NoticiaTDDOtherTest {
 			Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 		});
 	}
-	
+
 	@Tag("Negative")
 	@Tag("TDD")
 	@Test
@@ -41,7 +41,7 @@ public class NoticiaTDDOtherTest {
 			Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 		});
 	}
-	
+
 	@Tag("Negative")
 	@Tag("TDD")
 	@Test
@@ -56,7 +56,7 @@ public class NoticiaTDDOtherTest {
 			Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 		});
 	}
-	
+
 	@Tag("Negative")
 	@Tag("TDD")
 	@Test
@@ -71,7 +71,7 @@ public class NoticiaTDDOtherTest {
 			Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 		});
 	}
-	
+
 	@Tag("Negative")
 	@Tag("TDD")
 	@Test

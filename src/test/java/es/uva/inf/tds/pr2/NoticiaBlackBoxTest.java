@@ -19,7 +19,7 @@ public class NoticiaBlackBoxTest {
 	private EnumCategoria categoria;
 	private String url;
 	private Noticia n;
-	
+
 	private String titular2;
 	private LocalDate fechaPublicacion2;
 	private String fuente2;
@@ -36,7 +36,7 @@ public class NoticiaBlackBoxTest {
 		url = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
-		
+
 		titular2 = "Hola";
 		fechaPublicacion2 = LocalDate.of(2019, 11, 15);
 		fuente2 = "Adios";
@@ -101,7 +101,7 @@ public class NoticiaBlackBoxTest {
 
 		assertFalse(n.isSimilar(n2));
 	}
-	
+
 	@Tag("Positive")
 	@Tag("BlackBoxTestFirst")
 	@Test
@@ -116,7 +116,7 @@ public class NoticiaBlackBoxTest {
 
 		assertFalse(n.isSimilar(n2));
 	}
-	
+
 	@Tag("Positive")
 	@Tag("BlackBoxTestFirst")
 	@Test

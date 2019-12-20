@@ -13,7 +13,6 @@ import java.util.List;
  * 
  * @author pamarti
  * @author migusan
- *
  */
 public class Boletin {
 

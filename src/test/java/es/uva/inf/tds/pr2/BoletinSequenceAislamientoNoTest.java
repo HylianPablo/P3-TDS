@@ -32,7 +32,7 @@ public class BoletinSequenceAislamientoNoTest {
 		assertArrayEquals(boletin1.getNoticias().toArray(),
 				boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaPosterior).getNoticias().toArray());
 		assertArrayEquals(boletin1.getNoticias().toArray(),
-                boletin1.getSubconjuntoFecha(fechaConcreta).getNoticias().toArray());
+				boletin1.getSubconjuntoFecha(fechaConcreta).getNoticias().toArray());
 		assertArrayEquals(boletin1.getNoticias().toArray(),
 				boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.NACIONAL, fechaAnterior, fechaAnterior)
 						.getNoticias().toArray());
@@ -81,13 +81,15 @@ public class BoletinSequenceAislamientoNoTest {
 
 		Boletin test4 = boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaAnterior2);
 		assertEquals(0, test4.getNumberOfNoticias());
-		assertArrayEquals(boletin1.getNoticias().toArray(), boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaPosterior).getNoticias().toArray());
+		assertArrayEquals(boletin1.getNoticias().toArray(),
+				boletin1.getSubconjuntoIntervalo(fechaAnterior, fechaPosterior).getNoticias().toArray());
 
 		Boletin boletin6 = new Boletin();
 		boletin6.addNoticia(noticia1);
 		boletin6.addNoticia(noticia3);
 		assertArrayEquals(boletin6.getNoticias().toArray(),
-				boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.CULTURA, fechaPublicacion3, fechaPublicacion).getNoticias().toArray());
+				boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.CULTURA, fechaPublicacion3, fechaPublicacion)
+						.getNoticias().toArray());
 		Boletin test6 = boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.CULTURA, fechaAnterior, fechaAnterior2);
 		assertEquals(0, test6.getNumberOfNoticias());
 
@@ -97,7 +99,8 @@ public class BoletinSequenceAislamientoNoTest {
 		Boletin boletin4 = new Boletin();
 		boletin4.addNoticia(noticia1);
 		boletin4.addNoticia(noticia3);
-		assertArrayEquals(boletin4.getNoticias().toArray(), boletin1.getSubconjuntoCategoria(EnumCategoria.CULTURA).getNoticias().toArray());
+		assertArrayEquals(boletin4.getNoticias().toArray(),
+				boletin1.getSubconjuntoCategoria(EnumCategoria.CULTURA).getNoticias().toArray());
 
 		ArrayList<Noticia> listaOrdenada = new ArrayList<>();
 		listaOrdenada.add(noticia3);
@@ -123,11 +126,13 @@ public class BoletinSequenceAislamientoNoTest {
 		assertEquals(0, test3.getNumberOfNoticias());
 		Boletin boletin3 = new Boletin();
 		boletin3.addNoticia(noticia3);
-		assertArrayEquals(boletin3.getNoticias().toArray(), boletin1.getSubconjuntoFecha(fechaPublicacion3).getNoticias().toArray());
+		assertArrayEquals(boletin3.getNoticias().toArray(),
+				boletin1.getSubconjuntoFecha(fechaPublicacion3).getNoticias().toArray());
 
 		Boletin boletin5 = new Boletin();
 		boletin5.addNoticia(noticia1);
-		assertArrayEquals(boletin5.getNoticias().toArray(), boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.CULTURA, fechaPublicacion).getNoticias().toArray());
+		assertArrayEquals(boletin5.getNoticias().toArray(),
+				boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.CULTURA, fechaPublicacion).getNoticias().toArray());
 		Boletin test5 = boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.CULTURA, fechaPublicacion3);
 		assertEquals(1, test5.getNumberOfNoticias());
 

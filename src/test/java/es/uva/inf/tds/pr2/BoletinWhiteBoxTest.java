@@ -53,7 +53,7 @@ class BoletinWhiteBoxTest {
 
 		Boletin b2 = new Boletin();
 		b2.addNoticia(n);
-		
+
 		assertArrayEquals(b.getNoticias().toArray(),
 				b2.getSubconjuntoCategoriaIntervalo(c, inicioIntervalo, finalIntervalo).getNoticias().toArray());
 
