@@ -38,21 +38,21 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		titular = "Hola";
 		fechaPublicacion = LocalDate.of(2019, 11, 14);
 		fuente = "Adios";
-		categoria = EnumCategoria.nacional;
+		categoria = EnumCategoria.NACIONAL;
 		url = "https://www." + fuente + '/' + categoria + '/' + titular;
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 
 		titular2 = "Hola2";
 		fechaPublicacion2 = LocalDate.of(2019, 11, 15);
 		fuente2 = "Adios2";
-		categoria2 = EnumCategoria.internacional;
+		categoria2 = EnumCategoria.INTERNACIONAL;
 		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
 		titular3 = "Hola3";
 		fechaPublicacion3 = LocalDate.of(2019, 11, 16);
 		fuente3 = "Adios3";
-		categoria3 = EnumCategoria.sociedad;
+		categoria3 = EnumCategoria.SOCIEDAD;
 		url3 = "https://www." + fuente3 + '/' + categoria3 + '/' + titular3;
 		n3 = new Noticia(titular3, fechaPublicacion3, fuente3, url3, categoria3);
 	}
@@ -183,7 +183,7 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 	public void subconjuntoCategoria() {
 		Boletin todas = new Boletin();
 
-		EnumCategoria categoriaBuscada = EnumCategoria.nacional;
+		EnumCategoria categoriaBuscada = EnumCategoria.NACIONAL;
 		todas.addNoticia(n);
 		todas.addNoticia(n2);
 
@@ -212,7 +212,7 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 
 		LocalDate fechaConcreta = LocalDate.of(2019, 11, 17);
 
-		EnumCategoria categoriaBuscada = EnumCategoria.nacional;
+		EnumCategoria categoriaBuscada = EnumCategoria.NACIONAL;
 
 		fechaPublicacion = LocalDate.of(2019, 11, 17);
 		fechaPublicacion2 = LocalDate.of(2019, 1, 1);
@@ -250,7 +250,7 @@ public class BoletinTDDFixtureVariousAislamientoNoTest {
 		LocalDate inicioIntervalo = LocalDate.of(2019, 1, 1);
 		LocalDate finalIntervalo = LocalDate.of(2019, 12, 31);
 
-		EnumCategoria categoriaBuscada = EnumCategoria.nacional;
+		EnumCategoria categoriaBuscada = EnumCategoria.NACIONAL;
 
 		fechaPublicacion = LocalDate.of(2019, 1, 1);
 		fechaPublicacion2 = LocalDate.of(2018, 1, 1);

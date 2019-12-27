@@ -15,22 +15,17 @@ import org.junit.jupiter.api.Test;
 
 import es.uva.inf.tds.pr2.Boletin;
 import es.uva.inf.tds.pr2.EnumCategoria;
-import es.uva.inf.tds.pr2.Noticia;
 
 public class BoletinBlackBoxSimpleAislamientoTest {
 
-	private String titular;
 	private LocalDate fechaPublicacion;
-	private String fuente;
 	private EnumCategoria categoria;
-	private String url;
+	@Mock
 	private INoticia in;
 
-	private String titular2;
 	private LocalDate fechaPublicacion2;
-	private String fuente2;
 	private EnumCategoria categoria2;
-	private String url2;
+	@Mock
 	private INoticia in2;
 
 	private Boletin b;
@@ -38,17 +33,11 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 	@BeforeEach
 	public void setUp() throws Exception {
 
-		titular = "Hola";
 		fechaPublicacion = LocalDate.of(2019, 11, 14);
-		fuente = "Adios";
-		categoria = EnumCategoria.nacional;
-		url = "https://www." + fuente + '/' + categoria + '/' + titular;
+		categoria = EnumCategoria.NACIONAL;
 
-		titular2 = "Hola2";
 		fechaPublicacion2 = LocalDate.of(2019, 12, 14);
-		fuente2 = "Adios2";
-		categoria2 = EnumCategoria.nacional;
-		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
+		categoria2 = EnumCategoria.NACIONAL;
 
 		in = createMock(INoticia.class);
 		in2 = createMock(INoticia.class);
@@ -155,8 +144,7 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 		b.addNoticia(in2);
 
 		Boletin b2 = new Boletin();
-		EnumCategoria c = EnumCategoria.sociedad;
-
+		EnumCategoria c = EnumCategoria.SOCIEDAD;
 		assertArrayEquals(b2.getNoticias().toArray(),
 				b.getSubconjuntoCategoriaFecha(c, fechaPublicacion).getNoticias().toArray());
 
@@ -172,7 +160,7 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 	public void subconjuntoCategoriaIntervaloMismaFecha() {
 		LocalDate int1 = LocalDate.of(2019, 11, 14);
 		LocalDate int2 = LocalDate.of(2019, 11, 14);
-		EnumCategoria c = EnumCategoria.nacional;
+		EnumCategoria c = EnumCategoria.NACIONAL;
 
 		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).atLeastOnce();
 		expect(in.getCategoria()).andReturn(categoria).atLeastOnce();
@@ -202,7 +190,7 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 	public void subconjuntoCategoriaSinIntervalo() {
 		LocalDate int1 = LocalDate.of(2010, 11, 14);
 		LocalDate int2 = LocalDate.of(2012, 11, 14);
-		EnumCategoria c = EnumCategoria.nacional;
+		EnumCategoria c = EnumCategoria.NACIONAL;
 
 		expect(in.getFechaPublicacion()).andReturn(fechaPublicacion).anyTimes();
 		expect(in.getCategoria()).andReturn(categoria).anyTimes();
@@ -243,7 +231,7 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 	@Test
 	public void subconjuntoCategoriaNullFecha() {
 		fechaPublicacion = null;
-		categoria = EnumCategoria.sociedad;
+		categoria = EnumCategoria.SOCIEDAD;
 		assertThrows(IllegalArgumentException.class, () -> {
 			b.getSubconjuntoCategoriaFecha(categoria, fechaPublicacion);
 		});
@@ -282,7 +270,7 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 	public void subconjuntoCategoriaIntervaloNull1() {
 		LocalDate inicioIntervalo = null;
 		LocalDate finalIntervalo = LocalDate.of(2000, 1, 2);
-		categoria = EnumCategoria.cultura;
+		categoria = EnumCategoria.CULTURA;
 		;
 
 		assertThrows(IllegalArgumentException.class, () -> {
@@ -297,7 +285,7 @@ public class BoletinBlackBoxSimpleAislamientoTest {
 	public void subconjuntoCategoriaIntervaloNull2() {
 		LocalDate inicioIntervalo = LocalDate.of(2000, 1, 1);
 		LocalDate finalIntervalo = null;
-		categoria = EnumCategoria.cultura;
+		categoria = EnumCategoria.CULTURA;
 		;
 
 		assertThrows(IllegalArgumentException.class, () -> {

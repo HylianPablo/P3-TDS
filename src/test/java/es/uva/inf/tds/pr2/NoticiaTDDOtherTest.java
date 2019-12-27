@@ -19,7 +19,7 @@ public class NoticiaTDDOtherTest {
 		String titular = null;
 		LocalDate fechaPublicacion = LocalDate.of(2019, 1, 1);
 		String fuente = "a";
-		EnumCategoria categoria = EnumCategoria.nacional;
+		EnumCategoria categoria = EnumCategoria.NACIONAL;
 		String url = "b";
 		assertThrows(IllegalArgumentException.class, () -> {
 			@SuppressWarnings("unused")
@@ -34,7 +34,7 @@ public class NoticiaTDDOtherTest {
 		String titular = "c";
 		LocalDate fechaPublicacion = null;
 		String fuente = "a";
-		EnumCategoria categoria = EnumCategoria.nacional;
+		EnumCategoria categoria = EnumCategoria.NACIONAL;
 		String url = "b";
 		assertThrows(IllegalArgumentException.class, () -> {
 			@SuppressWarnings("unused")
@@ -49,7 +49,7 @@ public class NoticiaTDDOtherTest {
 		String titular = "c";
 		LocalDate fechaPublicacion = LocalDate.of(2019, 1, 1);
 		String fuente = null;
-		EnumCategoria categoria = EnumCategoria.nacional;
+		EnumCategoria categoria = EnumCategoria.NACIONAL;
 		String url = "b";
 		assertThrows(IllegalArgumentException.class, () -> {
 			@SuppressWarnings("unused")
@@ -79,7 +79,7 @@ public class NoticiaTDDOtherTest {
 		String titular = "c";
 		LocalDate fechaPublicacion = LocalDate.of(2019, 1, 1);
 		String fuente = "a";
-		EnumCategoria categoria = EnumCategoria.nacional;
+		EnumCategoria categoria = EnumCategoria.NACIONAL;
 		String url = null;
 		assertThrows(IllegalArgumentException.class, () -> {
 			@SuppressWarnings("unused")
@@ -94,7 +94,7 @@ public class NoticiaTDDOtherTest {
 		String titular = "Uno dos tres cuatro cinco seis siete ocho nueve diez once doce trece";
 		LocalDate fechaPublicacion = LocalDate.of(2019, 11, 14);
 		String fuente = "Adios";
-		EnumCategoria categoria = EnumCategoria.nacional;
+		EnumCategoria categoria = EnumCategoria.NACIONAL;
 		String url = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		assertThrows(IllegalArgumentException.class, () -> {

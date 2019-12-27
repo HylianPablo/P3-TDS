@@ -39,21 +39,21 @@ public class BoletinBlackBoxVariousAislamientoNoTest {
 		titular = "Hola";
 		fechaPublicacion = LocalDate.of(2019, 11, 14);
 		fuente = "Adios";
-		categoria = EnumCategoria.nacional;
+		categoria = EnumCategoria.NACIONAL;
 		url = "https://www." + fuente + '/' + categoria + '/' + titular;
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 
 		titular2 = "Hola2";
 		fechaPublicacion2 = LocalDate.of(2019, 11, 15);
 		fuente2 = "Adios2";
-		categoria2 = EnumCategoria.internacional;
+		categoria2 = EnumCategoria.INTERNACIONAL;
 		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
 		titular3 = "Hola3";
 		fechaPublicacion3 = LocalDate.of(2019, 11, 16);
 		fuente3 = "Adios3";
-		categoria3 = EnumCategoria.sociedad;
+		categoria3 = EnumCategoria.SOCIEDAD;
 		url3 = "https://www." + fuente3 + '/' + categoria3 + '/' + titular3;
 		n3 = new Noticia(titular3, fechaPublicacion3, fuente3, url3, categoria3);
 
@@ -89,7 +89,7 @@ public class BoletinBlackBoxVariousAislamientoNoTest {
 		fechaPublicacion = LocalDate.of(2019, 6, 15);
 		fechaPublicacion2 = LocalDate.of(2018, 1, 1);
 		
-		categoria=EnumCategoria.internacional;
+		categoria=EnumCategoria.INTERNACIONAL;
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 		
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
@@ -114,7 +114,7 @@ public class BoletinBlackBoxVariousAislamientoNoTest {
 		Boletin b = new Boletin();
 		
 		titular="Hola2";
-		categoria = EnumCategoria.internacional;
+		categoria = EnumCategoria.INTERNACIONAL;
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 
 		b.addNoticia(n);

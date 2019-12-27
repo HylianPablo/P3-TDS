@@ -32,7 +32,7 @@ public class NoticiaBlackBoxTest {
 		titular = "Hola";
 		fechaPublicacion = LocalDate.of(2019, 11, 14);
 		fuente = "Adios";
-		categoria = EnumCategoria.nacional;
+		categoria = EnumCategoria.NACIONAL;
 		url = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
@@ -40,7 +40,7 @@ public class NoticiaBlackBoxTest {
 		titular2 = "Hola";
 		fechaPublicacion2 = LocalDate.of(2019, 11, 15);
 		fuente2 = "Adios";
-		categoria2 = EnumCategoria.nacional;
+		categoria2 = EnumCategoria.NACIONAL;
 		url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
@@ -83,7 +83,7 @@ public class NoticiaBlackBoxTest {
 	@Test
 	public void noticiaNoSimilarCategoria() {
 		fechaPublicacion2 = LocalDate.of(2019, 11, 16);
-		categoria2 = EnumCategoria.internacional;
+		categoria2 = EnumCategoria.INTERNACIONAL;
 		url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
@@ -109,7 +109,7 @@ public class NoticiaBlackBoxTest {
 		String titular2 = "Adios";
 		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 16);
 		String fuente2 = "Adios";
-		EnumCategoria categoria2 = EnumCategoria.nacional;
+		EnumCategoria categoria2 = EnumCategoria.NACIONAL;
 		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
@@ -124,7 +124,7 @@ public class NoticiaBlackBoxTest {
 		String titular2 = "Hola";
 		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 12);
 		String fuente2 = "Adios";
-		EnumCategoria categoria2 = EnumCategoria.nacional;
+		EnumCategoria categoria2 = EnumCategoria.NACIONAL;
 		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);

@@ -2,7 +2,6 @@ package es.uva.inf.tds.pr2;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.easymock.Mock;
 import static org.easymock.EasyMock.*;
 
 import java.time.LocalDate;
@@ -41,22 +40,20 @@ public class BoletinSequenceAislamientoTest {
 		assertArrayEquals(boletin1.getNoticias().toArray(),
 				boletin1.getSubconjuntoFecha(fechaConcreta).getNoticias().toArray());
 		assertArrayEquals(boletin1.getNoticias().toArray(),
-				boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.nacional, fechaAnterior, fechaAnterior)
+				boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.NACIONAL, fechaAnterior, fechaAnterior)
 						.getNoticias().toArray());
 		assertArrayEquals(boletin1.getNoticias().toArray(),
-				boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.nacional, fechaConcreta).getNoticias().toArray());
+				boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.NACIONAL, fechaConcreta).getNoticias().toArray());
 		assertArrayEquals(boletin1.getNoticias().toArray(),
-				boletin1.getSubconjuntoCategoria(EnumCategoria.nacional).getNoticias().toArray());
+				boletin1.getSubconjuntoCategoria(EnumCategoria.NACIONAL).getNoticias().toArray());
 		assertEquals(fechaNulaMayor, boletin1.getOldestDate());
 		assertEquals(0, boletin1.getNumberOfNoticias());
 		assertEquals(vacia, boletin1.getNoticias());
 		assertEquals(vacia, boletin1.getNewsByCategory());
 
-		String titular = "Pruebas!";
+		
 		LocalDate fechaPublicacion = LocalDate.of(2019, 11, 28);
-		String fuente = "fakeNews";
-		EnumCategoria categoria = EnumCategoria.cultura;
-		String url = "https://www." + fuente + '/' + categoria + '/' + titular;
+		EnumCategoria categoria = EnumCategoria.CULTURA;
 
 		INoticia in = createMock(INoticia.class);
 
@@ -67,17 +64,13 @@ public class BoletinSequenceAislamientoTest {
 
 		boletin1.addNoticia(in);
 
-		String titular2 = "Titular cuyo numero de palabras se encuentra justo en el limite superior";
 		LocalDate fechaPublicacion2 = LocalDate.of(2019, 12, 28);
-		EnumCategoria categoria2 = EnumCategoria.nacional;
-		String url2 = "https://www." + fuente + '/' + categoria2 + '/' + titular2;
+		EnumCategoria categoria2 = EnumCategoria.NACIONAL;
 
 		INoticia in2 = createMock(INoticia.class);
 
 		LocalDate fechaPublicacion3 = LocalDate.of(2019, 11, 27);
-		String fuente3 = "cicloRGB";
-		EnumCategoria categoria3 = EnumCategoria.cultura;
-		String url3 = "https://www." + fuente3 + '/' + categoria + '/' + titular;
+		EnumCategoria categoria3 = EnumCategoria.CULTURA;
 
 		INoticia in3 = createMock(INoticia.class);
 
@@ -116,9 +109,9 @@ public class BoletinSequenceAislamientoTest {
 		boletin6.addNoticia(in);
 		boletin6.addNoticia(in3);
 		assertArrayEquals(boletin6.getNoticias().toArray(),
-				boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.cultura, fechaPublicacion3, fechaPublicacion)
+				boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.CULTURA, fechaPublicacion3, fechaPublicacion)
 						.getNoticias().toArray());
-		Boletin test6 = boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.cultura, fechaAnterior, fechaAnterior2);
+		Boletin test6 = boletin1.getSubconjuntoCategoriaIntervalo(EnumCategoria.CULTURA, fechaAnterior, fechaAnterior2);
 		assertEquals(0, test6.getNumberOfNoticias());
 		verify(in);
 		verify(in3);
@@ -132,7 +125,7 @@ public class BoletinSequenceAislamientoTest {
 		boletin4.addNoticia(in);
 		boletin4.addNoticia(in3);
 		assertArrayEquals(boletin4.getNoticias().toArray(),
-				boletin1.getSubconjuntoCategoria(EnumCategoria.cultura).getNoticias().toArray());
+				boletin1.getSubconjuntoCategoria(EnumCategoria.CULTURA).getNoticias().toArray());
 		verify(in);
 		verify(in3);
 
@@ -175,8 +168,8 @@ public class BoletinSequenceAislamientoTest {
 		Boletin boletin5 = new Boletin();
 		boletin5.addNoticia(in);
 		assertArrayEquals(boletin5.getNoticias().toArray(),
-				boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.cultura, fechaPublicacion).getNoticias().toArray());
-		Boletin test5 = boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.cultura, fechaPublicacion3);
+				boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.CULTURA, fechaPublicacion).getNoticias().toArray());
+		Boletin test5 = boletin1.getSubconjuntoCategoriaFecha(EnumCategoria.CULTURA, fechaPublicacion3);
 		assertEquals(1, test5.getNumberOfNoticias());
 
 	}

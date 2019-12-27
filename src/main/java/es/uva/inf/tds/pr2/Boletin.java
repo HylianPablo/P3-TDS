@@ -155,35 +155,35 @@ public class Boletin {
 		ArrayList<INoticia> cronologico = (ArrayList)getChronologicalOrder();
 		ArrayList<INoticia> resultado = new ArrayList<>();
 		for (int i = 0; i < cronologico.size(); i++) {
-			if (cronologico.get(i).getCategoria().equals(EnumCategoria.nacional)) {
+			if (cronologico.get(i).getCategoria().equals(EnumCategoria.NACIONAL)) {
 				resultado.add(cronologico.get(i));
 				cronologico.remove(i);
 			}
 		}
 
 		for (int i = 0; i < cronologico.size(); i++) {
-			if (cronologico.get(i).getCategoria().equals(EnumCategoria.internacional)) {
+			if (cronologico.get(i).getCategoria().equals(EnumCategoria.INTERNACIONAL)) {
 				resultado.add(cronologico.get(i));
 				cronologico.remove(i);
 			}
 		}
 
 		for (int i = 0; i < cronologico.size(); i++) {
-			if (cronologico.get(i).getCategoria().equals(EnumCategoria.sociedad)) {
+			if (cronologico.get(i).getCategoria().equals(EnumCategoria.SOCIEDAD)) {
 				resultado.add(cronologico.get(i));
 				cronologico.remove(i);
 			}
 		}
 
 		for (int i = 0; i < cronologico.size(); i++) {
-			if (cronologico.get(i).getCategoria().equals(EnumCategoria.economia)) {
+			if (cronologico.get(i).getCategoria().equals(EnumCategoria.ECONOMIA)) {
 				resultado.add(cronologico.get(i));
 				cronologico.remove(i);
 			}
 		}
 
 		for (int i = 0; i < cronologico.size(); i++) {
-			if (cronologico.get(i).getCategoria().equals(EnumCategoria.deporte)) {
+			if (cronologico.get(i).getCategoria().equals(EnumCategoria.DEPORTE)) {
 				resultado.add(cronologico.get(i));
 				cronologico.remove(i);
 			}

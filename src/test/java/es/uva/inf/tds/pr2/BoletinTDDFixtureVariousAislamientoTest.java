@@ -18,50 +18,34 @@ import org.junit.jupiter.api.Test;
 
 import es.uva.inf.tds.pr2.Boletin;
 import es.uva.inf.tds.pr2.EnumCategoria;
-import es.uva.inf.tds.pr2.Noticia;
 
 public class BoletinTDDFixtureVariousAislamientoTest {
 
-	private String titular;
 	private LocalDate fechaPublicacion;
-	private String fuente;
 	private EnumCategoria categoria;
-	private String url;
+	@Mock
 	private INoticia in;
 
-	private String titular2;
 	private LocalDate fechaPublicacion2;
-	private String fuente2;
 	private EnumCategoria categoria2;
-	private String url2;
+	@Mock
 	private INoticia in2;
 
-	private String titular3;
 	private LocalDate fechaPublicacion3;
-	private String fuente3;
 	private EnumCategoria categoria3;
-	private String url3;
+	@Mock
 	private INoticia in3;
 
 	@BeforeEach
 	public void setUpCategorias() {
-		titular = "Hola";
 		fechaPublicacion = LocalDate.of(2019, 11, 14);
-		fuente = "Adios";
-		categoria = EnumCategoria.nacional;
-		url = "https://www." + fuente + '/' + categoria + '/' + titular;
+		categoria = EnumCategoria.NACIONAL;
 
-		titular2 = "Hola2";
 		fechaPublicacion2 = LocalDate.of(2019, 11, 15);
-		fuente2 = "Adios2";
-		categoria2 = EnumCategoria.internacional;
-		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
+		categoria2 = EnumCategoria.INTERNACIONAL;
 
-		titular3 = "Hola3";
 		fechaPublicacion3 = LocalDate.of(2019, 11, 16);
-		fuente3 = "Adios3";
-		categoria3 = EnumCategoria.sociedad;
-		url3 = "https://www." + fuente3 + '/' + categoria3 + '/' + titular3;
+		categoria3 = EnumCategoria.SOCIEDAD;
 
 		in = createMock(INoticia.class);
 		in2 = createMock(INoticia.class);
@@ -237,7 +221,7 @@ public class BoletinTDDFixtureVariousAislamientoTest {
 	public void subconjuntoCategoria() {
 		Boletin todas = new Boletin();
 
-		EnumCategoria categoriaBuscada = EnumCategoria.nacional;
+		EnumCategoria categoriaBuscada = EnumCategoria.NACIONAL;
 
 		expect(in.getCategoria()).andReturn(categoria).anyTimes();
 		expect(in2.getCategoria()).andReturn(categoria2).anyTimes();
@@ -278,7 +262,7 @@ public class BoletinTDDFixtureVariousAislamientoTest {
 
 		LocalDate fechaConcreta = LocalDate.of(2019, 11, 17);
 
-		EnumCategoria categoriaBuscada = EnumCategoria.nacional;
+		EnumCategoria categoriaBuscada = EnumCategoria.NACIONAL;
 
 		fechaPublicacion = LocalDate.of(2019, 11, 17);
 		fechaPublicacion2 = LocalDate.of(2019, 1, 1);
@@ -328,7 +312,7 @@ public class BoletinTDDFixtureVariousAislamientoTest {
 		LocalDate inicioIntervalo = LocalDate.of(2019, 1, 1);
 		LocalDate finalIntervalo = LocalDate.of(2019, 12, 31);
 
-		EnumCategoria categoriaBuscada = EnumCategoria.nacional;
+		EnumCategoria categoriaBuscada = EnumCategoria.NACIONAL;
 
 		fechaPublicacion = LocalDate.of(2019, 1, 1);
 		fechaPublicacion2 = LocalDate.of(2018, 1, 1);

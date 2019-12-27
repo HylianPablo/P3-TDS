@@ -26,7 +26,7 @@ public class NoticiaTDDFixtureTest {
 		titular = "Hola";
 		fechaPublicacion = LocalDate.of(2019, 11, 14);
 		fuente = "Adios";
-		categoria = EnumCategoria.nacional;
+		categoria = EnumCategoria.NACIONAL;
 		url = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
@@ -66,7 +66,7 @@ public class NoticiaTDDFixtureTest {
 		String titular2 = "Hola";
 		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 14);
 		String fuente2 = "Adios";
-		EnumCategoria categoria2 = EnumCategoria.nacional;
+		EnumCategoria categoria2 = EnumCategoria.NACIONAL;
 		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
@@ -82,7 +82,7 @@ public class NoticiaTDDFixtureTest {
 		String titular2 = "Hola";
 		LocalDate fechaPublicacion2 = LocalDate.of(2019, 11, 16);
 		String fuente2 = "Adios";
-		EnumCategoria categoria2 = EnumCategoria.nacional;
+		EnumCategoria categoria2 = EnumCategoria.NACIONAL;
 		String url2 = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);

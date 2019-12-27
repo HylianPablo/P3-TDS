@@ -18,7 +18,7 @@ public class NoticiaSequenceTest {
 		String titular = "Hola";
 		LocalDate fechaPublicacion = LocalDate.of(2019, 11, 14);
 		String fuente = "Adios";
-		EnumCategoria categoria = EnumCategoria.nacional;
+		EnumCategoria categoria = EnumCategoria.NACIONAL;
 		String url = "https://www." + fuente + '/' + categoria + '/' + titular;
 
 		Noticia n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);

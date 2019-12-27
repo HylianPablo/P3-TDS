@@ -14,23 +14,14 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import es.uva.inf.tds.pr2.Boletin;
-import es.uva.inf.tds.pr2.EnumCategoria;
 import es.uva.inf.tds.pr2.Noticia;
 
 public class BoletinTDDFixtureSimpleAislamientoTest {
 
-	private String titular;
 	private LocalDate fechaPublicacion;
-	private String fuente;
-	private EnumCategoria categoria;
-	private String url;
 	private INoticia in;
 
-	private String titular2;
 	private LocalDate fechaPublicacion2;
-	private String fuente2;
-	private EnumCategoria categoria2;
-	private String url2;
 	@Mock
 	private INoticia in2;
 	private Boletin b;
@@ -47,17 +38,9 @@ public class BoletinTDDFixtureSimpleAislamientoTest {
 	@BeforeEach
 	public void setUp() throws Exception {
 
-		titular = "Hola";
 		fechaPublicacion = LocalDate.of(2019, 11, 14);
-		fuente = "Adios";
-		categoria = EnumCategoria.nacional;
-		url = "https://www." + fuente + '/' + categoria + '/' + titular;
 
-		titular2 = "Hola2";
 		fechaPublicacion2 = LocalDate.of(2019, 12, 14);
-		fuente2 = "Adios2";
-		categoria2 = EnumCategoria.nacional;
-		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
 
 		in = createMock(INoticia.class);
 		in2 = createMock(INoticia.class);

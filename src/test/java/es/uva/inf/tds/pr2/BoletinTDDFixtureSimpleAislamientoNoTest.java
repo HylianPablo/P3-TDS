@@ -41,14 +41,14 @@ public class BoletinTDDFixtureSimpleAislamientoNoTest {
 		titular = "Hola";
 		fechaPublicacion = LocalDate.of(2019, 11, 14);
 		fuente = "Adios";
-		categoria = EnumCategoria.nacional;
+		categoria = EnumCategoria.NACIONAL;
 		url = "https://www." + fuente + '/' + categoria + '/' + titular;
 		n = new Noticia(titular, fechaPublicacion, fuente, url, categoria);
 
 		titular2 = "Hola2";
 		fechaPublicacion2 = LocalDate.of(2019, 12, 14);
 		fuente2 = "Adios2";
-		categoria2 = EnumCategoria.nacional;
+		categoria2 = EnumCategoria.NACIONAL;
 		url2 = "https://www." + fuente2 + '/' + categoria2 + '/' + titular2;
 		n2 = new Noticia(titular2, fechaPublicacion2, fuente2, url2, categoria2);
 
