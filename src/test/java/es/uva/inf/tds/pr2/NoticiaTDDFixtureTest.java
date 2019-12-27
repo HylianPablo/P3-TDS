@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import es.uva.inf.tds.pr2.EnumCategoria;
 import es.uva.inf.tds.pr2.Noticia;
 
-public class NoticiaTDDFixture {
+public class NoticiaTDDFixtureTest {
 
 	private String titular;
 	private LocalDate fechaPublicacion;

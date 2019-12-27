@@ -20,7 +20,7 @@ import es.uva.inf.tds.pr2.Boletin;
 import es.uva.inf.tds.pr2.EnumCategoria;
 import es.uva.inf.tds.pr2.Noticia;
 
-public class BoletinTDDFixtureVariousAislamiento {
+public class BoletinTDDFixtureVariousAislamientoTest {
 
 	private String titular;
 	private LocalDate fechaPublicacion;

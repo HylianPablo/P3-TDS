@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import es.uva.inf.tds.pr2.EnumCategoria;
 import es.uva.inf.tds.pr2.Noticia;
 
-public class NoticiaBlackBox {
+public class NoticiaBlackBoxTest {
 
 	private String titular;
 	private LocalDate fechaPublicacion;

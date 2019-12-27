@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import es.uva.inf.tds.pr2.EnumCategoria;
 import es.uva.inf.tds.pr2.Noticia;
 
-public class NoticiaSequence {
+public class NoticiaSequenceTest {
 
 	@Tag("Sequence")
 	@Test
