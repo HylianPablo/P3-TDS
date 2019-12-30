@@ -160,9 +160,8 @@ public class Noticia implements INoticia {
 		if (!titular.equals(n.getTitular()))
 			return false;
 
-		if (!categoria.equals(n.getCategoria()))
-			return false;
-		return true;
+		return (categoria.equals(n.getCategoria()));
+		
 	}
 
 }

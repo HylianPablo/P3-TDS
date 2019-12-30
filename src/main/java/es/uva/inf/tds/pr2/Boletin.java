@@ -2,6 +2,7 @@ package es.uva.inf.tds.pr2;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase que representa un boletín de noticias. <br>
@@ -27,11 +28,12 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} si la lista introducida por
 	 *         parámetro es {@code null}.
 	 */
-	public Boletin(ArrayList<INoticia> al) {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Boletin(List<INoticia> al) {
 		if (al == null) {
 			throw new IllegalArgumentException();
 		}
-		listaNoticias = al;
+		listaNoticias = (ArrayList)al;
 	}
 
 	/**
@@ -46,7 +48,7 @@ public class Boletin {
 	 * 
 	 * @return {@code ArrayList} que representa el conjunto de noticias del boletín.
 	 */
-	public ArrayList<INoticia> getNoticias() {
+	public List<INoticia> getNoticias() {
 		return listaNoticias;
 	}
 
@@ -118,7 +120,8 @@ public class Boletin {
 	 * @return {@code ArrayList} que representa la lista de noticias del boletín
 	 *         ordenadas cronológicamente.
 	 */
-	public ArrayList<INoticia> getChronologicalOrder() { // REVISAR
+	@SuppressWarnings("unchecked")
+	public List<INoticia> getChronologicalOrder() { // REVISAR
 		ArrayList<INoticia> resultado = new ArrayList<>();
 		ArrayList<INoticia> copia = (ArrayList<INoticia>) listaNoticias.clone();
 
@@ -147,8 +150,9 @@ public class Boletin {
 	 * @return {@code ArrayList} que representa la lista de noticias del boletín
 	 *         ordenadas por categoría.
 	 */
-	public ArrayList<INoticia> getNewsByCategory() {
-		ArrayList<INoticia> cronologico = getChronologicalOrder();
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<INoticia> getNewsByCategory() {
+		ArrayList<INoticia> cronologico = (ArrayList)getChronologicalOrder();
 		ArrayList<INoticia> resultado = new ArrayList<>();
 		for (int i = 0; i < cronologico.size(); i++) {
 			if (cronologico.get(i).getCategoria().equals(EnumCategoria.nacional)) {
@@ -204,7 +208,7 @@ public class Boletin {
 	 * @throws {@code IllegalArgumentException} en caso de que la noticia
 	 *         introducida sea {@code null}.
 	 */
-	public ArrayList<INoticia> getSimilarNews(INoticia n) {
+	public List<INoticia> getSimilarNews(INoticia n) {
 		if (n == null) {
 			throw new IllegalArgumentException();
 		}
@@ -387,12 +391,13 @@ public class Boletin {
 	 * @return porcentaje en punto flotante
 	 * @throws {@code IllegalArgumentException} Si el boletin a comparar es nulo
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public double getGradoSimilitud(Boletin boletinComparar) {
 		if (boletinComparar == null) {
 			throw new IllegalArgumentException();
 		}
 		int noticiasSimilares = 0;
-		ArrayList<INoticia> copia = boletinComparar.getNoticias();
+		ArrayList<INoticia> copia = (ArrayList)boletinComparar.getNoticias();
 
 		for (int i = 0; i < listaNoticias.size(); i++) {
 			for (int j = 0; j < boletinComparar.getNumberOfNoticias(); j++) {
@@ -401,7 +406,7 @@ public class Boletin {
 			}
 		}
 
-		return noticiasSimilares * 100 / listaNoticias.size();
+		return noticiasSimilares * 100.0 / listaNoticias.size();
 	}
 
 }
